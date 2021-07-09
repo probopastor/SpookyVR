@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    [SerializeField, Tooltip("The player's movement speed.")] private float playerSpeed = 1f;
+
     private InputMaster playerControlls;
     private Vector3 move;
-
-    [SerializeField] private float playerSpeed = 1f;
     private Rigidbody rb;
 
     private void Awake()
