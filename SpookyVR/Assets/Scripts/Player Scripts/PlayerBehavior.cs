@@ -12,9 +12,11 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField, Tooltip("The range in which the player can interact with objects. ")] private float interactionRange = 1f;
     [SerializeField, Tooltip("All layers that the player can interact with. ")] private LayerMask interactionLayers;
 
-    [SerializeField, Tooltip("The cursor. ")] private Image cursor;
-    [SerializeField, Tooltip("The cursor sprite to be used when hovering over an interactable object. ")] private Sprite cursorCanSelectSprite;
-    [Tooltip("The default cursor sprite. ")] private Sprite cursorDefaultSprite;
+    [SerializeField, Tooltip("The crosshair. ")] private Image crosshair;
+    [SerializeField, Tooltip("The crosshair sprite used when hovering over an interactable object. ")] private Sprite crosshairCanSelectSprite;
+    [Tooltip("The default crosshair sprite. ")] private Sprite crosshairDefaultSprite;
+    [SerializeField, Tooltip("The crosshair sprite color used when hovering over an interactable object. ")] private Color crosshairCanSelectColor;
+    [Tooltip("The default crosshair sprite color. ")] private Color crosshairDefaultColor;
     [Tooltip("The bool to determine if the player is hovering over an object that is interactable. ")] private bool canInteract = false;
     #endregion 
 
@@ -31,7 +33,8 @@ public class PlayerBehavior : MonoBehaviour
         controls.Player.Movement.canceled += ctx => move = Vector3.zero;
 
         rb = GetComponent<Rigidbody>();
-        cursorDefaultSprite = cursor.sprite;
+        crosshairDefaultSprite = crosshair.sprite;
+        crosshairDefaultColor = crosshair.color;
     }
 
     // Start is called before the first frame update
@@ -86,7 +89,8 @@ public class PlayerBehavior : MonoBehaviour
             if(!canInteract)
             {
                 canInteract = true;
-                cursor.sprite = cursorCanSelectSprite;
+                crosshair.sprite = crosshairCanSelectSprite;
+                crosshair.color = crosshairCanSelectColor;
             }
         }
         else
@@ -94,7 +98,8 @@ public class PlayerBehavior : MonoBehaviour
             if(canInteract)
             {
                 canInteract = false;
-                cursor.sprite = cursorDefaultSprite;
+                crosshair.sprite = crosshairDefaultSprite;
+                crosshair.color = crosshairDefaultColor;
             }
         }
     }
