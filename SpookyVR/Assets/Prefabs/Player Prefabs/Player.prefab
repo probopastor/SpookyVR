@@ -225,3 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
+  interactionRange: 1000
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  cursor: {fileID: 0}
+  cursorCanSelectSprite: {fileID: 0}

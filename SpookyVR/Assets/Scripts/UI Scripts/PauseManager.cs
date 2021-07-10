@@ -8,7 +8,7 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField, Tooltip("The name of the Main Menu scene. ")] private string mainMenuName;
 
-    //[SerializedField, Tooltip("The crosshair. ")] private GameObject crosshair;
+    [SerializeField, Tooltip("Regular crosshair. ")] private GameObject crosshair;
 
     [SerializeField, Tooltip("The pause panel that should activate when the game is paused. ")] private GameObject pausePanel;
     [Tooltip("Handles whether or not the game is paused. ")] private bool isPaused;
@@ -21,7 +21,7 @@ public class PauseManager : MonoBehaviour
         controls = new InputMaster();
 
         Cursor.visible = false;
-        //crosshair.SetActive(true);
+        crosshair.SetActive(true);
         pausePanel.SetActive(false);
         isPaused = false;
     }
@@ -59,7 +59,7 @@ public class PauseManager : MonoBehaviour
         {
             isPaused = true;
 
-            //crosshair.SetActive(false);
+            crosshair.SetActive(false);
             pausePanel.SetActive(true);
 
             Cursor.visible = true;
@@ -73,7 +73,7 @@ public class PauseManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            //crosshair.SetActive(true);
+            crosshair.SetActive(true);
             pausePanel.SetActive(false);
             Time.timeScale = 1;
         }
