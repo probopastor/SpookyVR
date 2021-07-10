@@ -9,6 +9,7 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField, Tooltip("The player's movement speed.")] private float playerSpeed = 1f;
 
     #region Interaction Controls
+    [SerializeField, Tooltip("The hand that held objects will appear at. ")] private GameObject hand;
     [SerializeField, Tooltip("The range in which the player can interact with objects. ")] private float interactionRange = 1f;
     [SerializeField, Tooltip("All layers that the player can interact with. ")] private LayerMask interactionLayers;
 
@@ -18,6 +19,8 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField, Tooltip("The crosshair sprite color used when hovering over an interactable object. ")] private Color crosshairCanSelectColor;
     [Tooltip("The default crosshair sprite color. ")] private Color crosshairDefaultColor;
     [Tooltip("The bool to determine if the player is hovering over an object that is interactable. ")] private bool canInteract = false;
+    [Tooltip("Bool to determine if an object is currently being held. ")] private bool objectHeld = false;
+    [Tooltip("The current object hovered over. ")] private GameObject hoveredObject;
     #endregion 
 
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
@@ -57,9 +60,13 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         Movement(move);
-        HoverObject();
 
-        if(canInteract)
+        if(!objectHeld)
+        {
+            HoverObject();
+        }
+
+        if (canInteract || objectHeld)
         {
             if(controls.Player.Interact.triggered)
             {
@@ -83,7 +90,6 @@ public class PlayerBehavior : MonoBehaviour
     private void HoverObject()
     {
         RaycastHit hit;
-
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionRange, interactionLayers))
         {
             if(!canInteract)
@@ -91,6 +97,7 @@ public class PlayerBehavior : MonoBehaviour
                 canInteract = true;
                 crosshair.sprite = crosshairCanSelectSprite;
                 crosshair.color = crosshairCanSelectColor;
+                hoveredObject = hit.transform.gameObject;
             }
         }
         else
@@ -104,9 +111,38 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles selecting the interactable object.
+    /// </summary>
     private void SelectObject()
     {
-        Debug.Log("Object Selected"); 
+        hoveredObject.GetComponent<InteractableObject>().Interact();
     }
 
+    /// <summary>
+    /// Sets whether an object is being held.
+    /// </summary>
+    /// <param name="heldStatus">The new held status. </param>
+    public void SetHoldingStatus(bool heldStatus)
+    {
+        objectHeld = heldStatus;
+    }
+
+    /// <summary>
+    /// Returns whether an object is currently being held or not.
+    /// </summary>
+    /// <returns>Returns true if an object is held, false otherwise. </returns>
+    public bool GetHoldingStatus()
+    {
+        return objectHeld;
+    }
+
+    /// <summary>
+    /// Returns the hand object. 
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetHand()
+    {
+        return hand;
+    }
 }
