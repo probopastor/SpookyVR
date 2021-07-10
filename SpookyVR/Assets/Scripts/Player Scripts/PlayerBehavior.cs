@@ -7,9 +7,9 @@ public class PlayerBehavior : MonoBehaviour
 {
     [SerializeField, Tooltip("The player's movement speed.")] private float playerSpeed = 1f;
 
-    private InputMaster playerControlls;
-    private Vector3 move;
-    private Rigidbody rb;
+    [Tooltip("The Input Map. ")] private InputMaster playerControlls;
+    [Tooltip("The movement vector that will be altered based on player input. ")] private Vector3 move;
+    [Tooltip("The player's Rigidbody. ")] private Rigidbody rb;
 
     private void Awake()
     {
@@ -43,9 +43,15 @@ public class PlayerBehavior : MonoBehaviour
         Movement(move);
     }
 
+    /// <summary>
+    /// Handles player movement. 
+    /// </summary>
+    /// <param name="direction">The Vector3 direction the player should move in. </param>
     private void Movement(Vector3 direction)
     {
-        Vector3 movement = new Vector3(direction.x * playerSpeed, 0, direction.y * playerSpeed);
-        rb.velocity = movement;
+        //Vector3 movement = new Vector3(direction.x * playerSpeed, 0, direction.y * playerSpeed);
+
+        Vector3 movement = (direction.y * transform.forward) + (direction.x * transform.right);
+        rb.velocity = movement * playerSpeed;
     }
 }
