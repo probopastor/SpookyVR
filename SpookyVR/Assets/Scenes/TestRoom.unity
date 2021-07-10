@@ -495,6 +495,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 119504618}
     m_Modifications:
+    - target: {fileID: 2144412816, guid: 6980324faccc0f74ba79a15974cdff7c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7058089475834959202, guid: 6980324faccc0f74ba79a15974cdff7c, type: 3}
       propertyPath: crosshair
       value: 
