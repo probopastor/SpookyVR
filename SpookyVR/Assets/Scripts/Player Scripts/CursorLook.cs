@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CursorLook : MonoBehaviour
 {
-    private InputMaster playerControlls;
+    [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     [SerializeField, Tooltip("The default look sensitivity. ")] private float mouseSensitivity = 100f;
     [Tooltip("Stores the mouse direction from the Input Manager. ")] private Vector2 mouseLook;
@@ -15,7 +15,7 @@ public class CursorLook : MonoBehaviour
 
     private void Awake()
     {
-        playerControlls = new InputMaster();
+        controls = new InputMaster();
         playerBody = FindObjectOfType<PlayerBehavior>().transform;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -23,12 +23,12 @@ public class CursorLook : MonoBehaviour
 
     private void OnEnable()
     {
-        playerControlls.Enable();
+        controls.Enable();
     }
 
     private void OnDisable()
     {
-        playerControlls.Disable();
+        controls.Disable();
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class CursorLook : MonoBehaviour
     private void Look()
     {
         // Gets the mouse direction from Input. 
-        mouseLook = playerControlls.Player.Look.ReadValue<Vector2>();
+        mouseLook = controls.Player.Look.ReadValue<Vector2>();
 
         // Rotates the camera over time to where the mouse is looking.
         float mouseX = mouseLook.x * mouseSensitivity * Time.deltaTime;

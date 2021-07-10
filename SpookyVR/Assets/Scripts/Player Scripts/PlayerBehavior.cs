@@ -7,16 +7,16 @@ public class PlayerBehavior : MonoBehaviour
 {
     [SerializeField, Tooltip("The player's movement speed.")] private float playerSpeed = 1f;
 
-    [Tooltip("The Input Map. ")] private InputMaster playerControlls;
+    [Tooltip("The Master Input Map. ")] private InputMaster controls;
     [Tooltip("The movement vector that will be altered based on player input. ")] private Vector3 move;
     [Tooltip("The player's Rigidbody. ")] private Rigidbody rb;
 
     private void Awake()
     {
-        playerControlls = new InputMaster();
+        controls = new InputMaster();
 
-        playerControlls.Player.Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
-        playerControlls.Player.Movement.canceled += ctx => move = Vector3.zero;
+        controls.Player.Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Player.Movement.canceled += ctx => move = Vector3.zero;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -29,12 +29,12 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnEnable()
     {
-        playerControlls.Enable();
+        controls.Enable();
     }
 
     private void OnDisable()
     {
-        playerControlls.Disable();
+        controls.Disable();
     }
 
     // Update is called once per frame
