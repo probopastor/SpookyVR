@@ -5408,6 +5408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 4651231400619056229, guid: 10d0effa2206f4245aa332533a2b8f3c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.044
+      objectReference: {fileID: 0}
     - target: {fileID: 4651231400728200211, guid: 10d0effa2206f4245aa332533a2b8f3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.7
