@@ -25,7 +25,7 @@ public class ScheduleCreation : MonoBehaviour
     private void Awake()
     {
         // Add the correct amount of actions to each day in theDays.
-        for(int i = 0; i < theDays.Count; i++)
+        for (int i = 0; i < theDays.Count; i++)
         {
             // Set the actions today list equal to the daily actions.
             theDays[i].actionsToday = dailyActions;
@@ -77,17 +77,70 @@ public class ScheduleCreation : MonoBehaviour
     /// <summary>
     /// Sets the action to the designated spot on the designated day.
     /// </summary>
-    /// <param name="actionNumber">The position of the day the action will occur at. (This is the slot in the day, not the time, this value will instead be used to calculate time.). </param>
+    /// <param name="actionNumber">The position of the day the action will occur at. (This is the slot in the day, not the time, this value will instead be used to calculate time). </param>
     public void SetAction(int actionNumber)
     {
         // Updates this individual action.
         thisAction.actionType = actionType;
         thisAction.buildingType = buildingType;
         thisAction.npcType = npcType;
+
+        // If this is an NPC action
+        if (actionNumber == 3)
+        {
+            //if(!GetComponent<Storage>().CheckNPCScheduleCompatibility(npcType, actionNumber)) 
+            //{
+            //Send feedback saying NPC name is not free at this time.
+            // Break. 
+            //}
+        }
+
         thisAction.timeOfAction = SetTime(actionNumber, numberOfActionsPerDay);
 
         // Add this action to the appropriate spot of the action list. 
         theDays[currentScheduleDay].actionsToday[actionNumber] = thisAction;
+    }
+
+    /// <summary>
+    /// Sets longer actions than the standard short action.
+    /// </summary>
+    /// <param name="actionNumbers">An array of the positions if the day the action will occur at. (these are the slots in the day, not the time, these values will instead be used to calculate time.)</param>
+    public void SetActionLonger(int[] actionNumbers)
+    {
+        bool incompatibileSchedule = false;
+
+        for (int i = 0; i < actionNumbers.Length; i++)
+        {
+            if(theDays[currentScheduleDay].actionsToday[actionNumbers[i]] == null)
+            {
+                incompatibileSchedule = true;
+            }
+        }
+
+        if(!incompatibileSchedule)
+        {
+            // Updates this individual action.
+            thisAction.actionType = actionType;
+            thisAction.buildingType = buildingType;
+            thisAction.npcType = npcType;
+
+            thisAction.timeOfAction = SetTime(actionNumbers[0], numberOfActionsPerDay);
+            theDays[currentScheduleDay].actionsToday[actionNumbers[0]] = thisAction;
+
+            for (int i = 0; i < actionNumbers.Length; i++)
+            {
+                // Set action types to 100. This indicates that the action should be skipped.
+                thisAction.actionType = 100;
+                thisAction.npcType = 100;
+
+                // Add this action to the appropriate spot of the action list. 
+                theDays[currentScheduleDay].actionsToday[actionNumbers[i]] = thisAction;
+            }
+        }
+        else
+        {
+            // Make the UI Indicator red.
+        }
     }
 
     /// <summary>
