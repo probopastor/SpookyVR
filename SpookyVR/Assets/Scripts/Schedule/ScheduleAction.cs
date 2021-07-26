@@ -31,7 +31,7 @@ public class ScheduleAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = controls.Player.Look.ReadValue<Vector2>();
+        gameObject.transform.position = Mouse.current.position.ReadValue();
     }
 
     public void FillActionParameters(int actionType, int buildingType, int npcType)
