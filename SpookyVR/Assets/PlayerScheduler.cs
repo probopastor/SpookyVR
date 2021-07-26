@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerScheduler : MonoBehaviour
 {
+    [SerializeField, Tooltip("The layers of schedule slots. ")] private LayerMask scheduleSlotLayers;
+    [SerializeField, Tooltip("The layers of schedule slots. ")] private LayerMask deleteActionLayers;
+
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     private bool objectHeld = false;
@@ -36,6 +39,9 @@ public class PlayerScheduler : MonoBehaviour
     {
         if (objectHeld)
         {
+            ViewPossibleSlots();
+            HoverEffect();
+
             scheduleActionObject.transform.position = Mouse.current.position.ReadValue();
             
             if(controls.Scheduler.Delete.triggered)
@@ -43,11 +49,67 @@ public class PlayerScheduler : MonoBehaviour
                 Destroy(scheduleActionObject);
                 objectHeld = false;
             }
-            else if(controls.Scheduler.Place.triggered)
+            else if (controls.Scheduler.Place.triggered)
             {
-                objectHeld = false;
+                //objectHeld = false;
             }
         }
+    }
+
+    /// <summary>
+    /// Changes this schedule actions color when it is hovered over specific instances.
+    /// </summary>
+    private void HoverEffect()
+    {
+        // Turn transparent if it is over something that will delete it.
+        // Turn grey if it is over something that it cannot be placed onto.
+        // Turn normal color (white?) if it is over something it can be placed onto. 
+
+        Ray ray = Camera.main.ScreenPointToRay(scheduleActionObject.transform.position);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, scheduleSlotLayers))
+        {
+            GameObject hitObj = hit.transform.gameObject;
+
+            if (hitObj.GetComponent<ScheduleSlotData>() != null)
+            {
+                ScheduleSlotData scheduleSlotData = hitObj.GetComponent<ScheduleSlotData>();
+
+                if (scheduleSlotData.GetActionHeld() == null)
+                {
+                    // Turn color to "Can Place Color" here.
+                    if (controls.Scheduler.Place.triggered)
+                    {
+                        scheduleSlotData.SetActionHeld(scheduleActionObject);
+                        scheduleActionObject.transform.position = hitObj.transform.position;
+                        objectHeld = false;
+                    }
+                }
+                else
+                {
+                    // Turn color to Cannot Place color here
+                }
+            }
+            else if (Physics.Raycast(ray, out hit, Mathf.Infinity, deleteActionLayers))
+            {
+                // Turn color to "Deletion Color" here
+            }
+            else
+            {
+                // Turn color to Cannot Place color here.
+            }
+        }
+    }
+
+    /// <summary>
+    /// Colors the schedule's slots so that it's clear where this schedule action can be placed.
+    /// </summary>
+    private void ViewPossibleSlots()
+    {
+        // If a spot is open for this action - color it green.
+        // If a spot is currently taken by another action - but if it wasn't it could be taken by this action - color it purple & give it 1/2 of a cross hash pattern.
+        // If a spot is completely unavailable - color it red & give cross hash pattern.
     }
 
     /// <summary>
