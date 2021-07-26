@@ -46,33 +46,17 @@ public class ScheduleCreation : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Sets the current building type to the building represented by thisBuildingType.
-    /// </summary>
-    /// <param name="thisBuildingType"></param>
-    public void SetBuildingType(int thisBuildingType)
-    {
-        buildingType = thisBuildingType;
-    }
+// Where original setters went
 
-    // <summary>
-    /// Sets the current action type to the action represented thisActionType.
-    /// </summary>
-    /// <param name="thisActionType">The current action type. 0 is GetReport, 1 is Collect, 2 is Assess, 3 is Talk To. All other numbers are unique to the given scenario. </param>
-    public void SetActionType(int thisActionType)
+    public void InstantiateAction(int actionCode, int buildingCode, int npcCode)
     {
-        actionType = thisActionType;
-    }
+        thisAction = new Actions();
 
-    /// <summary>
-    /// Sets the current NPC type to the NPC represented by thisNPCType.
-    /// </summary>
-    /// <param name="thisNPCType"></param>
-    public void SetNPCType(int thisNPCType)
-    {
-        npcType = thisNPCType;
+        // Updates this individual action.
+        thisAction.actionType = actionCode;
+        thisAction.buildingType = buildingCode;
+        thisAction.npcType = npcCode;
     }
-
 
     /// <summary>
     /// Sets the action to the designated spot on the designated day.
@@ -80,13 +64,8 @@ public class ScheduleCreation : MonoBehaviour
     /// <param name="actionNumber">The position of the day the action will occur at. (This is the slot in the day, not the time, this value will instead be used to calculate time). </param>
     public void SetAction(int actionNumber)
     {
-        // Updates this individual action.
-        thisAction.actionType = actionType;
-        thisAction.buildingType = buildingType;
-        thisAction.npcType = npcType;
-
         // If this is an NPC action
-        if (actionNumber == 3)
+        if (actionType == 3)
         {
             //if(!GetComponent<Storage>().CheckNPCScheduleCompatibility(npcType, actionNumber)) 
             //{
