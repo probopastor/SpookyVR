@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerScheduler : MonoBehaviour
 {
-    [SerializeField, Tooltip("The layers of schedule slots. ")] private LayerMask scheduleSlotLayers;
-    [SerializeField, Tooltip("The layers of schedule slots. ")] private LayerMask deleteActionLayers;
-
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     private bool objectHeld = false;
@@ -43,8 +40,8 @@ public class PlayerScheduler : MonoBehaviour
             HoverEffect();
 
             scheduleActionObject.transform.position = Mouse.current.position.ReadValue();
-            
-            if(controls.Scheduler.Delete.triggered)
+
+            if (controls.Scheduler.Delete.triggered)
             {
                 Destroy(scheduleActionObject);
                 objectHeld = false;
@@ -65,16 +62,16 @@ public class PlayerScheduler : MonoBehaviour
         // Turn grey if it is over something that it cannot be placed onto.
         // Turn normal color (white?) if it is over something it can be placed onto. 
 
-        Ray ray = Camera.main.ScreenPointToRay(scheduleActionObject.transform.position);
-        RaycastHit hit;
+        //Ray ray = Camera.main.ScreenPointToRay(scheduleActionObject.transform.position);
+        //RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, scheduleSlotLayers))
+        ScheduleAction scheduleAction = scheduleActionObject.GetComponent<ScheduleAction>();
+
+        if (scheduleAction.IsSmallAction())
         {
-            GameObject hitObj = hit.transform.gameObject;
-
-            if (hitObj.GetComponent<ScheduleSlotData>() != null)
+            if(scheduleAction.GetClosestSlotObject() != null)
             {
-                ScheduleSlotData scheduleSlotData = hitObj.GetComponent<ScheduleSlotData>();
+                ScheduleSlotData scheduleSlotData = scheduleAction.GetClosestSlotObject().GetComponent<ScheduleSlotData>();
 
                 if (scheduleSlotData.GetActionHeld() == null)
                 {
@@ -82,24 +79,52 @@ public class PlayerScheduler : MonoBehaviour
                     if (controls.Scheduler.Place.triggered)
                     {
                         scheduleSlotData.SetActionHeld(scheduleActionObject);
-                        scheduleActionObject.transform.position = hitObj.transform.position;
+
                         objectHeld = false;
+
+                        scheduleActionObject.transform.localScale = scheduleAction.GetClosestSlotObject().transform.localScale;
+                        scheduleActionObject.transform.position = scheduleAction.GetClosestSlotObject().transform.position;
                     }
                 }
                 else
                 {
-                    // Turn color to Cannot Place color here
+                    // Cannot place color here.
                 }
             }
-            else if (Physics.Raycast(ray, out hit, Mathf.Infinity, deleteActionLayers))
-            {
-                // Turn color to "Deletion Color" here
-            }
-            else
-            {
-                // Turn color to Cannot Place color here.
-            }
         }
+
+        //if (Physics.Raycast(ray, out hit, Mathf.Infinity, scheduleSlotLayers))
+        //{
+        //    GameObject hitObj = hit.transform.gameObject;
+
+        //    if (hitObj.GetComponent<ScheduleSlotData>() != null)
+        //    {
+        //        ScheduleSlotData scheduleSlotData = hitObj.GetComponent<ScheduleSlotData>();
+
+        //        if (scheduleSlotData.GetActionHeld() == null)
+        //        {
+        //            // Turn color to "Can Place Color" here.
+        //            if (controls.Scheduler.Place.triggered)
+        //            {
+        //                scheduleSlotData.SetActionHeld(scheduleActionObject);
+        //                scheduleActionObject.transform.position = hitObj.transform.position;
+        //                objectHeld = false;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Turn color to Cannot Place color here
+        //        }
+        //    }
+        //    else if (Physics.Raycast(ray, out hit, Mathf.Infinity, deleteActionLayers))
+        //    {
+        //        // Turn color to "Deletion Color" here
+        //    }
+        //    else
+        //    {
+        //        // Turn color to Cannot Place color here.
+        //    }
+        //}
     }
 
     /// <summary>

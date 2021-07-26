@@ -175,9 +175,10 @@ GameObject:
   - component: {fileID: 132904223}
   - component: {fileID: 132904226}
   - component: {fileID: 132904227}
+  - component: {fileID: 132904228}
   m_Layer: 10
   m_Name: Action 2 Button
-  m_TagString: Untagged
+  m_TagString: ActionSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,7 +304,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132904221}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 98.48463, y: 96.33133, z: 5}
@@ -321,6 +322,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPos: 1
+--- !u!54 &132904228
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132904221}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &161065710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,9 +1024,10 @@ GameObject:
   - component: {fileID: 638954872}
   - component: {fileID: 638954875}
   - component: {fileID: 638954876}
+  - component: {fileID: 638954877}
   m_Layer: 10
   m_Name: Action 2 Button
-  m_TagString: Untagged
+  m_TagString: ActionSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1135,7 +1153,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638954870}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 98.48463, y: 96.33133, z: 5}
@@ -1153,6 +1171,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPos: 1
+--- !u!54 &638954877
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638954870}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &698261701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,9 +2633,10 @@ GameObject:
   - component: {fileID: 1291591856}
   - component: {fileID: 1291591859}
   - component: {fileID: 1291591860}
+  - component: {fileID: 1291591861}
   m_Layer: 10
   m_Name: Action 3 Button
-  m_TagString: Untagged
+  m_TagString: ActionSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2727,7 +2762,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291591854}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 98.48463, y: 96.33133, z: 5}
@@ -2745,6 +2780,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPos: 2
+--- !u!54 &1291591861
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291591854}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1294466991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,9 +2810,10 @@ GameObject:
   - component: {fileID: 1294466993}
   - component: {fileID: 1294466996}
   - component: {fileID: 1294466997}
+  - component: {fileID: 1294466998}
   m_Layer: 10
   m_Name: Action 3 Button
-  m_TagString: Untagged
+  m_TagString: ActionSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2887,7 +2939,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294466991}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 98.48463, y: 96.33133, z: 5}
@@ -2905,6 +2957,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPos: 2
+--- !u!54 &1294466998
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294466991}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1355755608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,9 +3689,10 @@ GameObject:
   - component: {fileID: 1523621710}
   - component: {fileID: 1523621713}
   - component: {fileID: 1523621714}
+  - component: {fileID: 1523621715}
   m_Layer: 10
   m_Name: Action 1 Button
-  m_TagString: Untagged
+  m_TagString: ActionSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3749,7 +3818,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523621708}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 98.48463, y: 96.33133, z: 5}
@@ -3767,6 +3836,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPos: 0
+--- !u!54 &1523621715
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523621708}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1693464808
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,9 +4468,10 @@ GameObject:
   - component: {fileID: 1816753955}
   - component: {fileID: 1816753958}
   - component: {fileID: 1816753959}
+  - component: {fileID: 1816753960}
   m_Layer: 10
   m_Name: Action 1 Button
-  m_TagString: Untagged
+  m_TagString: ActionSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4511,7 +4597,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816753953}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 98.48463, y: 96.33133, z: 5}
@@ -4529,6 +4615,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotPos: 0
+--- !u!54 &1816753960
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816753953}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1879637151
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,12 +4921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d7532dbaf26014fae12240fefde59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scheduleSlotLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  deleteActionLayers:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1950152009
 GameObject:
   m_ObjectHideFlags: 0

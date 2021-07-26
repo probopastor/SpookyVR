@@ -176,6 +176,5 @@ public class ScheduleCreation : MonoBehaviour
     public void UpdateScheduleDay(int dayNumber)
     {
         currentScheduleDay = dayNumber;
-        Debug.Log("Day is " + currentScheduleDay);
     }
 }
