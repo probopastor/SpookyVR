@@ -8,6 +8,8 @@ public class CreateAction : MonoBehaviour
     [SerializeField] private GameObject scheduleActionObject;
 
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
+    [Tooltip("The player controller for schedule creation. ")] private PlayerScheduler playerScheduler;
+
 
     private int actionType = 0;
     private int buildingType = 0;
@@ -21,6 +23,7 @@ public class CreateAction : MonoBehaviour
     private void Awake()
     {
         controls = new InputMaster();
+        playerScheduler = FindObjectOfType<PlayerScheduler>();
     }
 
     private void OnEnable()
@@ -62,7 +65,21 @@ public class CreateAction : MonoBehaviour
 
     public void CreateActionObject()
     {
-        GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, controls.Player.Look.ReadValue<Vector2>(), Quaternion.identity);
-        scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType);
+        // If an object is not currently held, create an action object.
+        if(!playerScheduler.IsObjectHeld())
+        {
+
+            playerScheduler.SetHeldStatus(true);
+
+            // Instantiates this action object and child it to the canvas (since it will be a button)
+            GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, controls.Player.Look.ReadValue<Vector2>(), Quaternion.identity);
+            scheduleActionObjectClone.transform.parent = playerScheduler.gameObject.transform;
+
+            // Fills in action object's action parameters
+            scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType);
+
+            // Sets the player's currently held object to this action object.
+            playerScheduler.SetHeldObject(scheduleActionObjectClone);
+        }
     }
 }
