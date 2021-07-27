@@ -2175,6 +2175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
+  actionDuration: 0
   actionType: 3
   buildingType: 3
   npcType: 3
@@ -2797,6 +2798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
+  actionDuration: 0
   actionType: 2
   buildingType: 2
   npcType: 2
@@ -5362,6 +5364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
+  actionDuration: 0
   actionType: 1
   buildingType: 1
   npcType: 1

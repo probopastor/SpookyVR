@@ -61,23 +61,40 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {        
-        if(eventData.pointerDrag != null && actionHeld == null)
+        if(eventData.pointerDrag != null)
         {
-            //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+            if(actionHeld == null)
+            {
+                // Updates the action held information
+                actionHeld = eventData.pointerDrag;
+                ScheduleAction thisAction = actionHeld.GetComponent<ScheduleAction>();
 
-            // Snaps action to schedule slot position
-            eventData.pointerDrag.transform.position = gameObject.transform.position;
+                if (thisAction.GetActionDuration() == 0)
+                {
+                    thisAction.SetScheduleSlotData(this);
 
-            // Updates the action held information
-            actionHeld = eventData.pointerDrag;
-            ScheduleAction thisAction = actionHeld.GetComponent<ScheduleAction>();
-            thisAction.SetScheduleSlotData(this);
+                    actionObj = new Actions(thisAction.GetActionType(), thisAction.GetBuildingType(), thisAction.GetNPCType(), 100, thisAction.GetActionDuration());
 
-            actionObj = new Actions(thisAction.GetActionType(), thisAction.GetBuildingType(), thisAction.GetNPCType(), 100, thisAction.GetActionDuration());
+                    // Schedules this action
+                    ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
+                    scheduleCreation.SetAction(actionObj, scheduleDay, slotPos);
 
-            // Schedules this action
-            ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
-            scheduleCreation.SetAction(actionObj, scheduleDay, slotPos);
+                    //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+
+                    // Snaps action to schedule slot position
+                    eventData.pointerDrag.transform.position = gameObject.transform.position;
+                }
+                else if(thisAction.GetActionDuration() == 1)
+                {
+                    // TODO
+                }
+                else if(thisAction.GetActionDuration() == 2)
+                {
+                    // TODO
+                }
+                
+
+            }
         }
     }
 
