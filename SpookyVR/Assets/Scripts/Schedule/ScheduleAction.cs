@@ -18,6 +18,8 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     private bool objectHeldStatus = false;
     private GameObject heldObject;
 
+    private ScheduleSlotData slotDroppedOn;
+
     private void Awake()
     {
         controls = new InputMaster();
@@ -37,6 +39,11 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     public void FillActionParameters(int actionType, int buildingType, int npcType)
     {
 
+    }
+
+    public void SetScheduleSlotData(ScheduleSlotData thisSlot)
+    {
+        slotDroppedOn = thisSlot;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -60,6 +67,10 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        if(slotDroppedOn != null)
+        {
+            slotDroppedOn.SetActionHeld(null);
+            slotDroppedOn = null;
+        }
     }
 }
