@@ -2,15 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
-public class ScheduleAction : MonoBehaviour
+public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    private List<GameObject> slotsTriggered = new List<GameObject>();
-    private GameObject closestSlotObj;
+    [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
-    private float closestSlotObjDist = Mathf.Infinity;
-    private bool smallAction = true;
-    private ScheduleSlotData thisScheduleSlot;
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+
+    private bool objectHeldStatus = false;
+    private GameObject heldObject;
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
     public void FillActionParameters(int actionType, int buildingType, int npcType)
     {
@@ -19,110 +37,49 @@ public class ScheduleAction : MonoBehaviour
 
     private void Update()
     {
-        if (slotsTriggered.Count > 0)
+        if(objectHeldStatus)
         {
-            foreach (GameObject obj in slotsTriggered)
-            {
-                Debug.Log("Obj: " + obj.name);
-            }
-        }
-        else
-        {
-            Debug.Log("Nothing in slotsTriggered");
+            heldObject.transform.position = Mouse.current.position.ReadValue();
         }
     }
 
-    public void SetScheduleSlotData(ScheduleSlotData newSlotData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        thisScheduleSlot = newSlotData;
-        thisScheduleSlot.SetActionHeld(gameObject);
+        Debug.Log("Pointer down");
     }
 
-    public void RefreshSlotData()
+    public void OnDrag(PointerEventData eventData)
     {
-        thisScheduleSlot.SetActionHeld(null);
-        //thisScheduleSlot = null;
+        //gameObject.transform.position = Mouse.current.position.ReadValue();
+        //canvasGroup.blocksRaycasts = false;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        //Debug.Log("Drag ended");
+        //canvasGroup.blocksRaycasts = true;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        //Debug.Log("Drag started");
     }
 
     /// <summary>
-    /// Returns if this Schedule Action is a small action.
+    /// Sets the currently set object.
     /// </summary>
-    /// <returns>Returns true if small action, false otherwise. </returns>
-    public bool IsSmallAction()
+    /// <param name="objectToHold">The new Game Object to be held.</param>
+    public void SetHeldObject(GameObject objectToHold)
     {
-        return smallAction;
+        heldObject = objectToHold;
     }
 
     /// <summary>
-    /// Returns the closest Slot Object to the Schedule Action Object.
+    /// Gets whether or not an object is currently being held.
     /// </summary>
-    /// <returns></returns>
-    public GameObject GetClosestSlotObject()
+    /// <returns>Returns true if an object is being held, false otherwise.</returns>
+    public bool GetObjectHeldStatus()
     {
-        FindClosestSlotObj();
-        return closestSlotObj;
-    }
-
-    /// <summary>
-    /// Finds the closest Slot Object to the Schedule Action Object.
-    /// </summary>
-    private void FindClosestSlotObj()
-    {
-        float thisObjDist;
-
-        // Cycles through all objects triggered by the Schedule Action Object.
-        for (int i = 0; i < slotsTriggered.Count; i++)
-        {
-            // Compare this Slot Object's distance to the current closest Slot Object's distance.
-            thisObjDist = (slotsTriggered[i].transform.position - gameObject.transform.position).magnitude;
-
-            if (thisObjDist < closestSlotObjDist)
-            {
-                // If it's closer, update the closest Slot Object information.
-                closestSlotObjDist = thisObjDist;
-                closestSlotObj = slotsTriggered[i];
-            }
-        }
-    }
-
-    public void RefreshClosestSlotObject()
-    {
-        closestSlotObj = null;
-        closestSlotObjDist = Mathf.Infinity;
-
-        foreach(GameObject obj in slotsTriggered)
-        {
-            slotsTriggered.Clear();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("ActionSlot"))
-        {
-            slotsTriggered.Add(other.gameObject);
-
-            if (closestSlotObj == null)
-            {
-                closestSlotObj = other.gameObject;
-                closestSlotObjDist = (other.gameObject.transform.position - gameObject.transform.position).magnitude;
-            }
-        }
-        else if(other.CompareTag("DeleteAction"))
-        {
-            // Delete color here.
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("ActionSlot"))
-        {
-            if (slotsTriggered.Contains(other.gameObject))
-            {
-                slotsTriggered.Remove(other.gameObject);
-                FindClosestSlotObj();
-            }
-        }
+        return objectHeldStatus;
     }
 }

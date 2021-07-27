@@ -65,21 +65,28 @@ public class CreateAction : MonoBehaviour
 
     public void CreateActionObject()
     {
-        // If an object is not currently held, create an action object.
-        if(!playerScheduler.IsObjectHeld())
-        {
+        //// If an object is not currently held, create an action object.
+        //if (!playerScheduler.IsObjectHeld())
+        //{
 
-            playerScheduler.SetHeldStatus(true);
+        //    playerScheduler.SetHeldStatus(true);
 
-            // Instantiates this action object and child it to the canvas (since it will be a button)
-            GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, controls.Player.Look.ReadValue<Vector2>(), Quaternion.identity);
-            scheduleActionObjectClone.transform.parent = playerScheduler.gameObject.transform;
+        //    // Instantiates this action object and child it to the canvas (since it will be a button)
+        //    GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, controls.Player.Look.ReadValue<Vector2>(), Quaternion.identity);
+        //    scheduleActionObjectClone.transform.parent = playerScheduler.gameObject.transform;
 
-            // Fills in action object's action parameters
-            scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType);
+        //    // Fills in action object's action parameters
+        //    scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType);
 
-            // Sets the player's currently held object to this action object.
-            playerScheduler.SetHeldObject(scheduleActionObjectClone);
-        }
+        //    // Sets the player's currently held object to this action object.
+        //    playerScheduler.SetHeldObject(scheduleActionObjectClone);
+        //}
+
+        // Instantiates this action object and child it to the canvas (since it will be an image)
+        GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, Mouse.current.position.ReadValue(), Quaternion.identity);
+        scheduleActionObjectClone.transform.parent = playerScheduler.gameObject.transform;
+
+        // Fills in action object's action parameters
+        scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType);
     }
 }
