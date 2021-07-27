@@ -117,8 +117,13 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     {
         if(slotDroppedOn != null)
         {
-            //GameObject currentScheduleSlotActionHeld = slotDroppedOn.GetActionHeld();
-            slotDroppedOn.UnscheduleAction();
+            GameObject currentScheduleSlotActionHeld = slotDroppedOn.GetActionHeld();
+
+            Actions actionToBeRemoved = currentScheduleSlotActionHeld.GetComponent<Actions>();
+            int dayOfAction = slotDroppedOn.GetScheduleDay();
+            int slotPosOfAction = slotDroppedOn.GetSlotPos();
+
+            slotDroppedOn.UnscheduleAction(actionToBeRemoved, dayOfAction, slotPosOfAction);
             slotDroppedOn.SetActionHeld(null);
             slotDroppedOn = null;
         }

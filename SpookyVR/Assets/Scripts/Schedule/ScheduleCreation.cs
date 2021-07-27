@@ -56,9 +56,9 @@ public class ScheduleCreation : MonoBehaviour
     /// Schedules a passed in action.
     /// </summary>
     /// <param name="actionToBeScheduled">The action to be scheduled. </param>
-    /// <param name="actionNumber">The position in the day that this action will occur at. This is not the time.</param>
     /// <param name="scheduleDay">The day this action occurs on. 0 is Sunday, 6 is Saturday. </param>
-    public void SetAction(Actions actionToBeScheduled, int actionNumber, int scheduleDay)
+    /// <param name="actionNumber">The position in the day that this action will occur at. This is not the time.</param>
+    public void SetAction(Actions actionToBeScheduled, int scheduleDay, int actionNumber)
     {
         // Gets the time of this action
         actionToBeScheduled.timeOfAction = SetTime(actionNumber, numberOfActionsPerDay);
@@ -79,17 +79,20 @@ public class ScheduleCreation : MonoBehaviour
         }
     }
 
-    public void RemoveAction(Actions actionToBeRemoved)
+    public void RemoveAction(Actions actionToBeRemoved, int scheduleDay, int actionNumber)
     {
-        foreach(Days theDay in theDays)
-        {
-            if(theDay.actionsToday.Contains(actionToBeRemoved))
-            {
-                Actions dummyAction = new Actions(100, 100, 100, 100);
-                int index = theDay.actionsToday.IndexOf(actionToBeRemoved);
-                theDay.actionsToday[index] = dummyAction;
-            }
-        }
+        //foreach(Days theDay in theDays)
+        //{
+        //    if(theDay.actionsToday.Contains(actionToBeRemoved))
+        //    {
+        //        Actions dummyAction = new Actions(100, 100, 100, 100);
+        //        int index = theDay.actionsToday.IndexOf(actionToBeRemoved);
+        //        theDay.actionsToday[index] = dummyAction;
+        //    }
+        //}
+
+        Actions dummyAction = new Actions(100, 100, 100, 100);
+        theDays[scheduleDay].actionsToday[actionNumber] = dummyAction;
 
         for (int i = 0; i < theDays.Count; i++)
         {

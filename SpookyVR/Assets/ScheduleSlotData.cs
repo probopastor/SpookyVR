@@ -41,6 +41,24 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
         actionHeld = newAction;
     }
 
+    /// <summary>
+    /// Returns the slot position this schedule slot is on.
+    /// </summary>
+    /// <returns>The slot position of this schedule slot. </returns>
+    public int GetSlotPos()
+    {
+        return slotPos;
+    }
+
+    /// <summary>
+    /// Returns the day this schedule slot is on.
+    /// </summary>
+    /// <returns>The day this schedule slot is on. 0 is Sunday, 6 is Saturday. </returns>
+    public int GetScheduleDay()
+    {
+        return scheduleDay;
+    }
+
     public void OnDrop(PointerEventData eventData)
     {        
         if(eventData.pointerDrag != null && actionHeld == null)
@@ -59,14 +77,14 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
 
             // Schedules this action
             ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
-            scheduleCreation.SetAction(actionObj, slotPos, scheduleDay);
+            scheduleCreation.SetAction(actionObj, scheduleDay, slotPos);
         }
     }
 
-    public void UnscheduleAction()
+    public void UnscheduleAction(Actions actionToRemove, int day, int slotPos)
     {
         ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
-        scheduleCreation.RemoveAction(actionObj);
+        scheduleCreation.RemoveAction(actionToRemove, day, slotPos);
         actionObj = null;
     }
 }
