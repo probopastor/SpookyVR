@@ -377,6 +377,96 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Scheduler"",
+            ""id"": ""e27a5219-6277-4688-9c37-9905d9605464"",
+            ""actions"": [
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""98c00c4b-0be1-434f-ae87-7520aba36ce5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Delete"",
+                    ""type"": ""Button"",
+                    ""id"": ""557f97c7-e944-42e1-8298-56a1f325e946"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c06822f5-1f35-48c7-b151-52d58af2fcd9"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d307c5c-c3a4-45be-ba4f-1f3e00a8e835"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""939c548c-0830-4469-b51d-fcf7ea227321"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c736812b-1aa3-4856-945c-a4e26019eaae"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bab4f342-778d-46f4-9d85-4354ec132246"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""974f4ff8-1626-493c-b78e-36b6790dbdaa"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -418,6 +508,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        // Scheduler
+        m_Scheduler = asset.FindActionMap("Scheduler", throwIfNotFound: true);
+        m_Scheduler_Place = m_Scheduler.FindAction("Place", throwIfNotFound: true);
+        m_Scheduler_Delete = m_Scheduler.FindAction("Delete", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -553,6 +647,47 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Scheduler
+    private readonly InputActionMap m_Scheduler;
+    private ISchedulerActions m_SchedulerActionsCallbackInterface;
+    private readonly InputAction m_Scheduler_Place;
+    private readonly InputAction m_Scheduler_Delete;
+    public struct SchedulerActions
+    {
+        private @InputMaster m_Wrapper;
+        public SchedulerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Place => m_Wrapper.m_Scheduler_Place;
+        public InputAction @Delete => m_Wrapper.m_Scheduler_Delete;
+        public InputActionMap Get() { return m_Wrapper.m_Scheduler; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SchedulerActions set) { return set.Get(); }
+        public void SetCallbacks(ISchedulerActions instance)
+        {
+            if (m_Wrapper.m_SchedulerActionsCallbackInterface != null)
+            {
+                @Place.started -= m_Wrapper.m_SchedulerActionsCallbackInterface.OnPlace;
+                @Place.performed -= m_Wrapper.m_SchedulerActionsCallbackInterface.OnPlace;
+                @Place.canceled -= m_Wrapper.m_SchedulerActionsCallbackInterface.OnPlace;
+                @Delete.started -= m_Wrapper.m_SchedulerActionsCallbackInterface.OnDelete;
+                @Delete.performed -= m_Wrapper.m_SchedulerActionsCallbackInterface.OnDelete;
+                @Delete.canceled -= m_Wrapper.m_SchedulerActionsCallbackInterface.OnDelete;
+            }
+            m_Wrapper.m_SchedulerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Place.started += instance.OnPlace;
+                @Place.performed += instance.OnPlace;
+                @Place.canceled += instance.OnPlace;
+                @Delete.started += instance.OnDelete;
+                @Delete.performed += instance.OnDelete;
+                @Delete.canceled += instance.OnDelete;
+            }
+        }
+    }
+    public SchedulerActions @Scheduler => new SchedulerActions(this);
     private int m_KeyboardandmouseSchemeIndex = -1;
     public InputControlScheme KeyboardandmouseScheme
     {
@@ -581,5 +716,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IUIActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface ISchedulerActions
+    {
+        void OnPlace(InputAction.CallbackContext context);
+        void OnDelete(InputAction.CallbackContext context);
     }
 }
