@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [SerializeField, Tooltip("The alpha of this schedule action object while it is being dragged. "), Range(0, 1)] private float alphaDragging = 1f;
+    [SerializeField, Tooltip("The alpha of this schedule action object when it's placed. "), Range(0, 1)] private float alphaPlaced = 1f;
+
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     private RectTransform rectTransform;
@@ -35,51 +39,27 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
 
     }
 
-    private void Update()
-    {
-        if(objectHeldStatus)
-        {
-            heldObject.transform.position = Mouse.current.position.ReadValue();
-        }
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("Pointer down");
+        canvasGroup.alpha = alphaDragging;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        //gameObject.transform.position = Mouse.current.position.ReadValue();
-        //canvasGroup.blocksRaycasts = false;
+        gameObject.transform.position = Mouse.current.position.ReadValue();
+        canvasGroup.blocksRaycasts = false;
+        //canvasGroup.alpha = alphaDragging;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log("Drag ended");
-        //canvasGroup.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.alpha = alphaPlaced;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //Debug.Log("Drag started");
-    }
-
-    /// <summary>
-    /// Sets the currently set object.
-    /// </summary>
-    /// <param name="objectToHold">The new Game Object to be held.</param>
-    public void SetHeldObject(GameObject objectToHold)
-    {
-        heldObject = objectToHold;
-    }
-
-    /// <summary>
-    /// Gets whether or not an object is currently being held.
-    /// </summary>
-    /// <returns>Returns true if an object is being held, false otherwise.</returns>
-    public bool GetObjectHeldStatus()
-    {
-        return objectHeldStatus;
+        
     }
 }

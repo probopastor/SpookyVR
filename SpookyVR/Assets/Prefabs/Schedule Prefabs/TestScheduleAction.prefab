@@ -270,6 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4013e29737a0414aabd62faafa326e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alphaDragging: 0.5
+  alphaPlaced: 1
 --- !u!65 &1684845135856853778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -307,7 +309,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236819779284254292}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

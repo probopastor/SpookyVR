@@ -20,11 +20,10 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
         
     }
 
-    public void SetActionHeld(GameObject action)
-    {
-        actionHeld = action;
-    }
-
+    /// <summary>
+    /// Returns if an action is current5ly held by this slot.
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetActionHeld()
     {
         return actionHeld;
@@ -38,6 +37,8 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
         {
             //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             eventData.pointerDrag.transform.position = gameObject.transform.position;
+
+            actionHeld = eventData.pointerDrag;
         }
     }
 }
