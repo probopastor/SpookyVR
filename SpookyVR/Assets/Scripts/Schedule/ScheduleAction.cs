@@ -26,6 +26,7 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     [Tooltip("The ID of this Schedule Action's action. ")] private int action = 0;
     [Tooltip("The ID of this Schedule Action's building. ")] private int building = 0;
     [Tooltip("The ID of this Schedule Action's npc. ")] private int npc = 0;
+    [Tooltip("The duration of this action. 0 is small action, 1 is medium action, 2 is long action.")] private int duration = 0;
 
     #endregion
 
@@ -54,11 +55,12 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     /// <param name="actionType">The ID of this Schedule Action's action type.</param>
     /// <param name="buildingType">The ID of this Schedule Action's building type.</param>
     /// <param name="npcType">The ID of this Schedule Action's npc type.</param>
-    public void FillActionParameters(int actionType, int buildingType, int npcType)
+    public void FillActionParameters(int actionType, int buildingType, int npcType, int actionDuration)
     {
         action = actionType;
         building = buildingType;
         npc = npcType;
+        duration = actionDuration;
     }
 
     /// <summary>
@@ -86,6 +88,15 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     public int GetNPCType()
     {
         return npc;
+    }
+
+    /// <summary>
+    /// Gets the Action Duration of this Schedule Action.
+    /// </summary>
+    /// <returns>The duration of the action. 0 is short action, 1 is medium action, 2 is long action.</returns>
+    public int GetActionDuration()
+    {
+        return duration;
     }
 
     public void SetScheduleSlotData(ScheduleSlotData thisSlot)
