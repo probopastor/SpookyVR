@@ -7,19 +7,29 @@ using UnityEngine.UI;
 
 public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    #region Color variables
+    [Header("Color Settings")]
     [SerializeField, Tooltip("The alpha of this schedule action object while it is being dragged. "), Range(0, 1)] private float alphaDragging = 1f;
     [SerializeField, Tooltip("The alpha of this schedule action object when it's placed. "), Range(0, 1)] private float alphaPlaced = 1f;
+    #endregion
 
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
+    #region Canvas variables
+    [Tooltip("The Rect Transform of this object. ")] private RectTransform rectTransform;
+    [Tooltip("The Canvas Group of this object. ")] private CanvasGroup canvasGroup;
+    #endregion
 
-    private bool objectHeldStatus = false;
-    private GameObject heldObject;
+    #region Schedule variables
+    [Tooltip("The schedule slot data this schedule action is dropped onto. Null if it is not currently dropped onto one. ")] private ScheduleSlotData slotDroppedOn;
 
-    private ScheduleSlotData slotDroppedOn;
+    [Tooltip("The ID of this Schedule Action's action. ")] private int action = 0;
+    [Tooltip("The ID of this Schedule Action's building. ")] private int building = 0;
+    [Tooltip("The ID of this Schedule Action's npc. ")] private int npc = 0;
 
+    #endregion
+
+    #region Setup Methods
     private void Awake()
     {
         controls = new InputMaster();
@@ -35,20 +45,58 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     {
         controls.Disable();
     }
+    #endregion 
 
+    #region Schedule Methods
+    /// <summary>
+    /// Fills in this actions parameters.
+    /// </summary>
+    /// <param name="actionType">The ID of this Schedule Action's action type.</param>
+    /// <param name="buildingType">The ID of this Schedule Action's building type.</param>
+    /// <param name="npcType">The ID of this Schedule Action's npc type.</param>
     public void FillActionParameters(int actionType, int buildingType, int npcType)
     {
+        action = actionType;
+        building = buildingType;
+        npc = npcType;
+    }
 
+    /// <summary>
+    /// Gets the action type of this Schedule Action.
+    /// </summary>
+    /// <returns>The ID of the action. </returns>
+    public int GetActionType()
+    {
+        return action;
+    }
+
+    /// <summary>
+    /// Gets the building type of this Schedule Action.
+    /// </summary>
+    /// <returns>The ID of this building.</returns>
+    public int GetBuildingType()
+    {
+        return building;
+    }
+
+    /// <summary>
+    /// Gets the NPC type of this Schedule Action.
+    /// </summary>
+    /// <returns>The ID of this NPC.</returns>
+    public int GetNPCType()
+    {
+        return npc;
     }
 
     public void SetScheduleSlotData(ScheduleSlotData thisSlot)
     {
         slotDroppedOn = thisSlot;
     }
+    #endregion
 
+    #region Drag & Drop Methods
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Pointer down");
         canvasGroup.alpha = alphaDragging;
     }
 
@@ -69,8 +117,11 @@ public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     {
         if(slotDroppedOn != null)
         {
+            //GameObject currentScheduleSlotActionHeld = slotDroppedOn.GetActionHeld();
+            slotDroppedOn.UnscheduleAction();
             slotDroppedOn.SetActionHeld(null);
             slotDroppedOn = null;
         }
     }
+    #endregion 
 }

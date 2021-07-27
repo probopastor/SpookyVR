@@ -580,7 +580,6 @@ GameObject:
   - component: {fileID: 307442037}
   - component: {fileID: 307442036}
   - component: {fileID: 307442035}
-  - component: {fileID: 307442038}
   m_Layer: 5
   m_Name: SaturdayButton
   m_TagString: Untagged
@@ -689,35 +688,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307442033}
   m_CullTransparentMesh: 0
---- !u!114 &307442038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307442033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 6
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &451436283
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +834,6 @@ GameObject:
   - component: {fileID: 698261705}
   - component: {fileID: 698261704}
   - component: {fileID: 698261703}
-  - component: {fileID: 698261706}
   m_Layer: 5
   m_Name: FridayButton
   m_TagString: Untagged
@@ -973,35 +942,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698261701}
   m_CullTransparentMesh: 0
---- !u!114 &698261706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698261701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &838775489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +993,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: slotPos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
+      propertyPath: scheduleDay
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9172390476128819307, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
@@ -1162,7 +1106,6 @@ GameObject:
   - component: {fileID: 885580072}
   - component: {fileID: 885580071}
   - component: {fileID: 885580070}
-  - component: {fileID: 885580073}
   m_Layer: 5
   m_Name: MondayButton
   m_TagString: Untagged
@@ -1271,35 +1214,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885580068}
   m_CullTransparentMesh: 0
---- !u!114 &885580073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885580068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &919585110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,7 +1226,6 @@ GameObject:
   - component: {fileID: 919585114}
   - component: {fileID: 919585113}
   - component: {fileID: 919585112}
-  - component: {fileID: 919585115}
   m_Layer: 5
   m_Name: TuesdayButton
   m_TagString: Untagged
@@ -1421,35 +1334,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919585110}
   m_CullTransparentMesh: 0
---- !u!114 &919585115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919585110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &946689692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,9 +1455,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
-  actionType: 0
-  buildingType: 0
-  npcType: 0
+  actionType: 3
+  buildingType: 3
+  npcType: 3
 --- !u!1 &968220810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1470,6 @@ GameObject:
   - component: {fileID: 968220814}
   - component: {fileID: 968220813}
   - component: {fileID: 968220812}
-  - component: {fileID: 968220815}
   m_Layer: 5
   m_Name: WednesdayButton
   m_TagString: Untagged
@@ -1695,35 +1578,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968220810}
   m_CullTransparentMesh: 0
---- !u!114 &968220815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968220810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1074839505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,9 +1833,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
-  actionType: 0
-  buildingType: 0
-  npcType: 0
+  actionType: 2
+  buildingType: 2
+  npcType: 2
 --- !u!1 &1104638953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,7 +2250,6 @@ GameObject:
   - component: {fileID: 1362651284}
   - component: {fileID: 1362651283}
   - component: {fileID: 1362651282}
-  - component: {fileID: 1362651285}
   m_Layer: 5
   m_Name: ThursdayButton
   m_TagString: Untagged
@@ -2505,35 +2358,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362651280}
   m_CullTransparentMesh: 0
---- !u!114 &1362651285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362651280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1479270662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,7 +2370,6 @@ GameObject:
   - component: {fileID: 1479270666}
   - component: {fileID: 1479270665}
   - component: {fileID: 1479270664}
-  - component: {fileID: 1479270667}
   m_Layer: 5
   m_Name: SundayButton
   m_TagString: Untagged
@@ -2655,35 +2478,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479270662}
   m_CullTransparentMesh: 0
---- !u!114 &1479270667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479270662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1935745142}
-          m_TargetAssemblyTypeName: ScheduleCreation, Assembly-CSharp
-          m_MethodName: UpdateScheduleDay
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &1692323563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2693,6 +2487,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: slotPos
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
+      propertyPath: scheduleDay
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9172390476128819307, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
@@ -2889,6 +2687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2091346485}
     m_Modifications:
+    - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
+      propertyPath: scheduleDay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9172390476128819307, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3203,6 +3005,10 @@ PrefabInstance:
       propertyPath: slotPos
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
+      propertyPath: scheduleDay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9172390476128819307, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3415,6 +3221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1625fa7def47f40a619081e469adf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfActionsPerDay: 3
   theDays:
   - actionsToday: []
   - actionsToday: []
@@ -3423,10 +3230,7 @@ MonoBehaviour:
   - actionsToday: []
   - actionsToday: []
   - actionsToday: []
-  dailyActions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  dailyActions: []
 --- !u!1 &1950152009
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,9 +3435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
-  actionType: 0
-  buildingType: 0
-  npcType: 0
+  actionType: 1
+  buildingType: 1
+  npcType: 1
 --- !u!1001 &2043122502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3644,6 +3448,10 @@ PrefabInstance:
     - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: slotPos
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
+      propertyPath: scheduleDay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9172390476128819307, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3919,6 +3727,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 102002981}
     m_Modifications:
+    - target: {fileID: 9172390476128819306, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
+      propertyPath: scheduleDay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9172390476128819307, guid: c0f1bf4572bdc454eadf764a2443513d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

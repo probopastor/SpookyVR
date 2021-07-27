@@ -9,6 +9,14 @@ public class Actions : MonoBehaviour
     public int npcType = 0;
     [Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] public int timeOfAction = 0;
 
+    public Actions(int actionID, int buildingID, int npcID, int timeID)
+    {
+        actionType = actionID;
+        buildingType = buildingID;
+        npcType = npcID;
+        timeOfAction = timeID;
+    }
+
     /// <summary>
     /// Begins this Actions action based on the actionType. 
     /// </summary>

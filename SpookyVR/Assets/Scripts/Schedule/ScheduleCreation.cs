@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class ScheduleCreation : MonoBehaviour
 {
-    [Tooltip("The number of actions in a day. ")] private int numberOfActionsPerDay = 0;
+    [SerializeField, Tooltip("The number of actions in a day. ")] private int numberOfActionsPerDay = 0;
 
     [SerializeField, Tooltip("A list of days. Set equal to the number of days in a week. ")] List<Days> theDays = new List<Days>();
-    [SerializeField, Tooltip("A list all the actions in a day. Set to the number of actions in a day. ")] List<Actions> dailyActions = new List<Actions>();
-
-    [Tooltip("The current day being scheduled for. ")] private int currentScheduleDay = 0;
-    [Tooltip("The current action being created. Once it is created, an instance of thisAction should be added to the action list. ")] private Actions thisAction;
-
-    private int actionType = 0;
-    private int buildingType = 0;
-    private int npcType = 0;
+    [SerializeField, Tooltip("A list of all the actions in a day. Set to the number of actions in a day. ")] List<Actions> dailyActions = new List<Actions>();
 
     [System.Serializable]
     public class Days
@@ -24,60 +17,91 @@ public class ScheduleCreation : MonoBehaviour
 
     private void Awake()
     {
+
+    }
+
+    private void Start()
+    {
         // Add the correct amount of actions to each day in theDays.
         for (int i = 0; i < theDays.Count; i++)
         {
+            // Instantiates a new dailyActions list for each day
+            dailyActions = new List<Actions>();
+
+            // Adds default action objects to each dailyActions list.
+            for (int x = 0; x < numberOfActionsPerDay; x++)
+            {
+                Actions defaultAction = new Actions(100, 100, 100, 100);
+                dailyActions.Add(defaultAction);
+            }
+
             // Set the actions today list equal to the daily actions.
             theDays[i].actionsToday = dailyActions;
         }
 
-        numberOfActionsPerDay = dailyActions.Count;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-// Where original setters went
-
-    public void InstantiateAction(int actionCode, int buildingCode, int npcCode)
-    {
-        thisAction = new Actions();
-
-        // Updates this individual action.
-        thisAction.actionType = actionCode;
-        thisAction.buildingType = buildingCode;
-        thisAction.npcType = npcCode;
+        for (int i = 0; i < theDays.Count; i++)
+        {
+            for (int x = 0; x < theDays[i].actionsToday.Count; x++)
+            {
+                Debug.Log("theDays: " + i + " actionsToday: " + x + " contains the following action: " + "\n" +
+                       " Action Type: " + theDays[i].actionsToday[x].actionType + "\n" +
+                       " Building Type: " + theDays[i].actionsToday[x].buildingType + "\n" +
+                       " NPC Type: " + theDays[i].actionsToday[x].npcType + "\n" +
+                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n");
+            }
+        }
     }
 
     /// <summary>
-    /// Sets the action to the designated spot on the designated day.
+    /// Schedules a passed in action.
     /// </summary>
-    /// <param name="actionNumber">The position of the day the action will occur at. (This is the slot in the day, not the time, this value will instead be used to calculate time). </param>
-    public void SetAction(int actionNumber)
+    /// <param name="actionToBeScheduled">The action to be scheduled. </param>
+    /// <param name="actionNumber">The position in the day that this action will occur at. This is not the time.</param>
+    /// <param name="scheduleDay">The day this action occurs on. 0 is Sunday, 6 is Saturday. </param>
+    public void SetAction(Actions actionToBeScheduled, int actionNumber, int scheduleDay)
     {
-        // If this is an NPC action
-        if (actionType == 3)
-        {
-            //if(!GetComponent<Storage>().CheckNPCScheduleCompatibility(npcType, actionNumber)) 
-            //{
-            //Send feedback saying NPC name is not free at this time.
-            // Break. 
-            //}
-        }
-
-        thisAction.timeOfAction = SetTime(actionNumber, numberOfActionsPerDay);
+        // Gets the time of this action
+        actionToBeScheduled.timeOfAction = SetTime(actionNumber, numberOfActionsPerDay);
 
         // Add this action to the appropriate spot of the action list. 
-        theDays[currentScheduleDay].actionsToday[actionNumber] = thisAction;
+        theDays[scheduleDay].actionsToday[actionNumber] = actionToBeScheduled;
+
+        for (int i = 0; i < theDays.Count; i++)
+        {
+            for (int x = 0; x < theDays[i].actionsToday.Count; x++)
+            {
+                Debug.Log("theDays: " + i + " actionsToday: " + x + " contains the following action: " + "\n" +
+                       " Action Type: " + theDays[i].actionsToday[x].actionType + "\n" +
+                       " Building Type: " + theDays[i].actionsToday[x].buildingType + "\n" +
+                       " NPC Type: " + theDays[i].actionsToday[x].npcType + "\n" +
+                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n");
+            }
+        }
+    }
+
+    public void RemoveAction(Actions actionToBeRemoved)
+    {
+        foreach(Days theDay in theDays)
+        {
+            if(theDay.actionsToday.Contains(actionToBeRemoved))
+            {
+                Actions dummyAction = new Actions(100, 100, 100, 100);
+                int index = theDay.actionsToday.IndexOf(actionToBeRemoved);
+                theDay.actionsToday[index] = dummyAction;
+            }
+        }
+
+        for (int i = 0; i < theDays.Count; i++)
+        {
+            for (int x = 0; x < theDays[i].actionsToday.Count; x++)
+            {
+                Debug.Log("theDays: " + i + " actionsToday: " + x + " contains the following action: " + "\n" +
+                       " Action Type: " + theDays[i].actionsToday[x].actionType + "\n" +
+                       " Building Type: " + theDays[i].actionsToday[x].buildingType + "\n" +
+                       " NPC Type: " + theDays[i].actionsToday[x].npcType + "\n" +
+                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n");
+            }
+        }
     }
 
     /// <summary>
@@ -86,40 +110,7 @@ public class ScheduleCreation : MonoBehaviour
     /// <param name="actionNumbers">An array of the positions if the day the action will occur at. (these are the slots in the day, not the time, these values will instead be used to calculate time.)</param>
     public void SetActionLonger(int[] actionNumbers)
     {
-        bool incompatibileSchedule = false;
-
-        for (int i = 0; i < actionNumbers.Length; i++)
-        {
-            if(theDays[currentScheduleDay].actionsToday[actionNumbers[i]] == null)
-            {
-                incompatibileSchedule = true;
-            }
-        }
-
-        if(!incompatibileSchedule)
-        {
-            // Updates this individual action.
-            thisAction.actionType = actionType;
-            thisAction.buildingType = buildingType;
-            thisAction.npcType = npcType;
-
-            thisAction.timeOfAction = SetTime(actionNumbers[0], numberOfActionsPerDay);
-            theDays[currentScheduleDay].actionsToday[actionNumbers[0]] = thisAction;
-
-            for (int i = 0; i < actionNumbers.Length; i++)
-            {
-                // Set action types to 100. This indicates that the action should be skipped.
-                thisAction.actionType = 100;
-                thisAction.npcType = 100;
-
-                // Add this action to the appropriate spot of the action list. 
-                theDays[currentScheduleDay].actionsToday[actionNumbers[i]] = thisAction;
-            }
-        }
-        else
-        {
-            // Make the UI Indicator red.
-        }
+        
     }
 
     /// <summary>
@@ -167,14 +158,5 @@ public class ScheduleCreation : MonoBehaviour
         }
 
         return timeOfAction;
-    }
-
-    /// <summary>
-    /// Updates the schedule day based on the selected schedule day.
-    /// </summary>
-    /// <param name="dayNumber">The current day, Sunday is 0, Saturday is 6. </param>
-    public void UpdateScheduleDay(int dayNumber)
-    {
-        currentScheduleDay = dayNumber;
     }
 }

@@ -6,7 +6,10 @@ using UnityEngine.EventSystems;
 public class ScheduleSlotData : MonoBehaviour, IDropHandler
 {
     [SerializeField, Tooltip("The position of the day this slot will occur at. This is its position in the schedule, not the time of day. ")] private int slotPos;
+    [SerializeField, Tooltip("The day this slot is on. 0 is Sunday, 6 is Saturday. ")] private int scheduleDay;
+
     [SerializeField] private GameObject actionHeld;
+    [Tooltip("The current action being created. Once it is created, an instance of thisAction should be added to the action list. ")] private Actions actionObj;
 
     // Start is called before the first frame update
     void Start()
@@ -39,16 +42,31 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
     }
 
     public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("On Drop");
-        
+    {        
         if(eventData.pointerDrag != null && actionHeld == null)
         {
             //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+
+            // Snaps action to schedule slot position
             eventData.pointerDrag.transform.position = gameObject.transform.position;
 
+            // Updates the action held information
             actionHeld = eventData.pointerDrag;
-            actionHeld.GetComponent<ScheduleAction>().SetScheduleSlotData(this);
+            ScheduleAction thisAction = actionHeld.GetComponent<ScheduleAction>();
+            thisAction.SetScheduleSlotData(this);
+
+            actionObj = new Actions(thisAction.GetActionType(), thisAction.GetBuildingType(), thisAction.GetNPCType(), 100);
+
+            // Schedules this action
+            ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
+            scheduleCreation.SetAction(actionObj, slotPos, scheduleDay);
         }
+    }
+
+    public void UnscheduleAction()
+    {
+        ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
+        scheduleCreation.RemoveAction(actionObj);
+        actionObj = null;
     }
 }
