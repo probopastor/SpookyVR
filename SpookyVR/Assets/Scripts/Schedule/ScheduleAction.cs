@@ -10,6 +10,7 @@ public class ScheduleAction : MonoBehaviour
 
     private float closestSlotObjDist = Mathf.Infinity;
     private bool smallAction = true;
+    private ScheduleSlotData thisScheduleSlot;
 
     public void FillActionParameters(int actionType, int buildingType, int npcType)
     {
@@ -29,6 +30,18 @@ public class ScheduleAction : MonoBehaviour
         {
             Debug.Log("Nothing in slotsTriggered");
         }
+    }
+
+    public void SetScheduleSlotData(ScheduleSlotData newSlotData)
+    {
+        thisScheduleSlot = newSlotData;
+        thisScheduleSlot.SetActionHeld(gameObject);
+    }
+
+    public void RefreshSlotData()
+    {
+        thisScheduleSlot.SetActionHeld(null);
+        //thisScheduleSlot = null;
     }
 
     /// <summary>
@@ -72,6 +85,17 @@ public class ScheduleAction : MonoBehaviour
         }
     }
 
+    public void RefreshClosestSlotObject()
+    {
+        closestSlotObj = null;
+        closestSlotObjDist = Mathf.Infinity;
+
+        foreach(GameObject obj in slotsTriggered)
+        {
+            slotsTriggered.Clear();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ActionSlot"))
@@ -97,6 +121,7 @@ public class ScheduleAction : MonoBehaviour
             if (slotsTriggered.Contains(other.gameObject))
             {
                 slotsTriggered.Remove(other.gameObject);
+                FindClosestSlotObj();
             }
         }
     }

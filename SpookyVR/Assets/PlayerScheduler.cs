@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerScheduler : MonoBehaviour
 {
+    [SerializeField] private LayerMask scheduleActionLayers;
+
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     private bool objectHeld = false;
     private GameObject scheduleActionObject;
 
+    GraphicRaycaster m_Raycaster;
+    PointerEventData m_PointerEventData;
+    EventSystem m_EventSystem;
+
     private void Awake()
     {
         controls = new InputMaster();
+
+        m_Raycaster = GetComponent<GraphicRaycaster>();
+        m_EventSystem = GetComponent<EventSystem>();
     }
 
     // Start is called before the first frame update
@@ -20,6 +31,7 @@ public class PlayerScheduler : MonoBehaviour
     {
 
     }
+
 
     private void OnEnable()
     {
@@ -51,6 +63,10 @@ public class PlayerScheduler : MonoBehaviour
                 //objectHeld = false;
             }
         }
+        else if (!objectHeld)
+        {
+            PickUpAction();
+        }
     }
 
     /// <summary>
@@ -67,64 +83,69 @@ public class PlayerScheduler : MonoBehaviour
 
         ScheduleAction scheduleAction = scheduleActionObject.GetComponent<ScheduleAction>();
 
-        if (scheduleAction.IsSmallAction())
+        if(scheduleAction != null)
         {
-            if(scheduleAction.GetClosestSlotObject() != null)
+            if (scheduleAction.IsSmallAction())
             {
-                ScheduleSlotData scheduleSlotData = scheduleAction.GetClosestSlotObject().GetComponent<ScheduleSlotData>();
-
-                if (scheduleSlotData.GetActionHeld() == null)
+                if (scheduleAction.GetClosestSlotObject() != null)
                 {
-                    // Turn color to "Can Place Color" here.
-                    if (controls.Scheduler.Place.triggered)
+                    ScheduleSlotData scheduleSlotData = scheduleAction.GetClosestSlotObject().GetComponent<ScheduleSlotData>();
+
+                    if (scheduleSlotData.GetActionHeld() == null)
                     {
-                        scheduleSlotData.SetActionHeld(scheduleActionObject);
+                        // Turn color to "Can Place Color" here.
+                        if (controls.Scheduler.Place.triggered)
+                        {
+                            //scheduleSlotData.SetActionHeld(scheduleActionObject);
+                            scheduleAction.SetScheduleSlotData(scheduleSlotData);
 
-                        objectHeld = false;
+                            objectHeld = false;
 
-                        scheduleActionObject.transform.localScale = scheduleAction.GetClosestSlotObject().transform.localScale;
-                        scheduleActionObject.transform.position = scheduleAction.GetClosestSlotObject().transform.position;
+                            scheduleActionObject.transform.parent = scheduleAction.GetClosestSlotObject().transform;
+                            scheduleActionObject.transform.localScale = scheduleAction.GetClosestSlotObject().transform.localScale;
+                            scheduleActionObject.transform.position = scheduleAction.GetClosestSlotObject().transform.position;
+
+                            scheduleAction.RefreshClosestSlotObject();
+                        }
                     }
-                }
-                else
-                {
-                    // Cannot place color here.
+                    else
+                    {
+                        // Cannot place color here.
+                    }
                 }
             }
         }
+    }
 
-        //if (Physics.Raycast(ray, out hit, Mathf.Infinity, scheduleSlotLayers))
-        //{
-        //    GameObject hitObj = hit.transform.gameObject;
+    public void PickUpAction()
+    {
+        if (controls.Scheduler.Place.triggered)
+        {
+            m_PointerEventData = new PointerEventData(m_EventSystem);
+            m_PointerEventData.position = Mouse.current.position.ReadValue();
 
-        //    if (hitObj.GetComponent<ScheduleSlotData>() != null)
-        //    {
-        //        ScheduleSlotData scheduleSlotData = hitObj.GetComponent<ScheduleSlotData>();
+            List<RaycastResult> results = new List<RaycastResult>();
 
-        //        if (scheduleSlotData.GetActionHeld() == null)
-        //        {
-        //            // Turn color to "Can Place Color" here.
-        //            if (controls.Scheduler.Place.triggered)
-        //            {
-        //                scheduleSlotData.SetActionHeld(scheduleActionObject);
-        //                scheduleActionObject.transform.position = hitObj.transform.position;
-        //                objectHeld = false;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            // Turn color to Cannot Place color here
-        //        }
-        //    }
-        //    else if (Physics.Raycast(ray, out hit, Mathf.Infinity, deleteActionLayers))
-        //    {
-        //        // Turn color to "Deletion Color" here
-        //    }
-        //    else
-        //    {
-        //        // Turn color to Cannot Place color here.
-        //    }
-        //}
+            m_Raycaster.Raycast(m_PointerEventData, results);
+
+            foreach (RaycastResult result in results)
+            {
+                //Debug.Log("Hit " + result.gameObject.name);
+
+                if(result.gameObject.CompareTag("ScheduleAction"))
+                {
+                    scheduleActionObject = result.gameObject;
+                    scheduleActionObject.transform.parent = gameObject.transform;
+
+                    ScheduleAction scheduleAction = scheduleActionObject.GetComponent<ScheduleAction>();
+
+                    scheduleAction.RefreshSlotData();
+                    scheduleAction.RefreshClosestSlotObject();
+
+                    objectHeld = true;
+                }
+            }
+        }
     }
 
     /// <summary>

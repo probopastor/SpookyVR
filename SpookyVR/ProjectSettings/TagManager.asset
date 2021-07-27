@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ActionSlot
   - DeleteAction
+  - ScheduleAction
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Moveable
   - Button
   - ActionSlot
-  - 
+  - ScheduleAction
   - 
   - 
   - 
