@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ScheduleSlotData : MonoBehaviour, IDropHandler
 {
-    [SerializeField, Tooltip("The order of actions in this day. Pass in the given day's DailyActionOrder object. ")] private DailyScheduleSlotOrder dailyActions;
+    [Tooltip("The order of actions in this day. Pass in the given day's DailyActionOrder object. ")] private DailyScheduleSlotOrder dailyActions;
 
     [SerializeField, Tooltip("The position of the day this slot will occur at. This is its position in the schedule, not the time of day. ")] private int slotPos;
     [SerializeField, Tooltip("The day this slot is on. 0 is Sunday, 6 is Saturday. ")] private int scheduleDay;
@@ -166,8 +166,39 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
         }
     }
 
-    public void UnscheduleAction(Actions actionToRemove, int day, int slotPos)
+    public void UnscheduleAction(Actions actionToRemove, int day, int slotPos, int duration)
     {
+        // If this action is not a small action, more values must be unscheduled
+        if(duration != 0)
+        {
+            // Gets the order of the Schedule Slots on this day
+            List<ScheduleSlotData> scheduleSlotOrderList = dailyActions.GetDailySlotOrder();
+
+            // If this is a medium action
+            if (duration == 1)
+            {
+                // If this action is on slot 0, set the Dummy gameobject on Slot 1 to null
+                if (slotPos == 0)
+                {
+                    scheduleSlotOrderList[1].SetActionHeld(null);
+                }
+                // If this action is on slot 01, set the dummy gameobject on Slot 2 to null
+                else if (slotPos == 1)
+                {
+                    scheduleSlotOrderList[2].SetActionHeld(null);
+                }
+
+            }
+            // If this is a long action
+            else if (duration == 2)
+            {
+                // Set the dummy gameobject on Slot 1 and Slot 2 to null
+                scheduleSlotOrderList[1].SetActionHeld(null);
+                scheduleSlotOrderList[2].SetActionHeld(null);
+            }
+        }
+
+        // Remove the core action from the schedule
         ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
         scheduleCreation.RemoveAction(actionToRemove, day, slotPos);
         actionObj = null;
