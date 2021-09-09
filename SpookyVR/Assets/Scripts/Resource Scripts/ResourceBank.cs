@@ -184,15 +184,6 @@ public class ResourceBank : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates population.
-    /// </summary>
-    /// <param name="changeInPop">The change in population. </param>
-    public void UpdatePopulation(int changeInPop)
-    {
-        population += changeInPop;
-    }
-
-    /// <summary>
     /// Updates money.
     /// </summary>
     /// <param name="changeInPop">The change in money. </param>
