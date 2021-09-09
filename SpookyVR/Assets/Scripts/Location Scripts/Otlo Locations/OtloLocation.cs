@@ -38,10 +38,7 @@ public abstract class OtloLocation : MonoBehaviour
     /// <summary>
     /// Collects resources produced by this location and adds their values to the Resource Bank.
     /// </summary>
-    public void Collect()
-    {
-        // Add all resources produced (other than Crime) to resource bank here
-    }
+    public abstract void Collect();
 
     #endregion
 

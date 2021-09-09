@@ -172,6 +172,92 @@ public class ResourceBank : MonoBehaviour
         
     }
 
+    #region Update Resource Methods
+
+    /// <summary>
+    /// Updates population.
+    /// </summary>
+    /// <param name="changeInPop">The change in population. </param>
+    public void UpdatePopulation(int changeInPop)
+    {
+        population += changeInPop;
+    }
+
+    /// <summary>
+    /// Updates population.
+    /// </summary>
+    /// <param name="changeInPop">The change in population. </param>
+    public void UpdatePopulation(int changeInPop)
+    {
+        population += changeInPop;
+    }
+
+    /// <summary>
+    /// Updates money.
+    /// </summary>
+    /// <param name="changeInPop">The change in money. </param>
+    public void UpdateMoney(int changeInMoney)
+    {
+        money += changeInMoney;
+    }
+
+    /// <summary>
+    /// Updates food.
+    /// </summary>
+    /// <param name="changeInPop">The change in food. </param>
+    public void UpdateFood(int changeInFood)
+    {
+        food += changeInFood;
+    }
+
+    /// <summary>
+    /// Updates militia.
+    /// </summary>
+    /// <param name="changeInPop">The change in militia. </param>
+    public void UpdateMilitia(int changeInMilitia)
+    {
+        militia += changeInMilitia;
+    }
+
+    /// <summary>
+    /// Updates crime.
+    /// </summary>
+    /// <param name="changeInPop">The change in crime. </param>
+    public void UpdateCrime(int changeInCrime)
+    {
+        crimeRate += changeInCrime;
+    }
+
+    /// <summary>
+    /// Updates cult presence.
+    /// </summary>
+    /// <param name="changeInPop">The change in cult presence. </param>
+    public void UpdateCultPresence(int changeInCultPresence)
+    {
+        cultPresence += changeInCultPresence;
+    }
+
+    /// <summary>
+    /// Updates all core resources to Otlo.
+    /// </summary>
+    /// <param name="changeInPop">The change in population. </param>
+    /// <param name="changeInMoney">The change in money. </param>
+    /// <param name="changeInFood">The change in food. </param>
+    /// <param name="changeInMilitia">The change in militia. </param>
+    /// <param name="changeInCrime">The change in crime. </param>
+    /// <param name="changeInCult">The change in cult presence. </param>
+    public void UpdateLocationResources(int changeInPop, int changeInMoney, int changeInFood, int changeInMilitia, int changeInCrime, int changeInCult)
+    {
+        population += changeInPop;
+        money += changeInMoney;
+        food += changeInFood;
+        militia += changeInMilitia;
+        crimeRate += changeInCrime;
+        cultPresence += changeInCult;
+    }
+
+    #endregion 
+
     #region 1. Village Center Methods
 
     #region Getters
@@ -180,7 +266,7 @@ public class ResourceBank : MonoBehaviour
 
     #region Setters
 
-    #endregion 
+    #endregion
 
     #endregion
 
