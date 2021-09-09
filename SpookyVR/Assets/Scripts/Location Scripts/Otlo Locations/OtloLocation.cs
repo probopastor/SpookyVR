@@ -11,7 +11,7 @@ public abstract class OtloLocation : MonoBehaviour
     [Tooltip(" ")] protected int moneyProduced = 0;
     [Tooltip(" ")] protected int foodProcuded = 0;
     [Tooltip(" ")] protected int crimeProduced = 0;
-
+    
     // Start is called before the first frame update
     void Start()
     {
