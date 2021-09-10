@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ResourceBank : MonoBehaviour
 {
+
     #region Otlo Overall Resources
     [Tooltip(" ")] private int population = 0;
     [Tooltip(" ")] private int money = 0;
@@ -71,6 +72,12 @@ public class ResourceBank : MonoBehaviour
     #endregion
 
     #region Character Resources
+
+    #region Resource Limiters
+    [SerializeField, Tooltip(" ")] private int maxProsperity = 15;
+    [SerializeField, Tooltip(" ")] private int maxTrust = 15;
+
+    #endregion 
 
     #region 1. Richy Resources
 
@@ -172,7 +179,7 @@ public class ResourceBank : MonoBehaviour
         
     }
 
-    #region Update Resource Methods
+    #region Update Overall Resource Methods
 
     /// <summary>
     /// Updates population.
@@ -247,7 +254,71 @@ public class ResourceBank : MonoBehaviour
         cultPresence += changeInCult;
     }
 
+    #endregion
+
+    #region Update Character Resource Methods
+
+    /// <summary>
+    /// Updates a character's trust.
+    /// </summary>
+    /// <param name="characterID">The ID of the character that should have trust updated. 
+    /// 1 is Richy.
+    /// 2 is Esfir.
+    /// 3 is Dmitri.
+    /// 4 is Rigor.
+    /// 5 is Petrov.
+    /// 6 is Sacha.
+    /// 7 is Lucky.
+    /// 8 is Bishop Pryce.
+    /// 9 is Natalia. 
+    /// 10 is Molotov.</param>
+    /// <param name="changeInTrust">The amount this character's trust should be changed by.</param>
+    public void UpdateCharacterTrust(int characterID, int changeInTrust)
+    {
+        if(characterID == 1)
+        {
+            trust_Richy += changeInTrust;
+        }
+        else if(characterID == 2)
+        {
+            trust_Esfir += changeInTrust;
+        }
+        else if(characterID == 3)
+        {
+            trust_Dmitri += changeInTrust;
+        }
+        else if(characterID == 4)
+        {
+            trust_Rigor += changeInTrust;
+        }
+        else if(characterID == 5)
+        {
+            trust_Petrov += changeInTrust;
+        }
+        else if(characterID == 6)
+        {
+            trust_Sacha += changeInTrust;
+        }
+        else if(characterID == 7)
+        {
+            trust_Lucky += changeInTrust;
+        }
+        else if(characterID == 8)
+        {
+            trust_BishopPryce += changeInTrust;
+        }
+        else if(characterID == 9)
+        {
+            trust_Natalia += changeInTrust;
+        }
+        else if(characterID == 10)
+        {
+            trust_Molotov += changeInTrust;
+        }
+    }
+
     #endregion 
+
 
     #region 1. Village Center Methods
 
