@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Location", menuName = "Otlo Location")]
 public class OtloLocation : Location
 {
-    [Tooltip(" ")] public int moneyAllocated = 0;
-    [Tooltip(" ")] public int prosperity = 0;
-    [Tooltip(" ")] public bool militiaStationed = false;
+    [Tooltip(" ")] private int moneyAllocated = 0;
+    [Tooltip(" ")] private int prosperity = 0;
+    [Tooltip(" ")] private bool militiaStationed = false;
 
-    [Tooltip(" ")] public int moneyProduced = 0;
-    [Tooltip(" ")] public int foodProcuded = 0;
-    [Tooltip(" ")] public int crimeProduced = 0;
+    [Tooltip(" ")] private int moneyProduced = 0;
+    [Tooltip(" ")] private int foodProcuded = 0;
+    [Tooltip(" ")] private int crimeProduced = 0;
 
     #region Setters
 

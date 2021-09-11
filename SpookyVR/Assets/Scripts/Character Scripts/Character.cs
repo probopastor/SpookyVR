@@ -43,10 +43,10 @@ public class Character : ScriptableObject
     }
 
     /// <summary>
-    /// Updates this character's living status. 
+    /// Updates this character's death status. 
     /// </summary>
-    /// <param name="dead">False if dead, true if alive.</param>
-    public void UpdateLivingStatus(bool dead)
+    /// <param name="dead">True if dead, false if alive.</param>
+    public void UpdateDeathStatus(bool dead)
     {
         isDead = dead;
     }

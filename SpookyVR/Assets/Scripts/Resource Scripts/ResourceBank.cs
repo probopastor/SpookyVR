@@ -10,7 +10,7 @@ public class ResourceBank : MonoBehaviour
 
     [Tooltip(" ")] private ResourceManager resourceManager;
 
-    private static ResourceBank _resourceBank;
+    public static ResourceBank _resourceBank;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class ResourceBank : MonoBehaviour
         
     }
 
-    private void SetLevelData(int thisLevelID)
+    public void SetLevelData(int thisLevelID)
     {
         levelID = thisLevelID;
 
