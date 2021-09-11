@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceBank : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField, Tooltip(" ")] private int levelID;
     [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
@@ -10,18 +10,18 @@ public class ResourceBank : MonoBehaviour
 
     [Tooltip(" ")] private ResourceManager resourceManager;
 
-    public static ResourceBank _resourceBank;
+    public static GameManager _gameManager;
 
     private void Awake()
     {
-        if (_resourceBank != null && _resourceBank != this)
+        if (_gameManager != null && _gameManager != this)
         {
-            Destroy(_resourceBank.gameObject);
+            Destroy(_gameManager.gameObject);
         }
         else
         {
-            _resourceBank = this;
-            DontDestroyOnLoad(_resourceBank.gameObject);
+            _gameManager = this;
+            DontDestroyOnLoad(_gameManager.gameObject);
         }
     }
 
