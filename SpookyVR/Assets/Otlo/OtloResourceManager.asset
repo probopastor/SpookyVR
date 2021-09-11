@@ -12,3 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30246ad99a4b8ba4da104bd193830cb2, type: 3}
   m_Name: OtloResourceManager
   m_EditorClassIdentifier: 
+  characterList:
+  - {fileID: 11400000, guid: 72997c42d5c8761439f66b311a7b5f7e, type: 2}
+  - {fileID: 11400000, guid: 769e2b571dbf3904a90031f094606b43, type: 2}
+  - {fileID: 11400000, guid: 4b6df3cc46a11e44da5ceab203946ca6, type: 2}
+  - {fileID: 11400000, guid: b6936fe250d307a4a934e1dbe4cc9b65, type: 2}
+  - {fileID: 11400000, guid: 7744cef797879d24e8b8740fd48305ab, type: 2}
+  - {fileID: 11400000, guid: 960836bf800958f4b9f606c9cccac641, type: 2}
+  - {fileID: 11400000, guid: df80238190568f34eabda74d94da2b08, type: 2}
+  - {fileID: 11400000, guid: d69df7b04f77d444c9de0ac661480cb1, type: 2}
+  - {fileID: 11400000, guid: 2c7720dbbaa38484cbe07e4cb0d566b2, type: 2}
+  - {fileID: 11400000, guid: 2b102e7bb66ae1f4c87e6387017c0944, type: 2}
+  locationList:
+  - {fileID: 11400000, guid: 783f5d2aea5d40c498a89666ebda8da4, type: 2}
+  - {fileID: 11400000, guid: 282528ff0d2166a4d90bba132a7df35a, type: 2}
+  - {fileID: 11400000, guid: 70af96fd630edc341a819c3a1fe7c5ec, type: 2}
+  - {fileID: 11400000, guid: c36273a0398306c4eb4fda00571a969e, type: 2}
+  - {fileID: 11400000, guid: e77a73f06cc128a44a7d121597531efc, type: 2}
+  - {fileID: 11400000, guid: bf891cf9617095d41833629dcca9d2d7, type: 2}
+  - {fileID: 11400000, guid: 783f5d2aea5d40c498a89666ebda8da4, type: 2}

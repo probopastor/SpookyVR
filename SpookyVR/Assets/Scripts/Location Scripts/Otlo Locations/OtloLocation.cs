@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Location", menuName = "Otlo Location")]
-public class OtloLocation : ScriptableObject
+public class OtloLocation : Location
 {
     [Tooltip(" ")] public int moneyAllocated = 0;
     [Tooltip(" ")] public int prosperity = 0;

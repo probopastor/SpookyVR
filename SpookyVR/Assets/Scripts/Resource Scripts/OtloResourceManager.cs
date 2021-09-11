@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Resource Manager", menuName = "Otlo Resource Manager")]
-public class OtloResourceManager : ScriptableObject
+public class OtloResourceManager : ResourceManager
 {
     #region Otlo Overall Resources
-    [Tooltip(" ")] private int currentWeek = 0;
     [Tooltip(" ")] private int population = 0;
     [Tooltip(" ")] private int money = 0;
     [Tooltip(" ")] private int food = 0;
@@ -17,15 +16,6 @@ public class OtloResourceManager : ScriptableObject
 
     #region Setters
     #region Direct Setters
-
-    /// <summary>
-    /// Directly sets the current week. This is not additive.
-    /// </summary>
-    /// <param name="newWeek">The new week number. </param>
-    public void SetCurrentWeek(int newWeek)
-    {
-        currentWeek = newWeek;
-    }
 
     /// <summary>
     /// Directly sets the population. This is not additive. 
@@ -84,18 +74,6 @@ public class OtloResourceManager : ScriptableObject
     #endregion 
 
     #region Update Methods
-   
-    /// <summary>
-    /// Updates the current week. This is additive to the current current week.
-    /// </summary>
-    /// <param name="changeInWeek">The amount the week should change by. (Will generally be 1). </param>
-    public void UpdateCurrentWeek(int changeInWeek)
-    {
-        currentWeek += changeInWeek;
-
-        if (currentWeek < 0)
-            currentWeek = 0;
-    }
 
     /// <summary>
     /// Updates the population. This is additive to current population.
@@ -174,15 +152,6 @@ public class OtloResourceManager : ScriptableObject
     #endregion
 
     #region Getters
-
-    /// <summary>
-    /// Returns the current week.
-    /// </summary>
-    /// <returns>Int of current week. </returns>
-    public int GetCurrentWeek()
-    {
-        return currentWeek;
-    }
 
     /// <summary>
     /// Returns the population.
