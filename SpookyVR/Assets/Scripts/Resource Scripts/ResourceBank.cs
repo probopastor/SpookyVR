@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourceBank : MonoBehaviour
 {
     [SerializeField, Tooltip(" ")] private int levelID;
-    [SerializeField, Tooltip("The resource manager for every world location.")] private ScriptableObject[] resourceManagers;
+    [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
 
 
     [Tooltip(" ")] private ResourceManager resourceManager;
@@ -41,7 +41,7 @@ public class ResourceBank : MonoBehaviour
     {
         levelID = thisLevelID;
 
-        resourceManager = (ResourceManager)resourceManagers[levelID];
+        resourceManager = resourceManagers[levelID];
 
         if (resourceManager.GetCurrentWeek() == -1)
         {
