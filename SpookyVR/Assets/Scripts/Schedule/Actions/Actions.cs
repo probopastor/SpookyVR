@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Actions : MonoBehaviour
 {
-    public int actionType = 0;
-    public int buildingType = 0;
-    public int npcType = 0;
+    private int actionType = 0;
+    private int buildingType = 0;
+    private int npcType = 0;
     [Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] public int timeOfAction = 0;
-    public int actionDuration = 0;
+    private int actionDuration = 0;
+
+    private bool actionInProgress = false;
 
     public Actions(int actionID, int buildingID, int npcID, int timeID, int duration)
     {
@@ -24,6 +26,10 @@ public class Actions : MonoBehaviour
     /// </summary>
     public void BeginAction()
     {
+        actionInProgress = true;
+
+        //Check burner action here
+
         if (actionType == 3)
         {
             // GetComponentOfType<Storage>().BeginNPCTalk(npcType, timeOfAction);
@@ -32,6 +38,24 @@ public class Actions : MonoBehaviour
         {
             // GetComponentOfType<Storage>().BeginBuildingAction(buildingType, actionType, timeOfAction);
         }
+    }
+
+    /// <summary>
+    /// Sets whether this action is currently in progress.
+    /// </summary>
+    /// <returns>True if this action is in progress, false otherwise.</returns>
+    public void SetActionInProgress(bool progressState)
+    {
+        actionInProgress = progressState;
+    }
+
+    /// <summary>
+    /// Returns whether this action is in progress or not.
+    /// </summary>
+    /// <returns>True if this action is in progress, false otherwise.</returns>
+    public bool GetActionInProgress()
+    {
+        return actionInProgress;
     }
 }
 

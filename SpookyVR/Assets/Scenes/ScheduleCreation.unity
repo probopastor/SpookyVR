@@ -4679,7 +4679,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764001047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0aa2ffbb51a63504d8140ca5f685f14e, type: 3}
   m_Name: 
@@ -4786,6 +4786,9 @@ MonoBehaviour:
   locationData:
   - thisLocation: {fileID: 0}
     name: 
+    locationImages:
+    - {fileID: 0}
+    - {fileID: 0}
     isInaccessible: 0
     prosperityInitial: 0
     moneyAllocatedInitial: 0
@@ -4795,6 +4798,7 @@ MonoBehaviour:
     crimeProducedInitial: 0
   - thisLocation: {fileID: 0}
     name: 
+    locationImages: []
     isInaccessible: 0
     prosperityInitial: 0
     moneyAllocatedInitial: 0

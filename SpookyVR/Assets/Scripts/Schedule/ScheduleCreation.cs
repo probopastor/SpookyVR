@@ -9,12 +9,6 @@ public class ScheduleCreation : MonoBehaviour
     [SerializeField, Tooltip("A list of days. Set equal to the number of days in a week. ")] List<Days> theDays = new List<Days>();
     [SerializeField, Tooltip("A list of all the actions in a day. Set to the number of actions in a day. ")] List<Actions> dailyActions = new List<Actions>();
 
-    [System.Serializable]
-    public class Days
-    {
-        public List<Actions> actionsToday;
-    }
-
     private void Awake()
     {
 

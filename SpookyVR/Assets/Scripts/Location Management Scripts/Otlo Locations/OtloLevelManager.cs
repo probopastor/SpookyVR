@@ -17,7 +17,7 @@ public class OtloLevelManager : LevelManager
 
 
     [System.Serializable]
-    public class OtloLocationData : LocationDataInitial
+    private class OtloLocationData : LocationDataInitial
     {
         public int prosperityInitial = 0;
         public int moneyAllocatedInitial = 0;
@@ -28,7 +28,7 @@ public class OtloLevelManager : LevelManager
     }
 
     [System.Serializable]
-    public class OtloCharacterData: CharacterDataInitial
+    private class OtloCharacterData: CharacterDataInitial
     {
 
     }

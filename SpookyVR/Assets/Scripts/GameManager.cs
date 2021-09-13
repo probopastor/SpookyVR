@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField, Tooltip(" ")] private int levelID;
     [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
+
+    [Tooltip(" ")] private List<Days> theDays;
+
     [Tooltip(" ")] private LevelManager levelManager;
     [Tooltip(" ")] private bool schedulePhase = false;
 
@@ -36,7 +39,34 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public IEnumerator BeginWeek(List<Days> theDays)
+    {
+        if (schedulePhase)
+        {
+            schedulePhase = false;
+
+            for (int i = 0; i < theDays.Count; i++)
+            {
+                for (int x = 0; x < theDays[i].actionsToday.Count; x++)
+                {
+                    if(!theDays[i].actionsToday[x].GetActionInProgress())
+                    {
+                        theDays[i].actionsToday[x].SetActionInProgress(true);
+                        theDays[i].actionsToday[x].BeginAction();
+                    }
+                    while (theDays[i].actionsToday[x].GetActionInProgress())
+                    {
+                        yield return null;
+                    }
+                }
+            }
+
+            schedulePhase = false;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void SetLevelData()
