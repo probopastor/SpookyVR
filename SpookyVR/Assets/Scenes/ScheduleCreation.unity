@@ -4593,6 +4593,7 @@ GameObject:
   - component: {fileID: 1764001049}
   - component: {fileID: 1764001048}
   - component: {fileID: 1764001051}
+  - component: {fileID: 1764001052}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4671,6 +4672,136 @@ MonoBehaviour:
   levelID: 0
   resourceManagers:
   - {fileID: 11400000, guid: 0b6a288ebe509d54dbc79c98dd8125fb, type: 2}
+--- !u!114 &1764001052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764001047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa2ffbb51a63504d8140ca5f685f14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelID: 0
+  weekInitial: 1
+  populationInitial: 0
+  moneyInitial: 0
+  foodInitial: 0
+  militiaInitial: 0
+  crimeRateInitial: 0
+  cultPresenceInitial: 0
+  characterData:
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 0}
+    name: 
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  locationData:
+  - thisLocation: {fileID: 0}
+    name: 
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 0}
+    name: 
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
 --- !u!1001 &1764828564
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Character", menuName = "Otlo Character")]
 public class Character : ScriptableObject
 {
-    public string characterName;
+    private string characterName;
 
-    public Image[] characterImages; 
+    private Image[] characterImages; 
 
     private int trust = 0;
     private bool isDead = false;
@@ -22,6 +22,15 @@ public class Character : ScriptableObject
     public void SetName(string newName)
     {
         characterName = newName;
+    }
+    
+    /// <summary>
+    /// Sets this character's image states to the passed in Image array.
+    /// </summary>
+    /// <param name="images">An array of Images. </param>
+    public void SetCharacterImages(Image[] images)
+    {
+        characterImages = images;
     }
 
     /// <summary>
@@ -62,6 +71,15 @@ public class Character : ScriptableObject
     public string GetName()
     {
         return characterName;
+    }
+
+    /// <summary>
+    /// Returns this character's image states. 
+    /// </summary>
+    /// <returns>An array of Images. </returns>
+    public Image[] GetCharacterImages()
+    {
+        return characterImages;
     }
 
     /// <summary>

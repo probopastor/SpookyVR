@@ -5,8 +5,6 @@ using UnityEngine;
 public abstract class ResourceManager : ScriptableObject
 {
     [Tooltip(" ")] private int currentWeek = 0;
-    [SerializeField, Tooltip(" ")] private Character[] characterList;
-    [SerializeField, Tooltip(" ")] private Location[] locationList;
 
     /// <summary>
     /// Directly sets the current week. This is not additive.

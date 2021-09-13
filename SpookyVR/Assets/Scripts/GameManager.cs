@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField, Tooltip(" ")] private int levelID;
     [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
+    [Tooltip(" ")] private LevelManager levelManager;
+    [Tooltip(" ")] private bool schedulePhase = false;
 
 
     [Tooltip(" ")] private ResourceManager resourceManager;
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -37,18 +39,16 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void SetLevelData(int thisLevelID)
+    public void SetLevelData()
     {
-        levelID = thisLevelID;
+        levelID = levelManager.GetLevelID();
 
         resourceManager = resourceManagers[levelID];
 
         if (resourceManager.GetCurrentWeek() == -1)
         {
-            // Reset OtloResourceManager information here
+            levelManager.ResetLevelData(resourceManager);
         }
-        // else if(!gameManager.WeekInProgress()) { 
-        // resourceManager.ResetCurrentWeek();
-        // } 
+
     }
 }
