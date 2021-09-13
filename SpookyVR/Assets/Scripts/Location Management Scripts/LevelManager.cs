@@ -32,6 +32,7 @@ public abstract class LevelManager : MonoBehaviour
         [SerializeField, Tooltip(" ")] private Location thisLocation;
 
         public string name;
+        public Image[] locationImages;
         public bool isInaccessible = false;
 
         /// <summary>

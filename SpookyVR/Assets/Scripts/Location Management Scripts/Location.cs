@@ -20,6 +20,16 @@ public abstract class Location : ScriptableObject
     }
 
     /// <summary>
+    /// Sets this location's image states to the passed in Image array.
+    /// </summary>
+    /// <param name="images">An array of Images. </param>
+    public void SetLocationImages(Image[] images)
+    {
+        locationImages = images;
+    }
+
+
+    /// <summary>
     /// Sets whether this location is inaccessible.
     /// </summary>
     /// <param name="inaccessible">True if inaccessible, false if accessible. </param>
@@ -35,6 +45,15 @@ public abstract class Location : ScriptableObject
     public string GetName()
     {
         return locationName;
+    }
+
+    /// <summary>
+    /// Returns this location's image states. 
+    /// </summary>
+    /// <returns>An array of Images. </returns>
+    public Image[] GetLocationImages()
+    {
+        return locationImages;
     }
 
     /// <summary>

@@ -67,6 +67,7 @@ public class OtloLevelManager : LevelManager
             {
                 locationData[i].GetLocation().SetAccessibility(locationData[i].isInaccessible);
                 locationData[i].GetLocation().SetName(locationData[i].name);
+                locationData[i].GetLocation().SetLocationImages(locationData[i].locationImages);
 
                 // If the location is an OtloLocation, reset its individual data
                 if (locationData[i].GetLocation() is OtloLocation)
