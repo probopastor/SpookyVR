@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager _gameManager;
 
+    [Tooltip("The Master Input Map. ")] private InputMaster controls;
+
+    bool cheatEntered = false;
+
     private void Awake()
     {
         if (_gameManager != null && _gameManager != this)
@@ -28,45 +33,79 @@ public class GameManager : MonoBehaviour
             _gameManager = this;
             DontDestroyOnLoad(_gameManager.gameObject);
         }
+
+        controls = new InputMaster();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    //Call to disable controls
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        schedulePhase = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (controls.CheatCodes.Cheats.triggered)
+        {
+            Debug.Log("Cheat entered");
+            cheatEntered = true;
+            //theDays[i].actionsToday[x].SetActionInProgress(false);
+        }
     }
 
     public IEnumerator BeginWeek(List<Days> theDays)
     {
-        if (schedulePhase)
-        {
-            schedulePhase = false;
+        Debug.Log("This occurs");
 
-            for (int i = 0; i < theDays.Count; i++)
+        schedulePhase = false;
+
+        for (int i = 0; i < theDays.Count; i++)
+        {
+            cheatEntered = false;
+
+            for (int x = 0; x < theDays[i].actionsToday.Count; x++)
             {
-                for (int x = 0; x < theDays[i].actionsToday.Count; x++)
+                if (!theDays[i].actionsToday[x].GetActionInProgress())
                 {
-                    if(!theDays[i].actionsToday[x].GetActionInProgress())
+                    theDays[i].actionsToday[x].SetActionInProgress(true);
+                    theDays[i].actionsToday[x].BeginAction();
+                }
+                while (theDays[i].actionsToday[x].GetActionInProgress())
+                {
+                    if (cheatEntered)
                     {
-                        theDays[i].actionsToday[x].SetActionInProgress(true);
-                        theDays[i].actionsToday[x].BeginAction();
+                        cheatEntered = false;
+                        Debug.Log("Cheat entered");
+                        theDays[i].actionsToday[x].SetActionInProgress(false);
                     }
-                    while (theDays[i].actionsToday[x].GetActionInProgress())
+                    else
                     {
                         yield return null;
                     }
                 }
-            }
 
-            schedulePhase = false;
-            yield return new WaitForEndOfFrame();
+                // yield return new WaitUntil(() => (theDays[i].actionsToday[x].GetActionInProgress() == false) || cheatEntered);
+            }
         }
+
+        yield return new WaitForEndOfFrame();
+
+        FindObjectOfType<ScheduleCreation>().RefreshSchedule();
+
+        schedulePhase = true;
     }
 
     public void SetLevelData()

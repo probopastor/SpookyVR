@@ -467,6 +467,33 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CheatCodes"",
+            ""id"": ""b63fec81-57b1-4900-8adc-1165ebc4d5e7"",
+            ""actions"": [
+                {
+                    ""name"": ""Cheats"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e5d118c-2447-46ae-844d-490c80e13cf8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8b9fc63d-c6a7-4071-ac11-a2a9ae7350c2"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Cheats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -512,6 +539,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Scheduler = asset.FindActionMap("Scheduler", throwIfNotFound: true);
         m_Scheduler_Place = m_Scheduler.FindAction("Place", throwIfNotFound: true);
         m_Scheduler_Delete = m_Scheduler.FindAction("Delete", throwIfNotFound: true);
+        // CheatCodes
+        m_CheatCodes = asset.FindActionMap("CheatCodes", throwIfNotFound: true);
+        m_CheatCodes_Cheats = m_CheatCodes.FindAction("Cheats", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -688,6 +718,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public SchedulerActions @Scheduler => new SchedulerActions(this);
+
+    // CheatCodes
+    private readonly InputActionMap m_CheatCodes;
+    private ICheatCodesActions m_CheatCodesActionsCallbackInterface;
+    private readonly InputAction m_CheatCodes_Cheats;
+    public struct CheatCodesActions
+    {
+        private @InputMaster m_Wrapper;
+        public CheatCodesActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cheats => m_Wrapper.m_CheatCodes_Cheats;
+        public InputActionMap Get() { return m_Wrapper.m_CheatCodes; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CheatCodesActions set) { return set.Get(); }
+        public void SetCallbacks(ICheatCodesActions instance)
+        {
+            if (m_Wrapper.m_CheatCodesActionsCallbackInterface != null)
+            {
+                @Cheats.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnCheats;
+                @Cheats.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnCheats;
+                @Cheats.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnCheats;
+            }
+            m_Wrapper.m_CheatCodesActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Cheats.started += instance.OnCheats;
+                @Cheats.performed += instance.OnCheats;
+                @Cheats.canceled += instance.OnCheats;
+            }
+        }
+    }
+    public CheatCodesActions @CheatCodes => new CheatCodesActions(this);
     private int m_KeyboardandmouseSchemeIndex = -1;
     public InputControlScheme KeyboardandmouseScheme
     {
@@ -721,5 +784,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnPlace(InputAction.CallbackContext context);
         void OnDelete(InputAction.CallbackContext context);
+    }
+    public interface ICheatCodesActions
+    {
+        void OnCheats(InputAction.CallbackContext context);
     }
 }

@@ -454,6 +454,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CheatCodes",
+            "id": "b63fec81-57b1-4900-8adc-1165ebc4d5e7",
+            "actions": [
+                {
+                    "name": "Cheats",
+                    "type": "Button",
+                    "id": "9e5d118c-2447-46ae-844d-490c80e13cf8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8b9fc63d-c6a7-4071-ac11-a2a9ae7350c2",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Cheats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

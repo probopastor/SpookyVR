@@ -16,6 +16,11 @@ public class ScheduleCreation : MonoBehaviour
 
     private void Start()
     {
+        RefreshSchedule();
+    }
+
+    public void RefreshSchedule()
+    {
         // Add the correct amount of actions to each day in theDays.
         for (int i = 0; i < theDays.Count; i++)
         {
@@ -158,5 +163,10 @@ public class ScheduleCreation : MonoBehaviour
         }
 
         return timeOfAction;
+    }
+
+    public void FinishSchedule()
+    {
+        StartCoroutine(GameManager._gameManager.BeginWeek(theDays));
     }
 }

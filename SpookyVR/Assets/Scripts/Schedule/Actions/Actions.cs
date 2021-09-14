@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Actions : MonoBehaviour
 {
-    private int actionType = 0;
-    private int buildingType = 0;
-    private int npcType = 0;
+    public int actionType = 0;
+    public int buildingType = 0;
+    public int npcType = 0;
     [Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] public int timeOfAction = 0;
-    private int actionDuration = 0;
+    public int actionDuration = 0;
 
     private bool actionInProgress = false;
 
@@ -29,6 +29,17 @@ public class Actions : MonoBehaviour
         actionInProgress = true;
 
         //Check burner action here
+
+        Debug.Log("Action Type: " + actionType + "\n"
+            + "Building Type: " + buildingType + "\n" +
+            "NPC Type: " + npcType + "\n" +  
+            "Time of Action: " + timeOfAction + "\n" + 
+            "Action Duration: " + actionDuration + "\n");
+
+        if(actionType == 100 || buildingType == 100 || npcType == 100)
+        {
+            actionInProgress = false;
+        }
 
         if (actionType == 3)
         {
