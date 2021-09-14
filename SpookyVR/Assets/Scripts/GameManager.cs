@@ -92,6 +92,10 @@ public class GameManager : MonoBehaviour
                 {
                     theDays[i].actionsToday[x].SetActionInProgress(true);
                     theDays[i].actionsToday[x].BeginAction();
+
+                    Debug.Log("Current Action Type: " + theDays[i].actionsToday[x].actionType);
+                    Debug.Log("Current Building Type: " + theDays[i].actionsToday[x].buildingType);
+                    Debug.Log("Current NPC Type: " + theDays[i].actionsToday[x].npcType);
                 }
                 while (theDays[i].actionsToday[x].GetActionInProgress())
                 {

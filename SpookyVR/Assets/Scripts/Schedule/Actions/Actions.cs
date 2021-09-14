@@ -8,17 +8,15 @@ public class Actions : MonoBehaviour
     public int buildingType = 0;
     public int npcType = 0;
     [Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] public int timeOfAction = 0;
-    public int actionDuration = 0;
 
     private bool actionInProgress = false;
 
-    public Actions(int actionID, int buildingID, int npcID, int timeID, int duration)
+    public Actions(int actionID, int buildingID, int npcID, int timeID)
     {
         actionType = actionID;
         buildingType = buildingID;
         npcType = npcID;
         timeOfAction = timeID;
-        actionDuration = duration;
     }
 
     /// <summary>
@@ -27,14 +25,6 @@ public class Actions : MonoBehaviour
     public void BeginAction()
     {
         actionInProgress = true;
-
-        //Check burner action here
-
-        Debug.Log("Action Type: " + actionType + "\n"
-            + "Building Type: " + buildingType + "\n" +
-            "NPC Type: " + npcType + "\n" +  
-            "Time of Action: " + timeOfAction + "\n" + 
-            "Action Duration: " + actionDuration + "\n");
 
         if(actionType == 100 || buildingType == 100 || npcType == 100)
         {

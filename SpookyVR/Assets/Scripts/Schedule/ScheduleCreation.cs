@@ -30,7 +30,7 @@ public class ScheduleCreation : MonoBehaviour
             // Adds default action objects to each dailyActions list.
             for (int x = 0; x < numberOfActionsPerDay; x++)
             {
-                Actions defaultAction = new Actions(100, 100, 100, 100, 0);
+                Actions defaultAction = new Actions(100, 100, 100, 100);
                 dailyActions.Add(defaultAction);
             }
 
@@ -46,8 +46,7 @@ public class ScheduleCreation : MonoBehaviour
                        " Action Type: " + theDays[i].actionsToday[x].actionType + "\n" +
                        " Building Type: " + theDays[i].actionsToday[x].buildingType + "\n" +
                        " NPC Type: " + theDays[i].actionsToday[x].npcType + "\n" +
-                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n" +
-                       " Action Duration: " + theDays[i].actionsToday[x].actionDuration);
+                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n");
             }
         }
     }
@@ -74,8 +73,7 @@ public class ScheduleCreation : MonoBehaviour
                        " Action Type: " + theDays[i].actionsToday[x].actionType + "\n" +
                        " Building Type: " + theDays[i].actionsToday[x].buildingType + "\n" +
                        " NPC Type: " + theDays[i].actionsToday[x].npcType + "\n" +
-                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n" +
-                       " Action Duration: " + theDays[i].actionsToday[x].actionDuration);
+                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n");
             }
         }
     }
@@ -92,7 +90,7 @@ public class ScheduleCreation : MonoBehaviour
         //    }
         //}
 
-        Actions dummyAction = new Actions(100, 100, 100, 100, 0);
+        Actions dummyAction = new Actions(100, 100, 100, 100);
         theDays[scheduleDay].actionsToday[actionNumber] = dummyAction;
 
         for (int i = 0; i < theDays.Count; i++)
@@ -103,8 +101,7 @@ public class ScheduleCreation : MonoBehaviour
                        " Action Type: " + theDays[i].actionsToday[x].actionType + "\n" +
                        " Building Type: " + theDays[i].actionsToday[x].buildingType + "\n" +
                        " NPC Type: " + theDays[i].actionsToday[x].npcType + "\n" +
-                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n" +
-                       " Action Duration: " + theDays[i].actionsToday[x].actionDuration);
+                       " Time of Day: " + theDays[i].actionsToday[x].timeOfAction + "\n");
             }
         }
     }

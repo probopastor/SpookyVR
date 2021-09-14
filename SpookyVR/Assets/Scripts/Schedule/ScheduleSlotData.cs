@@ -145,7 +145,7 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
                 {
                     thisAction.SetScheduleSlotData(this);
 
-                    actionObj = new Actions(thisAction.GetActionType(), thisAction.GetBuildingType(), thisAction.GetNPCType(), 100, thisAction.GetActionDuration());
+                    actionObj = new Actions(thisAction.GetActionType(), thisAction.GetBuildingType(), thisAction.GetNPCType(), 100);
 
                     // Schedules this action
                     ScheduleCreation scheduleCreation = FindObjectOfType<ScheduleCreation>();
