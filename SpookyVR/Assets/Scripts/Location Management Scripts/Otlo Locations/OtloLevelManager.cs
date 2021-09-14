@@ -1,48 +1,50 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* OtloLevelManager.cs
+* Otlo's individual level manager. Maintains starting conditions of Otlo, and methods to reset Otlo (called when the level is started or restarted).
+* 
+* Should be inherited by individual level managers.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OtloLevelManager : LevelManager
 {
-    [SerializeField, Tooltip(" ")] private int weekInitial = 1;
-    [SerializeField, Tooltip(" ")] private int populationInitial = 0;
-    [SerializeField, Tooltip(" ")] private int moneyInitial = 0;
-    [SerializeField, Tooltip(" ")] private int foodInitial = 0;
-    [SerializeField, Tooltip(" ")] private int militiaInitial = 0;
-    [SerializeField, Tooltip(" ")] private int crimeRateInitial = 0;
-    [SerializeField, Tooltip(" ")] private int cultPresenceInitial = 0;
+    [SerializeField, Tooltip("The initial week Otlo will start at. ")] private int weekInitial = 1;
+    [SerializeField, Tooltip("The initial population Otlo will start at. ")] private int populationInitial = 0;
+    [SerializeField, Tooltip("The initial money Otlo will start at. ")] private int moneyInitial = 0;
+    [SerializeField, Tooltip("The initial food Otlo will start at. ")] private int foodInitial = 0;
+    [SerializeField, Tooltip("The initial militia Otlo will start at. ")] private int militiaInitial = 0;
+    [SerializeField, Tooltip("The initial crime Otlo will start at. ")] private int crimeRateInitial = 0;
+    [SerializeField, Tooltip("The initial cult presence Otlo will start at. ")] private int cultPresenceInitial = 0;
 
-    [SerializeField, Tooltip(" ")] private List<OtloCharacterData> characterData = new List<OtloCharacterData>();
-    [SerializeField, Tooltip(" ")] private List<OtloLocationData> locationData = new List<OtloLocationData>();
+    [SerializeField, Tooltip("A list of all Otlo characters. ")] private List<OtloCharacterData> characterData = new List<OtloCharacterData>();
+    [SerializeField, Tooltip("A list of all Otlo locations. ")] private List<OtloLocationData> locationData = new List<OtloLocationData>();
 
-
+    /// <summary>
+    /// OtloLocationData overrides LocationDataInitial to include Location starting information for Otlo's unique resources.
+    /// </summary>
     [System.Serializable]
     private class OtloLocationData : LocationDataInitial
     {
-        public int prosperityInitial = 0;
-        public int moneyAllocatedInitial = 0;
-        public bool militiaStationedInitial = false;
-        public int moneyProducedInitial = 0;
-        public int foodProducedInitial = 0;
-        public int crimeProducedInitial = 0;
+        [Tooltip("The prosperity of this location on level start. ")] public int prosperityInitial = 0;
+        [Tooltip("The money allocated to this location on level start. ")] public int moneyAllocatedInitial = 0;
+        [Tooltip("Whether militia will start stationed at this location. ")] public bool militiaStationedInitial = false;
+        [Tooltip("The money produced by this location on level start. ")] public int moneyProducedInitial = 0;
+        [Tooltip("The food produced by this location on level start. ")] public int foodProducedInitial = 0;
+        [Tooltip("The crime produced by this location on level start. ")] public int crimeProducedInitial = 0;
     }
 
+    /// <summary>
+    /// OtloCharacterData overrides CharacterDataInitial to include Character starting information for Otlo's unique characters.
+    /// </summary>
     [System.Serializable]
     private class OtloCharacterData: CharacterDataInitial
     {
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override void ResetLevelData(ResourceManager thisResourceManager)
@@ -56,9 +58,6 @@ public class OtloLevelManager : LevelManager
         otloResources.SetMilitiaUnits(militiaInitial);
         otloResources.SetCrimeRate(crimeRateInitial);
         otloResources.SetCultPresence(cultPresenceInitial);
-
-        //Location[] locations = otloResources.GetLocations();
-        //Character[] characters = otloResources.GetCharacters();
 
         // Cycles through the locations associated with thisResourceManager to reset their variables.
         for(int i = 0; i < locationData.Count; i++)
@@ -91,7 +90,6 @@ public class OtloLevelManager : LevelManager
         {
             if(characterData[i] != null)
             {
-
                 Character thisCharacter = characterData[i].GetCharacter();
 
                 thisCharacter.SetName(characterData[i].name);

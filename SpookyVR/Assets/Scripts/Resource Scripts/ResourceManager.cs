@@ -1,11 +1,20 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* ResourceManager.cs
+* The Resouce Manager scriptable object superclass. Should be inherited by individual level Resource Managers.
+* Contains variables and setter / getter methods for everything that will remain constant across all level Resource Managers.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ResourceManager : ScriptableObject
 {
-    [Tooltip(" ")] private int currentWeek = 0;
+    [Tooltip("The current week the level is on. ")] private int currentWeek = 0;
 
+    #region Setters 
     /// <summary>
     /// Directly sets the current week. This is not additive.
     /// </summary>
@@ -27,6 +36,10 @@ public abstract class ResourceManager : ScriptableObject
             currentWeek = 0;
     }
 
+    #endregion
+
+    #region Getters
+
     /// <summary>
     /// Returns the current week.
     /// </summary>
@@ -35,4 +48,6 @@ public abstract class ResourceManager : ScriptableObject
     {
         return currentWeek;
     }
+
+    #endregion 
 }

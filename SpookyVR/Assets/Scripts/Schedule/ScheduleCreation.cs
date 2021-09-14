@@ -19,13 +19,8 @@ namespace Schedule
         [SerializeField, Tooltip("A list of days. Set equal to the number of days in a week. ")] List<Days> theDays = new List<Days>();
         [SerializeField, Tooltip("A list of all the actions in a day. Set to the number of actions in a day. ")] List<Actions> dailyActions = new List<Actions>();
 
-        [Tooltip(" ")] private int fundingAmount;
-        [Tooltip(" ")] private Location fundingLocation;
-
-        private void Awake()
-        {
-
-        }
+        [Tooltip("The amount of funding that should be given to a location. ")] private int fundingAmount;
+        [Tooltip("The location that funding will be allocated. ")] private Location fundingLocation;
 
         private void Start()
         {
@@ -201,6 +196,7 @@ namespace Schedule
         public void AddFunding(int amount)
         {
             // TODO: Amount funded cannot be lower than current money.
+            // TODO: Make funding location specific... may need a seperate script or reference to hold individual location funding.
             // TODO: Set a cap on how much can be funded.
             // TODO: Link this to buttons that increase / decrease this value by an amount (probably 100).
             // TODO: Make sure this amount stays in funding even after scene change for the following week. (Probably a TextMeshProGUI that always just reads the current amount funded value)

@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* Location.cs
+* The Location scriptable object superclass. Maintains data for all Location resources / variables
+* that will be shared across all levels. Contains Setters, Getters, and Update methods for these resources.
+* 
+* Should be inherited by each individual level's Location script (and scriptable objects should then be made in the editor
+* based on these children).
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,13 +17,13 @@ using UnityEngine.UI;
 public abstract class Location : ScriptableObject
 {
     #region Variables
-    protected string locationName;
-    protected Image[] locationImages;
+    [Tooltip("This location's name. ")] protected string locationName;
+    [Tooltip("An array of all location state images this location will use. ")] protected Image[] locationImages;
 
-    protected bool isInaccessible = false;
+    [Tooltip("Maintains whether this location is accessible by the player. ")] protected bool isInaccessible = false;
 
-    [Tooltip(" ")] private bool militiaStationed = false;
-    [Tooltip(" ")] private int moneyAllocated = 0;
+    [Tooltip("Maintains whether militia is stationed at this location. ")] private bool militiaStationed = false;
+    [Tooltip("Maintains the money allocated to this location. ")] private int moneyAllocated = 0;
 
     #endregion
 

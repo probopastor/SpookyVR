@@ -14,8 +14,12 @@ namespace Schedule
 {
     public class DailyScheduleSlotOrder : MonoBehaviour
     {
-        [SerializeField, Tooltip(" ")] private List<ScheduleSlotData> dailyScheduleSlotOrder = new List<ScheduleSlotData>();
+        [SerializeField, Tooltip("The Schedule Slot order for this day. Order runs top down, top most slot should be before the bottom most slot. ")] private List<ScheduleSlotData> dailyScheduleSlotOrder = new List<ScheduleSlotData>();
 
+        /// <summary>
+        /// Returns the order of schedule slots on a given day.
+        /// </summary>
+        /// <returns>A List of ScheduleSlotData for a given day. </returns>
         public List<ScheduleSlotData> GetDailySlotOrder()
         {
             return dailyScheduleSlotOrder;

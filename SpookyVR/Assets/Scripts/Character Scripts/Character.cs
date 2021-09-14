@@ -14,12 +14,12 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Character", menuName = "Otlo Character")]
 public class Character : ScriptableObject
 {
-    private string characterName;
+    [Tooltip("This character's name. ")] private string characterName;
 
-    private Image[] characterImages; 
+    [Tooltip("An array of all character state images this character will use. ")] private Image[] characterImages; 
 
-    private int trust = 0;
-    private bool isDead = false;
+    [Tooltip("This character's trust in the player. ")] private int trust = 0;
+    [Tooltip("Maintains whether this character is living or dead. ")] private bool isDead = false;
 
     #region Setters
 

@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* GameManager.cs
+* Handles game states across the entire game. Figures out when levels need to be reset, what state the levels are in, 
+* and what actions are being performed.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,23 +14,27 @@ using Schedule;
 
 public class GameManager : MonoBehaviour
 {
-    [Tooltip(" ")] private int levelID;
+    #region Variables
+    [Tooltip("The ID of the current level. ")] private int levelID;
     [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
 
-    [Tooltip(" ")] private List<Days> theDays;
+    [Tooltip("A list of Days, with each day having a list of Actions that have been scheduled. Used to progress through the level. ")] private List<Days> theDays;
 
-    [Tooltip(" ")] private LevelManager levelManager;
-    [Tooltip(" ")] private bool schedulePhase = false;
+    [Tooltip("The current Level's level manager. ")] private LevelManager levelManager;
+    [Tooltip("Maintains whether the scheduling phase is in progress or not. ")] private bool schedulePhase = false;
 
 
-    [Tooltip(" ")] private ResourceManager resourceManager;
+    [Tooltip("The current level's Resource Manager. ")] private ResourceManager resourceManager;
 
     public static GameManager _gameManager;
+    #endregion
 
+    #region Cheat Code Variables
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
-
     bool cheatEntered = false;
+    #endregion
 
+    #region Start Up Methods
     private void Awake()
     {
         if (_gameManager != null && _gameManager != this)
@@ -76,6 +88,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
         }
     }
+
+    #endregion 
 
     public IEnumerator BeginWeek(List<Days> theDays)
     {

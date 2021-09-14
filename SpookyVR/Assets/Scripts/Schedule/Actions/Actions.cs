@@ -40,14 +40,13 @@ namespace Schedule
             {
                 actionInProgress = false;
             }
-
-            if (actionType == 3)
+            else if(actionType == 0)
             {
-                // GetComponentOfType<Storage>().BeginNPCTalk(npcType, timeOfAction);
+                // Inspect(buildingType, timeOfAction);
             }
-            else
+            else if(actionType == 1)
             {
-                // GetComponentOfType<Storage>().BeginBuildingAction(buildingType, actionType, timeOfAction);
+                // TalkTo(npcType, timeOfAction);
             }
         }
 

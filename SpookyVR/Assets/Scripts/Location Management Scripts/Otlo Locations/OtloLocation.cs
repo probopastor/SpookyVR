@@ -1,15 +1,25 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* OtloLocation.cs
+* The Location scriptable object script for Otlo. This maintains the resources common
+* across all Otlo Locations.
+* 
+* Contains Setters, Getters, and Update methods for these resources.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Location", menuName = "Otlo Location")]
 public class OtloLocation : Location
 {
-    [Tooltip(" ")] private int prosperity = 0;
+    [Tooltip("The prosperity of this location. ")] private int prosperity = 0;
 
-    [Tooltip(" ")] private int moneyProduced = 0;
-    [Tooltip(" ")] private int foodProcuded = 0;
-    [Tooltip(" ")] private int crimeProduced = 0;
+    [Tooltip("The money produced by this location. ")] private int moneyProduced = 0;
+    [Tooltip("The food produced by this location. ")] private int foodProcuded = 0;
+    [Tooltip("The crime produced by this location. ")] private int crimeProduced = 0;
 
     #region Setters
 

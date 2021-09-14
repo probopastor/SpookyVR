@@ -24,7 +24,6 @@ namespace Schedule
         [SerializeField, Tooltip("The building ID of the spawned schedule action object. ")] private int buildingType = 0;
         [SerializeField, Tooltip("The NPC ID of the spawned schedule action object. ")] private int npcType = 0;
 
-        //[Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] private int timeOfAction = 0;
         private void Awake()
         {
             CreateActionObject();

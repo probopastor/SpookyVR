@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* PlayerBehavior.cs
+* Implements player actions, including general movement, for a 3D space.
+* 
+* This is no longer used, as the game concept has transitioned.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;

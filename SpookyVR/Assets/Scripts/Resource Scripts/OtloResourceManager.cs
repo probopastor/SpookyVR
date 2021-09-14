@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* OtloResourceManager.cs
+* The Resouce Manager scriptable object for Otlo. Maintains data for all resources / variables
+* Otlo will use. Contains Setters, Getters, and Update methods for these resources.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +14,12 @@ using UnityEngine;
 public class OtloResourceManager : ResourceManager
 {
     #region Otlo Overall Resources
-    [Tooltip(" ")] private int population = 0;
-    [Tooltip(" ")] private int money = 0;
-    [Tooltip(" ")] private int food = 0;
-    [Tooltip(" ")] private int militia = 0;
-    [Tooltip(" ")] private int crimeRate = 0;
-    [Tooltip(" ")] private int cultPresence = 0;
+    [Tooltip("Otlo's population. ")] private int population = 0;
+    [Tooltip("Otlo's total money. ")] private int money = 0;
+    [Tooltip("Otlo's total food. ")] private int food = 0;
+    [Tooltip("Otlo's total militia. ")] private int militia = 0;
+    [Tooltip("Otlo's total crime rate. ")] private int crimeRate = 0;
+    [Tooltip("Otlo's cult presence. ")] private int cultPresence = 0;
     #endregion
 
     #region Setters
