@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField, Tooltip(" ")] private int levelID;
+    [Tooltip(" ")] private int levelID;
     [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
 
     [Tooltip(" ")] private List<Days> theDays;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        SetLevelData();
         schedulePhase = true;
     }
 
@@ -63,6 +64,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("Cheat entered");
             cheatEntered = true;
             //theDays[i].actionsToday[x].SetActionInProgress(false);
+        }
+
+        if(controls.CheatCodes.ResetGame.triggered)
+        {
+            Debug.Log("Cheat entered");
+
+            resourceManager.SetCurrentWeek(0);
+            SetLevelData();
+            Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
         }
     }
 
@@ -103,9 +113,12 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
+        resourceManager.UpdateCurrentWeek(1);
         FindObjectOfType<ScheduleCreation>().RefreshSchedule();
 
         schedulePhase = true;
+
+        Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
     }
 
     public void SetLevelData()
@@ -114,7 +127,7 @@ public class GameManager : MonoBehaviour
 
         resourceManager = resourceManagers[levelID];
 
-        if (resourceManager.GetCurrentWeek() == -1)
+        if (resourceManager.GetCurrentWeek() == 0)
         {
             levelManager.ResetLevelData(resourceManager);
         }

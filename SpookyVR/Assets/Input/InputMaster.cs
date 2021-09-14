@@ -479,6 +479,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ResetGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""63d45451-7a2f-4fcb-93dc-b08945b4a143"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -490,6 +498,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Cheats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a96859b7-49dc-4e5b-9788-f27571662ae5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""ResetGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -542,6 +561,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // CheatCodes
         m_CheatCodes = asset.FindActionMap("CheatCodes", throwIfNotFound: true);
         m_CheatCodes_Cheats = m_CheatCodes.FindAction("Cheats", throwIfNotFound: true);
+        m_CheatCodes_ResetGame = m_CheatCodes.FindAction("ResetGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -723,11 +743,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_CheatCodes;
     private ICheatCodesActions m_CheatCodesActionsCallbackInterface;
     private readonly InputAction m_CheatCodes_Cheats;
+    private readonly InputAction m_CheatCodes_ResetGame;
     public struct CheatCodesActions
     {
         private @InputMaster m_Wrapper;
         public CheatCodesActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cheats => m_Wrapper.m_CheatCodes_Cheats;
+        public InputAction @ResetGame => m_Wrapper.m_CheatCodes_ResetGame;
         public InputActionMap Get() { return m_Wrapper.m_CheatCodes; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -740,6 +762,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Cheats.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnCheats;
                 @Cheats.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnCheats;
                 @Cheats.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnCheats;
+                @ResetGame.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnResetGame;
+                @ResetGame.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnResetGame;
+                @ResetGame.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnResetGame;
             }
             m_Wrapper.m_CheatCodesActionsCallbackInterface = instance;
             if (instance != null)
@@ -747,6 +772,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Cheats.started += instance.OnCheats;
                 @Cheats.performed += instance.OnCheats;
                 @Cheats.canceled += instance.OnCheats;
+                @ResetGame.started += instance.OnResetGame;
+                @ResetGame.performed += instance.OnResetGame;
+                @ResetGame.canceled += instance.OnResetGame;
             }
         }
     }
@@ -788,5 +816,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface ICheatCodesActions
     {
         void OnCheats(InputAction.CallbackContext context);
+        void OnResetGame(InputAction.CallbackContext context);
     }
 }

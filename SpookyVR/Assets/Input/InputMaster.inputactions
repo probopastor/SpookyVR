@@ -466,6 +466,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ResetGame",
+                    "type": "Button",
+                    "id": "63d45451-7a2f-4fcb-93dc-b08945b4a143",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -477,6 +485,17 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "Cheats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a96859b7-49dc-4e5b-9788-f27571662ae5",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "ResetGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
