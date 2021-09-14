@@ -5,9 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Location", menuName = "Otlo Location")]
 public class OtloLocation : Location
 {
-    [Tooltip(" ")] private int moneyAllocated = 0;
     [Tooltip(" ")] private int prosperity = 0;
-    [Tooltip(" ")] private bool militiaStationed = false;
 
     [Tooltip(" ")] private int moneyProduced = 0;
     [Tooltip(" ")] private int foodProcuded = 0;
@@ -18,30 +16,12 @@ public class OtloLocation : Location
     #region Direct Setters
 
     /// <summary>
-    /// Directly sets the money allocated to this location. This is not additive.
-    /// </summary>
-    /// <param name="newMoneyAllocated">The new amount of money that should be allocated.</param>
-    public void SetMoneyAllocated(int newMoneyAllocated)
-    {
-        moneyAllocated = newMoneyAllocated;
-    }
-
-    /// <summary>
     /// Directly sets the prosperity of this location. This is not additive.
     /// </summary>
     /// <param name="newProsperity">The new amount of prosperity that should be allocated.</param>
     public void SetProsperity(int newProsperity)
     {
         prosperity = newProsperity;
-    }
-
-    /// <summary>
-    /// Sets whether militia are stationed at this location or not.
-    /// </summary>
-    /// <param name="stationMilitia">Pass in true if militia should be stationed at this location, false otherwise. </param>
-    public void SetMilitiaStationed(bool stationMilitia)
-    {
-        militiaStationed = stationMilitia;
     }
 
     /// <summary>
@@ -74,15 +54,6 @@ public class OtloLocation : Location
     #endregion 
 
     #region Update Methods
-
-    /// <summary>
-    /// Updates the money allocated to this location. 
-    /// </summary>
-    /// <param name="moneyToBeAllocated">The change in money allocated. </param>
-    public void UpdateMoneyAllocated(int moneyToBeAllocated)
-    {
-        moneyAllocated += moneyToBeAllocated;
-    }
 
     /// <summary>
     /// Updates the prosperity of this location.
@@ -127,30 +98,12 @@ public class OtloLocation : Location
     #region Getters
 
     /// <summary>
-    /// Returns the amount of money allocated at this location.
-    /// </summary>
-    /// <returns>Int of money allocated.</returns>
-    public int GetMoneyAllocated()
-    {
-        return moneyAllocated;
-    }
-
-    /// <summary>
     /// Returns the prosperity of this location.
     /// </summary>
     /// <returns>Int of prosperity.</returns>
     public int GetProsperity()
     {
         return prosperity;
-    }
-
-    /// <summary>
-    /// Returns whether militia are stationed at this location.
-    /// </summary>
-    /// <returns>True if militia are stationed, false otherwise. </returns>
-    public bool GetMilitiaStationed()
-    {
-        return militiaStationed;
     }
 
     /// <summary>

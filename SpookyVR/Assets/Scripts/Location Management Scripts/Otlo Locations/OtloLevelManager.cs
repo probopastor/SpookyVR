@@ -65,18 +65,20 @@ public class OtloLevelManager : LevelManager
         {
             if(locationData[i] != null)
             {
-                locationData[i].GetLocation().SetAccessibility(locationData[i].isInaccessible);
-                locationData[i].GetLocation().SetName(locationData[i].name);
-                locationData[i].GetLocation().SetLocationImages(locationData[i].locationImages);
+                Location thisLocation = locationData[i].GetLocation();
+
+                thisLocation.SetAccessibility(locationData[i].isInaccessible);
+                thisLocation.SetName(locationData[i].name);
+                thisLocation.SetLocationImages(locationData[i].locationImages);
+                thisLocation.SetMilitiaStationed(locationData[i].militiaStationedInitial);
+                thisLocation.SetMoneyAllocated(locationData[i].moneyAllocatedInitial);
 
                 // If the location is an OtloLocation, reset its individual data
-                if (locationData[i].GetLocation() is OtloLocation)
+                if (thisLocation is OtloLocation)
                 {
                     OtloLocation otloLocation = (OtloLocation)locationData[i].GetLocation();
 
                     otloLocation.SetProsperity(locationData[i].prosperityInitial);
-                    otloLocation.SetMoneyAllocated(locationData[i].moneyAllocatedInitial);
-                    otloLocation.SetMilitiaStationed(locationData[i].militiaStationedInitial);
                     otloLocation.SetMoneyProduced(locationData[i].moneyProducedInitial);
                     otloLocation.SetFoodProduced(locationData[i].foodProducedInitial);
                     otloLocation.SetCrimeProduced(locationData[i].crimeProducedInitial);
@@ -89,10 +91,13 @@ public class OtloLevelManager : LevelManager
         {
             if(characterData[i] != null)
             {
-                characterData[i].GetCharacter().SetName(characterData[i].name);
-                characterData[i].GetCharacter().SetCharacterImages(characterData[i].characterImages);
-                characterData[i].GetCharacter().SetCharacterTrust(characterData[i].trustInitial);
-                characterData[i].GetCharacter().UpdateDeathStatus(characterData[i].isDead);
+
+                Character thisCharacter = characterData[i].GetCharacter();
+
+                thisCharacter.SetName(characterData[i].name);
+                thisCharacter.SetCharacterImages(characterData[i].characterImages);
+                thisCharacter.SetCharacterTrust(characterData[i].trustInitial);
+                thisCharacter.UpdateDeathStatus(characterData[i].isDead);
                 // Set other condition here: characterList[i].SetSpecialCondition(characterData[i].otherCondition);
             }
         }

@@ -9,6 +9,9 @@ public class ScheduleCreation : MonoBehaviour
     [SerializeField, Tooltip("A list of days. Set equal to the number of days in a week. ")] List<Days> theDays = new List<Days>();
     [SerializeField, Tooltip("A list of all the actions in a day. Set to the number of actions in a day. ")] List<Actions> dailyActions = new List<Actions>();
 
+    [Tooltip(" ")] private int fundingAmount;
+    [Tooltip(" ")] private Location fundingLocation;
+
     private void Awake()
     {
 
@@ -162,8 +165,58 @@ public class ScheduleCreation : MonoBehaviour
         return timeOfAction;
     }
 
+    /// <summary>
+    /// Sets the militia stationed at a location. Access by button
+    /// </summary>
+    /// <param name="location"></param>
+    public void AddStationedMilitia(Location location)
+    {
+        // TODO: Only an amount of militia can be stationed. Need to decrement some value to preserve this. 
+        // TODO: Link this to a button thats a checkmark. 
+        // TODO: Make sure this stays even after scene change for the following week. (Probably a UI visual that is enabled or disabled by reading the current amount funded value)
+        if (location.GetMilitiaStationed())
+        {
+            location.SetMilitiaStationed(false);
+        }
+        else
+        {
+            location.SetMilitiaStationed(true);
+        }
+    }
+
+    /// <summary>
+    /// Sets the amount to fund to a location. Access by button.
+    /// </summary>
+    /// <param name="amount"></param>
+    public void AddFunding(int amount)
+    {
+        // TODO: Amount funded cannot be lower than current money.
+        // TODO: Set a cap on how much can be funded.
+        // TODO: Link this to buttons that increase / decrease this value by an amount (probably 100).
+        // TODO: Make sure this amount stays in funding even after scene change for the following week. (Probably a TextMeshProGUI that always just reads the current amount funded value)
+        fundingAmount = amount;
+    }
+
+    /// <summary>
+    /// Sets the location to be funded. Access by button.
+    /// </summary>
+    /// <param name="location"></param>
+    public void FundingLocation(Location location)
+    {
+        fundingLocation = location;
+    }
+
+    /// <summary>
+    /// Updates the money allocated to this location at the start of the week.
+    /// </summary>
+    private void SetFunding()
+    {
+        fundingLocation.UpdateMoneyAllocated(fundingAmount);
+    }
+
     public void FinishSchedule()
     {
+        SetFunding();
         StartCoroutine(GameManager._gameManager.BeginWeek(theDays));
     }
 }
