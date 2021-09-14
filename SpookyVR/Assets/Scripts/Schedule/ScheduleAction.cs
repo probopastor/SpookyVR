@@ -1,4 +1,14 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* ScheduleAction.cs
+* Handles the stickers of the schedule buttons. These each hold the action to be scheduled, and will be scheduled once they
+* are placed onto a schedule slot (which will then schedule them into ScheduleCreation).
+* 
+* Also handles the changes the stickers receive while being placed. (Transparency, enlargment, animations, etc).
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* ScheduleCreation.cs
+* Place on the canvas. This script handles scheduling actions into the weekly schedule, removing actions from the schedule,
+* refreshing the schedule upon new week start, and setting militia / money allocated each week (which will occur during schedule phase). 
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -216,7 +224,7 @@ public class ScheduleCreation : MonoBehaviour
 
     public void FinishSchedule()
     {
-        SetFunding();
+        //SetFunding();
         StartCoroutine(GameManager._gameManager.BeginWeek(theDays));
     }
 }

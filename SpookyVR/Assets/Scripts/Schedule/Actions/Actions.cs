@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* Action.cs
+* The action object class. These hold what an action is and are what get scheduled.
+* Contains BeginAction() method, which hanldes running the action based on its parameters. 
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

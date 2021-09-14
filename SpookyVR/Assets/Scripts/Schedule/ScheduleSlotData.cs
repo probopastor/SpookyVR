@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* ScheduleSlotData.cs
+* Handles the individual slots on the schedule. Actions placed onto the slot get scheduled into
+* ScheduleCreation, actions taken from the slot are removed from ScheduleCreation.
+* 
+* Prevents multiple actions from being scheduled onto the same ScheduleSlot, lets
+* actions take up multiple ScheduleSlots (small, medium, large).
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,18 +27,6 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
     private void Awake()
     {
         dailyActions = GetComponentInParent<DailyScheduleSlotOrder>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     /// <summary>
@@ -166,6 +165,13 @@ public class ScheduleSlotData : MonoBehaviour, IDropHandler
         }
     }
 
+    /// <summary>
+    /// Unschedules this action from the ScheduleCreation.
+    /// </summary>
+    /// <param name="actionToRemove">The Action that should be unscheduled. </param>
+    /// <param name="day">An day this Action was scheduled on. </param>
+    /// <param name="slotPos">The position of this schedule slot on the given day. </param>
+    /// <param name="duration">The duration of the action. </param>
     public void UnscheduleAction(Actions actionToRemove, int day, int slotPos, int duration)
     {
         // If this action is not a small action, more values must be unscheduled

@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* Character.cs
+* The Character scriptable object. Contains all information relating to a specific character.
+* Contains setters and getters for this character's information.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

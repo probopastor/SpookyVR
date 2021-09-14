@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* CreateAction.cs
+* Creates an action with a set actionType, buildingType, and npcType to then be scheduled. 
+* Generally should be called from action buttons in scene.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
