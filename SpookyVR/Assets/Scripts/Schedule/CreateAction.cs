@@ -11,45 +11,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreateAction : MonoBehaviour
+namespace Schedule
 {
-    [SerializeField, Tooltip("The schedule action object to be dragged by the player to the schedule. ")] private GameObject scheduleActionObject;
-
-    enum ActionDuration {shortAction, mediumAction, longAction};
-    [SerializeField, Tooltip("The amount of slots on the schedule this action will take up. Short action = 1 slot, medium action = 2 slots, long action = 3 slots.")] private ActionDuration actionDuration;
-
-    [SerializeField, Tooltip("The action ID of the spawned schedule action object. ")] private int actionType = 0;
-    [SerializeField, Tooltip("The building ID of the spawned schedule action object. ")] private int buildingType = 0;
-    [SerializeField, Tooltip("The NPC ID of the spawned schedule action object. ")] private int npcType = 0;
-
-    //[Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] private int timeOfAction = 0;
-    private void Awake()
+    public class CreateAction : MonoBehaviour
     {
-        CreateActionObject();
-    }
+        [SerializeField, Tooltip("The schedule action object to be dragged by the player to the schedule. ")] private GameObject scheduleActionObject;
 
-    /// <summary>
-    /// Instantiates a schedule action object and fills in its parameters so that it's ready to be scheduled by the player. 
-    /// </summary>
-    public void CreateActionObject()
-    {
-        // Instantiates this action object and child it to the canvas (since it will be an image)
-        Vector3 actionObjSpawnLocation = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 10f);
+        enum ActionDuration { shortAction, mediumAction, longAction };
+        [SerializeField, Tooltip("The amount of slots on the schedule this action will take up. Short action = 1 slot, medium action = 2 slots, long action = 3 slots.")] private ActionDuration actionDuration;
 
-        GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, actionObjSpawnLocation, Quaternion.identity);
-        scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
-        scheduleActionObjectClone.GetComponent<CanvasGroup>().alpha = 0;
+        [SerializeField, Tooltip("The action ID of the spawned schedule action object. ")] private int actionType = 0;
+        [SerializeField, Tooltip("The building ID of the spawned schedule action object. ")] private int buildingType = 0;
+        [SerializeField, Tooltip("The NPC ID of the spawned schedule action object. ")] private int npcType = 0;
 
-        // Fills in action object's action parameters
-        scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType, (int)actionDuration);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // Spawns a new schedule action object if the previous one is dragged off of the object CreateAction is on.
-        if (other.CompareTag("ScheduleAction"))
+        //[Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] private int timeOfAction = 0;
+        private void Awake()
         {
             CreateActionObject();
+        }
+
+        /// <summary>
+        /// Instantiates a schedule action object and fills in its parameters so that it's ready to be scheduled by the player. 
+        /// </summary>
+        public void CreateActionObject()
+        {
+            // Instantiates this action object and child it to the canvas (since it will be an image)
+            Vector3 actionObjSpawnLocation = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 10f);
+
+            GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, actionObjSpawnLocation, Quaternion.identity);
+            scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
+            scheduleActionObjectClone.GetComponent<CanvasGroup>().alpha = 0;
+
+            // Fills in action object's action parameters
+            scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType, (int)actionDuration);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Spawns a new schedule action object if the previous one is dragged off of the object CreateAction is on.
+            if (other.CompareTag("ScheduleAction"))
+            {
+                CreateActionObject();
+            }
         }
     }
 }

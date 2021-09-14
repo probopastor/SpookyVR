@@ -10,62 +10,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actions : MonoBehaviour
+namespace Schedule
 {
-    public int actionType = 0;
-    public int buildingType = 0;
-    public int npcType = 0;
-    [Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] public int timeOfAction = 0;
-
-    private bool actionInProgress = false;
-
-    public Actions(int actionID, int buildingID, int npcID, int timeID)
+    public class Actions : MonoBehaviour
     {
-        actionType = actionID;
-        buildingType = buildingID;
-        npcType = npcID;
-        timeOfAction = timeID;
-    }
+        public int actionType = 0;
+        public int buildingType = 0;
+        public int npcType = 0;
+        [Tooltip("0 is morning, 1 is day, 2 is night. REGARDLESS OF ACTIONS PER DAY, THESE VALUES WILL BE CORRECT.")] public int timeOfAction = 0;
 
-    /// <summary>
-    /// Begins this Actions action based on the actionType. 
-    /// </summary>
-    public void BeginAction()
-    {
-        actionInProgress = true;
+        private bool actionInProgress = false;
 
-        if(actionType == 100 || buildingType == 100 || npcType == 100)
+        public Actions(int actionID, int buildingID, int npcID, int timeID)
         {
-            actionInProgress = false;
+            actionType = actionID;
+            buildingType = buildingID;
+            npcType = npcID;
+            timeOfAction = timeID;
         }
 
-        if (actionType == 3)
+        /// <summary>
+        /// Begins this Actions action based on the actionType. 
+        /// </summary>
+        public void BeginAction()
         {
-            // GetComponentOfType<Storage>().BeginNPCTalk(npcType, timeOfAction);
+            actionInProgress = true;
+
+            if (actionType == 100 || buildingType == 100 || npcType == 100)
+            {
+                actionInProgress = false;
+            }
+
+            if (actionType == 3)
+            {
+                // GetComponentOfType<Storage>().BeginNPCTalk(npcType, timeOfAction);
+            }
+            else
+            {
+                // GetComponentOfType<Storage>().BeginBuildingAction(buildingType, actionType, timeOfAction);
+            }
         }
-        else
+
+        /// <summary>
+        /// Sets whether this action is currently in progress.
+        /// </summary>
+        /// <returns>True if this action is in progress, false otherwise.</returns>
+        public void SetActionInProgress(bool progressState)
         {
-            // GetComponentOfType<Storage>().BeginBuildingAction(buildingType, actionType, timeOfAction);
+            actionInProgress = progressState;
         }
-    }
 
-    /// <summary>
-    /// Sets whether this action is currently in progress.
-    /// </summary>
-    /// <returns>True if this action is in progress, false otherwise.</returns>
-    public void SetActionInProgress(bool progressState)
-    {
-        actionInProgress = progressState;
-    }
-
-    /// <summary>
-    /// Returns whether this action is in progress or not.
-    /// </summary>
-    /// <returns>True if this action is in progress, false otherwise.</returns>
-    public bool GetActionInProgress()
-    {
-        return actionInProgress;
+        /// <summary>
+        /// Returns whether this action is in progress or not.
+        /// </summary>
+        /// <returns>True if this action is in progress, false otherwise.</returns>
+        public bool GetActionInProgress()
+        {
+            return actionInProgress;
+        }
     }
 }
-
 

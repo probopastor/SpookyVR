@@ -10,8 +10,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Days
+namespace Schedule
 {
-    public List<Actions> actionsToday;
+    [System.Serializable]
+    public class Days
+    {
+        public List<Actions> actionsToday;
+    }
 }
