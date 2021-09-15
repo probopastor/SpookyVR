@@ -81,6 +81,7 @@ public class UpdateScheduleLocationResources : MonoBehaviour
     {
         location.UpdateMoneyAllocated(moneyToBeFunded);
         moneyToBeFunded = 0;
+        currentMoneyFunded = 0;
     }
 
     /// <summary>

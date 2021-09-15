@@ -82,6 +82,9 @@ public class OtloLevelManager : LevelManager
                     otloLocation.SetFoodProduced(locationData[i].foodProducedInitial);
                     otloLocation.SetCrimeProduced(locationData[i].crimeProducedInitial);
                 }
+
+                Debug.Log(thisLocation.GetName() + " Money Allocated: " + thisLocation.GetMoneyAllocated());
+                Debug.Log(thisLocation.GetName() + " Militia Stationed: " + thisLocation.GetMilitiaStationed());
             }
         }
 
