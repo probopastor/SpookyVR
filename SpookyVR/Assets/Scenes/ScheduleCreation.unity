@@ -2345,8 +2345,8 @@ RectTransform:
   m_Children:
   - {fileID: 173627210}
   - {fileID: 154522050}
-  - {fileID: 1187887929}
   - {fileID: 1961556306}
+  - {fileID: 1187887929}
   - {fileID: 1958198252}
   - {fileID: 81556030}
   - {fileID: 724462920}
@@ -8999,8 +8999,8 @@ MonoBehaviour:
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
   actionDuration: 0
   actionType: 0
-  buildingType: 3
-  npcType: 3
+  buildingType: 2
+  npcType: 2
 --- !u!114 &1159043390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9261,11 +9261,11 @@ RectTransform:
   - {fileID: 55342942}
   - {fileID: 801765101}
   m_Father: {fileID: 288149401}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -811, y: 225}
+  m_AnchoredPosition: {x: -811, y: 125}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1187887930
@@ -9488,8 +9488,8 @@ MonoBehaviour:
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
   actionDuration: 0
   actionType: 0
-  buildingType: 2
-  npcType: 2
+  buildingType: 3
+  npcType: 3
 --- !u!114 &1191302852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9772,8 +9772,8 @@ MonoBehaviour:
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
   actionDuration: 0
   actionType: 1
-  buildingType: 3
-  npcType: 3
+  buildingType: 2
+  npcType: 2
 --- !u!114 &1195721479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11384,8 +11384,8 @@ MonoBehaviour:
   scheduleActionObject: {fileID: 1236819779284254292, guid: 0d68d01b320836343baf54eccdf26031, type: 3}
   actionDuration: 0
   actionType: 1
-  buildingType: 2
-  npcType: 2
+  buildingType: 3
+  npcType: 3
 --- !u!114 &1512067497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14924,11 +14924,11 @@ RectTransform:
   - {fileID: 1172281315}
   - {fileID: 353548478}
   m_Father: {fileID: 288149401}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -811, y: 125}
+  m_AnchoredPosition: {x: -811, y: 225}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961556307
