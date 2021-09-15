@@ -27,6 +27,8 @@ namespace Schedule
 
         [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
+        [Tooltip(" ")] private CreateAction creationSource;
+
         #region Canvas variables
         [Tooltip("The Rect Transform of this object. ")] private RectTransform rectTransform;
         [Tooltip("The Canvas Group of this object. ")] private CanvasGroup canvasGroup;
@@ -111,16 +113,37 @@ namespace Schedule
             return duration;
         }
 
+        /// <summary>
+        /// Sets the schedule slot dropped on to the passed in schedule slot.
+        /// </summary>
+        /// <param name="thisSlot">Sets this action's schedule slot to the passed in slot parameter.</param>
         public void SetScheduleSlotData(ScheduleSlotData thisSlot)
         {
             slotDroppedOn = thisSlot;
         }
+
+        /// <summary>
+        /// Sets this ScheduleAction's creation source to the passed in source. This lets the action track where it was created.
+        /// </summary>
+        /// <param name="source">The CreationSource that created this object.</param>
+        public void SetCreationSource(CreateAction source)
+        {
+            creationSource = source;
+        }
+
         #endregion
 
         #region Drag & Drop Methods
         public void OnPointerDown(PointerEventData eventData)
         {
             canvasGroup.alpha = alphaDragging;
+
+            // When this ScheduleAction is grabbed, have it's source create a new action object in its stead.
+            if(creationSource != null)
+            {
+                creationSource.CreateActionObject();
+                creationSource = null;
+            }
         }
 
         public void OnDrag(PointerEventData eventData)

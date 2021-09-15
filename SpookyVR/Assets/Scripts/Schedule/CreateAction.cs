@@ -38,6 +38,7 @@ namespace Schedule
             Vector3 actionObjSpawnLocation = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 10f);
 
             GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, actionObjSpawnLocation, Quaternion.identity);
+            scheduleActionObjectClone.GetComponent<ScheduleAction>().SetCreationSource(this);
             scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
             scheduleActionObjectClone.GetComponent<CanvasGroup>().alpha = 0;
 
@@ -45,12 +46,13 @@ namespace Schedule
             scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType, (int)actionDuration);
         }
 
+        
         private void OnTriggerExit(Collider other)
         {
             // Spawns a new schedule action object if the previous one is dragged off of the object CreateAction is on.
             if (other.CompareTag("ScheduleAction"))
             {
-                CreateActionObject();
+                //CreateActionObject();
             }
         }
     }
