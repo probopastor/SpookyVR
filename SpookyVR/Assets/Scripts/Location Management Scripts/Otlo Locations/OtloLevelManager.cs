@@ -47,15 +47,16 @@ public class OtloLevelManager : LevelManager
 
     }
 
-    public override void ResetLevelData(ResourceManager thisResourceManager)
+    public override void ResetLevelData()
     {
+        thisResourceManager.SetMoney(moneyInitial);
+        thisResourceManager.SetMilitiaUnits(militiaInitial);
+
         OtloResourceManager otloResources = (OtloResourceManager)thisResourceManager;
 
         otloResources.SetCurrentWeek(weekInitial);
         otloResources.SetPopulation(populationInitial);
-        otloResources.SetMoney(moneyInitial);
         otloResources.SetFood(foodInitial);
-        otloResources.SetMilitiaUnits(militiaInitial);
         otloResources.SetCrimeRate(crimeRateInitial);
         otloResources.SetCultPresence(cultPresenceInitial);
 

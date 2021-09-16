@@ -17,6 +17,7 @@ using UnityEngine.UI;
 public abstract class LevelManager : MonoBehaviour
 {
     [SerializeField, Tooltip("This level's levelID. Will be used to choose the proper ResourceManager by the GameManager. ")] private int levelID = -1;
+    [Tooltip("The resource manager used this level. ")] protected ResourceManager thisResourceManager;
 
     /// <summary>
     /// Maintains individual character information for a character associated with this level. This information will be used to update the Character scriptable object on level start.
@@ -66,7 +67,7 @@ public abstract class LevelManager : MonoBehaviour
     /// Resets the level data in the given level's resource manager.
     /// </summary>
     /// <param name="thisResourceManager">The ResourceManager to have its data reset.</param>
-    public abstract void ResetLevelData(ResourceManager thisResourceManager);
+    public abstract void ResetLevelData();
 
     /// <summary>
     /// Returns this level's LevelID. This will be used to determine which level resource manager should be used.
@@ -75,5 +76,23 @@ public abstract class LevelManager : MonoBehaviour
     public int GetLevelID()
     {
         return levelID;
+    }
+
+    /// <summary>
+    /// Sets this level's resource manager.
+    /// </summary>
+    /// <param name="resourceManagerToUse">The ResourceManager this level should use. </param>
+    public void SetResourceManager(ResourceManager resourceManagerToUse)
+    {
+        thisResourceManager = resourceManagerToUse;
+    }
+
+    /// <summary>
+    /// Returns this level's resource manager.
+    /// </summary>
+    /// <returns>The ResourceManager of this level. </returns>
+    public ResourceManager GetLevelResourceManager()
+    {
+        return thisResourceManager;
     }
 }

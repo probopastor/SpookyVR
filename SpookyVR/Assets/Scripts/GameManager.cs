@@ -148,7 +148,8 @@ public class GameManager : MonoBehaviour
 
         if (resourceManager.GetCurrentWeek() == 0)
         {
-            levelManager.ResetLevelData(resourceManager);
+            levelManager.SetResourceManager(resourceManager);
+            levelManager.ResetLevelData();
         }
 
     }

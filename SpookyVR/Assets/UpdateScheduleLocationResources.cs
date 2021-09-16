@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UpdateScheduleLocationResources : MonoBehaviour
 {
+    [Tooltip("The resource manager that should be used. ")] ResourceManager usedResources;
+
     #region Update Visual Variables
     [SerializeField, Tooltip("The location to have checked for money allocated and militia stationed resources to update visuals to. ")] private Location location;
     [SerializeField, Tooltip("The TMPro that should be updated to display money allocated to a given location. Leave empty if non-applicable. ")] private TextMeshProUGUI moneyAllocatedText;
@@ -24,6 +26,12 @@ public class UpdateScheduleLocationResources : MonoBehaviour
     {
         UpdateMoneyAllocatedText();
         //UpdateMilitiaScheduledCheckBox();
+        SetResourceManager();
+    }
+
+    private void SetResourceManager()
+    {
+        usedResources = FindObjectOfType<LevelManager>().GetLevelResourceManager();
     }
 
     #region Update Visuals Methods
@@ -43,8 +51,8 @@ public class UpdateScheduleLocationResources : MonoBehaviour
     /// Updates militia stationed checkbox to properly reflect if militia is stationed at this location.
     /// </summary>
     public void UpdateMilitiaScheduledCheckBox()
-    { 
-        if(location.GetMilitiaStationed())
+    {
+        if (location.GetMilitiaStationed())
         {
             checkboxImage.enabled = true;
         }
@@ -68,10 +76,21 @@ public class UpdateScheduleLocationResources : MonoBehaviour
         // TODO: Link this to buttons that increase / decrease this value by an amount (probably 100).
         // TODO: Make sure this amount stays in funding even after scene change for the following week. (Probably a TextMeshProGUI that always just reads the current amount funded value)
 
-        if(location.GetMoneyAllocated() + moneyToBeFunded + amount >= 0)
+        if (usedResources == null)
         {
-            moneyToBeFunded += amount;
+            SetResourceManager();
         }
+
+
+        if (location.GetMoneyAllocated() + moneyToBeFunded + amount >= 0)
+        {
+            if ((usedResources.GetMoney() > 0 && amount > 0) || amount < 0)
+            {
+                moneyToBeFunded += amount;
+                usedResources.UpdateMoney(-amount);
+            }
+        }
+
     }
 
     /// <summary>
@@ -92,13 +111,24 @@ public class UpdateScheduleLocationResources : MonoBehaviour
         // TODO: Only an amount of militia can be stationed. Need to decrement some value to preserve this. 
         // TODO: Link this to a button thats a checkmark. 
         // TODO: Make sure this stays even after scene change for the following week. (Probably a UI visual that is enabled or disabled by reading the current amount funded value)
+
+        if (usedResources == null)
+        {
+            SetResourceManager();
+        }
+
         if (location.GetMilitiaStationed())
         {
             location.SetMilitiaStationed(false);
+            usedResources.UpdateMilitiaUnits(1);
         }
         else
         {
-            location.SetMilitiaStationed(true);
+            if (usedResources.GetMilitiaUnits() > 0)
+            {
+                location.SetMilitiaStationed(true);
+                usedResources.UpdateMilitiaUnits(-1);
+            }
         }
     }
 }

@@ -15,14 +15,11 @@ public class OtloResourceManager : ResourceManager
 {
     #region Otlo Overall Resources
     [Tooltip("Otlo's population. ")] private int population = 0;
-    [Tooltip("Otlo's total money. ")] private int money = 0;
     [Tooltip("Otlo's total food. ")] private int food = 0;
-    [Tooltip("Otlo's total militia. ")] private int militia = 0;
     [Tooltip("Otlo's total crime rate. ")] private int crimeRate = 0;
     [Tooltip("Otlo's cult presence. ")] private int cultPresence = 0;
     #endregion
 
-    #region Setters
     #region Direct Setters
 
     /// <summary>
@@ -35,30 +32,12 @@ public class OtloResourceManager : ResourceManager
     }
 
     /// <summary>
-    /// Directly sets the money. This is not additive. 
-    /// </summary>
-    /// <param name="newMoney">The new money amount.</param>
-    public void SetMoney(int newMoney)
-    {
-        money = newMoney;
-    }
-
-    /// <summary>
     /// Directly sets the food. This is not additive. 
     /// </summary>
     /// <param name="newFood">The new food amount.</param>
     public void SetFood(int newFood)
     {
         food = newFood;
-    }
-
-    /// <summary>
-    /// Directly sets the militia units available. This is not additive. 
-    /// </summary>
-    /// <param name="newMilitiaUnits">The new militia units available.</param>
-    public void SetMilitiaUnits(int newMilitiaUnits)
-    {
-        militia = newMilitiaUnits;
     }
 
     /// <summary>
@@ -96,18 +75,6 @@ public class OtloResourceManager : ResourceManager
     }
 
     /// <summary>
-    /// Updates the money. This is additive to current money.
-    /// </summary>
-    /// <param name="changeInMoney">The amount money should change by.</param>
-    public void UpdateMoney(int changeInMoney)
-    {
-        money += changeInMoney;
-
-        if (money < 0)
-            money = 0;
-    }
-
-    /// <summary>
     /// Updates the food. This is additive to current food.
     /// </summary>
     /// <param name="changeInFood">The amount food should change by.</param>
@@ -117,18 +84,6 @@ public class OtloResourceManager : ResourceManager
 
         if (food < 0)
             food = 0;
-    }
-
-    /// <summary>
-    /// Updates the militia units available. This is additive to current amount of available militia units.
-    /// </summary>
-    /// <param name="changeInMilitiaUnits">The amount militia units should change by.</param>
-    public void UpdateMilitiaUnits(int changeInMilitiaUnits)
-    {
-        militia += changeInMilitiaUnits;
-
-        if (militia < 0)
-            militia = 0;
     }
 
     /// <summary>
@@ -157,8 +112,6 @@ public class OtloResourceManager : ResourceManager
 
     #endregion
 
-    #endregion
-
     #region Getters
 
     /// <summary>
@@ -171,30 +124,12 @@ public class OtloResourceManager : ResourceManager
     }
 
     /// <summary>
-    /// Returns the money.
-    /// </summary>
-    /// <returns>Int of money.</returns>
-    public int GetMoney()
-    {
-        return money;
-    }
-
-    /// <summary>
     /// Returns the food.
     /// </summary>
     /// <returns>Int of food.</returns>
     public int GetFood()
     {
         return food;
-    }
-
-    /// <summary>
-    /// Returns the militia units available.
-    /// </summary>
-    /// <returns>Int of militia units available.</returns>
-    public int GetMilitiaUnits()
-    {
-        return militia;
     }
 
     /// <summary>
