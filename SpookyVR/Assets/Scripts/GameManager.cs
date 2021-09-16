@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
         resourceManager.UpdateCurrentWeek(1);
         FindObjectOfType<ScheduleCreation>().RefreshSchedule();
 
+        FindObjectOfType<OtloDisplayResources>().UpdateDisplayedResources();
         schedulePhase = true;
 
         Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
@@ -150,6 +151,7 @@ public class GameManager : MonoBehaviour
         {
             levelManager.SetResourceManager(resourceManager);
             levelManager.ResetLevelData();
+            FindObjectOfType<OtloDisplayResources>().UpdateDisplayedResources();
         }
 
     }
