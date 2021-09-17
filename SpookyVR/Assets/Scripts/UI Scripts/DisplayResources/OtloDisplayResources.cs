@@ -1,16 +1,23 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* OtloDisplayResources.cs
+* Handles displaying the resources in Otlo. Implements IDisplayResources interface.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class OtloDisplayResources : MonoBehaviour
+public class OtloDisplayResources : MonoBehaviour, IDisplayResources
 {
-    [SerializeField, Tooltip(" ")] private TextMeshProUGUI populationText;
-    [SerializeField, Tooltip(" ")] private TextMeshProUGUI moneyText;
-    [SerializeField, Tooltip(" ")] private TextMeshProUGUI militiaUnitsText;
-    [SerializeField, Tooltip(" ")] private TextMeshProUGUI foodText;
-    [SerializeField, Tooltip(" ")] private TextMeshProUGUI cultPresenceText;
+    [SerializeField, Tooltip("The TMP the population resource will update. ")] private TextMeshProUGUI populationText;
+    [SerializeField, Tooltip("The TMP the money resource will update. ")] private TextMeshProUGUI moneyText;
+    [SerializeField, Tooltip("The TMP the militia units resource will update. ")] private TextMeshProUGUI militiaUnitsText;
+    [SerializeField, Tooltip("The TMP the food resource will update. ")] private TextMeshProUGUI foodText;
+    [SerializeField, Tooltip("The TMP the cult presence resource will update. ")] private TextMeshProUGUI cultPresenceText;
 
     [Tooltip(" ")] private OtloResourceManager usedResources;
 
@@ -20,14 +27,12 @@ public class OtloDisplayResources : MonoBehaviour
         SetResourceManager();
     }
 
-    private void SetResourceManager()
+    #region Display Resources Interface Implementation 
+    public void SetResourceManager()
     {
         usedResources = (OtloResourceManager)FindObjectOfType<LevelManager>().GetLevelResourceManager();
     }
 
-    /// <summary>
-    /// Updates every Otlo display resource.
-    /// </summary>
     public void UpdateDisplayedResources()
     {
         if (usedResources == null)
@@ -40,6 +45,9 @@ public class OtloDisplayResources : MonoBehaviour
         cultPresenceText.text = "Cult: " + usedResources.GetCultPresence();
     }
 
+    #endregion
+
+    #region Other Resource Update Methods
     /// <summary>
     /// Updates the population resource text. 
     /// </summary>
@@ -94,4 +102,6 @@ public class OtloDisplayResources : MonoBehaviour
 
         cultPresenceText.text = "Cult: " + usedResources.GetCultPresence();
     }
+
+    #endregion 
 }
