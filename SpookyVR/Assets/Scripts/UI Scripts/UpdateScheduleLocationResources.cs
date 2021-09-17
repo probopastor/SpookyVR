@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* UpdateScheduleLocationResources.cs
+* Handles setting and updating the schedule's location resources (money funded, militia stationed, etc.) when the player manages them.
+* Adds / Removes from the necessary resource pools as resources are used on locations. (For example, funding a location will take from the overall money resource).
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -12,8 +20,17 @@ public class UpdateScheduleLocationResources : MonoBehaviour
     [SerializeField, Tooltip("The location to have checked for money allocated and militia stationed resources to update visuals to. ")] private Location location;
     [SerializeField, Tooltip("The TMPro that should be updated to display money allocated to a given location. Leave empty if non-applicable. ")] private TextMeshProUGUI moneyAllocatedText;
     [SerializeField, Tooltip("The checkbox image that should be updated to display militia stationed at a given location. Leave empty if non-applicable. ")] private Image checkboxImage;
-    [Tooltip("The display resource handler for this location. ")] private OtloDisplayResources displayResources;
+
+    #region Display Resources variables
+
+    [Tooltip("The display resource handler for Otlo. ")] private OtloDisplayResources displayResourcesOtlo;
+    //[Tooltip("The display resource handler for Atlantis. ")] private AtlantisDisplayResources displayResourcesAtlantis;
+    #endregion 
+
+    [Tooltip("The int ID of the level being used. This variable will be used to determine which DisplayResources should be used. ")] private int levelIDUsed = -1;
     #endregion
+
+    // TODO figure out which DisplayResources to use based on level ID
 
     #region Update Resource Variables
 
@@ -28,13 +45,32 @@ public class UpdateScheduleLocationResources : MonoBehaviour
         UpdateMoneyAllocatedText();
         //UpdateMilitiaScheduledCheckBox();
         SetResourceManager();
-
-        displayResources = FindObjectOfType<OtloDisplayResources>();
+        SetDisplayResources();
     }
 
+    /// <summary>
+    /// Obtains the resource manager used this level.
+    /// </summary>
     private void SetResourceManager()
     {
         usedResources = FindObjectOfType<LevelManager>().GetLevelResourceManager();
+    }
+
+    /// <summary>
+    /// Sets the correct DisplayResources to use based on this level's int ID.
+    /// </summary>
+    private void SetDisplayResources()
+    {
+        levelIDUsed = FindObjectOfType<LevelManager>().GetLevelID();
+
+        if (levelIDUsed == 0)
+        {
+            displayResourcesOtlo = FindObjectOfType<OtloDisplayResources>();
+        }
+        else if (levelIDUsed == 1)
+        {
+            //displayResourcesAtlantis = FindObjectOfType<AtlantisDisplayResources>();
+        }
     }
 
     #region Update Visuals Methods
@@ -84,7 +120,7 @@ public class UpdateScheduleLocationResources : MonoBehaviour
             {
                 moneyToBeFunded += amount;
                 usedResources.UpdateMoney(-amount);
-                displayResources.UpdateMoneyText();
+                displayResourcesOtlo.UpdateMoneyText();
             }
         }
 
@@ -114,7 +150,7 @@ public class UpdateScheduleLocationResources : MonoBehaviour
         {
             location.SetMilitiaStationed(false);
             usedResources.UpdateMilitiaUnits(1);
-            displayResources.UpdateMilitiaUnitsText();
+            displayResourcesOtlo.UpdateMilitiaUnitsText();
         }
         else
         {
@@ -122,7 +158,7 @@ public class UpdateScheduleLocationResources : MonoBehaviour
             {
                 location.SetMilitiaStationed(true);
                 usedResources.UpdateMilitiaUnits(-1);
-                displayResources.UpdateMilitiaUnitsText();
+                displayResourcesOtlo.UpdateMilitiaUnitsText();
             }
         }
     }
