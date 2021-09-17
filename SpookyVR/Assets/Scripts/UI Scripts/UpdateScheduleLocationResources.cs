@@ -30,8 +30,6 @@ public class UpdateScheduleLocationResources : MonoBehaviour
     [Tooltip("The int ID of the level being used. This variable will be used to determine which DisplayResources should be used. ")] private int levelIDUsed = -1;
     #endregion
 
-    // TODO figure out which DisplayResources to use based on level ID
-
     #region Update Resource Variables
 
     [Tooltip("The money to be funded to this location this week. ")] private int moneyToBeFunded = 0;
