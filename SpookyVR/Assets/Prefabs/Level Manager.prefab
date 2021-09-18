@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1212336031195893679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1212336031195893678}
+  - component: {fileID: 1212336031195893677}
+  m_Layer: 0
+  m_Name: Level Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1212336031195893678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212336031195893679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 743.6892, y: 647.08295, z: -1572.3137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1212336031195893677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212336031195893679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa2ffbb51a63504d8140ca5f685f14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelID: 0
+  weekInitial: 1
+  populationInitial: 0
+  moneyInitial: 500
+  foodInitial: 0
+  militiaInitial: 1
+  crimeRateInitial: 0
+  cultPresenceInitial: 0
+  characterData:
+  - thisCharacter: {fileID: 11400000, guid: 72997c42d5c8761439f66b311a7b5f7e, type: 2}
+    name: Richy
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: 769e2b571dbf3904a90031f094606b43, type: 2}
+    name: Esfir
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: 4b6df3cc46a11e44da5ceab203946ca6, type: 2}
+    name: Dmitri
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: b6936fe250d307a4a934e1dbe4cc9b65, type: 2}
+    name: Rigor
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: 7744cef797879d24e8b8740fd48305ab, type: 2}
+    name: Petrov
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: 960836bf800958f4b9f606c9cccac641, type: 2}
+    name: Sacha
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: df80238190568f34eabda74d94da2b08, type: 2}
+    name: Lucky
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: d69df7b04f77d444c9de0ac661480cb1, type: 2}
+    name: Bishop Pryce
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: 2c7720dbbaa38484cbe07e4cb0d566b2, type: 2}
+    name: Natalia
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  - thisCharacter: {fileID: 11400000, guid: 2b102e7bb66ae1f4c87e6387017c0944, type: 2}
+    name: Molotov
+    characterImages:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isDead: 0
+    trustInitial: 0
+    otherCondition: 0
+  locationData:
+  - thisLocation: {fileID: 11400000, guid: 783f5d2aea5d40c498a89666ebda8da4, type: 2}
+    name: Village Center
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 11400000, guid: 282528ff0d2166a4d90bba132a7df35a, type: 2}
+    name: Central Treasury
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 11400000, guid: 70af96fd630edc341a819c3a1fe7c5ec, type: 2}
+    name: The Fields
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 11400000, guid: c36273a0398306c4eb4fda00571a969e, type: 2}
+    name: The Barracks
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 11400000, guid: e77a73f06cc128a44a7d121597531efc, type: 2}
+    name: The Church
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 11400000, guid: bf891cf9617095d41833629dcca9d2d7, type: 2}
+    name: The Slums
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
+  - thisLocation: {fileID: 11400000, guid: 3b3bf2ce99c692b43a3ae2a4e7738b5f, type: 2}
+    name: Luckys Tavern
+    locationImages: []
+    isInaccessible: 0
+    prosperityInitial: 0
+    moneyAllocatedInitial: 0
+    militiaStationedInitial: 0
+    moneyProducedInitial: 0
+    foodProducedInitial: 0
+    crimeProducedInitial: 0
