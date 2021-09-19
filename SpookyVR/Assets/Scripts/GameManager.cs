@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
 
     [Tooltip("The current level's Resource Manager. ")] private ResourceManager resourceManager;
+    [Tooltip(" ")] private List<Days> scheduleDays = new List<Days>();
 
     public static GameManager _gameManager;
     #endregion
@@ -90,6 +91,11 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion 
+
+    public void SetScheduleDays(List<Days> theDays)
+    {
+        scheduleDays = theDays;
+    }
 
     public IEnumerator BeginWeek(List<Days> theDays)
     {
