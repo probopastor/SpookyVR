@@ -21,12 +21,27 @@ namespace Schedule
 
         private bool actionInProgress = false;
 
+        [Tooltip("The duration of this action, if it is an event. Normal actions will be created with a duration that is checked during the Schedule phase. ")] public int eventDuration;
+        [Tooltip("Determines whether this action is optional or not. This is taken into account for events. If optional is True, this action can be skipped by the player. ")] public bool optional = false;
+        [Tooltip("Determines whether this action will be scheduled or not. This is taken into account for events. If schedulable is True, this action needs to be scheduled by the player. Otherwise it will just happen, regardless of the current schedule. ")] public bool schedulable = false;
+        
         public Actions(int actionID, int buildingID, int npcID, int timeID)
         {
             actionType = actionID;
             buildingType = buildingID;
             npcType = npcID;
             timeOfAction = timeID;
+        }
+
+        public Actions(int actionID, int buildingID, int npcID, int timeID, int actionDuration, bool isOptional, bool isScheduleable)
+        {
+            actionType = actionID;
+            buildingType = buildingID;
+            npcType = npcID;
+            timeOfAction = timeID;
+            eventDuration = actionDuration;
+            optional = isOptional;
+            schedulable = isScheduleable;
         }
 
         /// <summary>

@@ -112,15 +112,6 @@ namespace Schedule
         }
 
         /// <summary>
-        /// Sets longer actions than the standard short action.
-        /// </summary>
-        /// <param name="actionNumbers">An array of the positions if the day the action will occur at. (these are the slots in the day, not the time, these values will instead be used to calculate time.)</param>
-        public void SetActionLonger(int[] actionNumbers)
-        {
-
-        }
-
-        /// <summary>
         /// Sets the time of day of each action based on what time actions are occuring on a day, and on the amount of actions per day. (The time of an action will be read differently depending on the amount of actions per day). 
         /// </summary>
         /// <param name="actionSlot">The slot in the day the action is occuring at.</param>
@@ -167,16 +158,39 @@ namespace Schedule
             return timeOfAction;
         }
 
+        /// <summary>
+        /// Finishes the schedule, updates weekly funding, and begins the week.
+        /// </summary>
         public void FinishSchedule()
         {
             UpdateScheduleLocationResources[] allScheduleLocations = FindObjectsOfType<UpdateScheduleLocationResources>();
 
+            // Sets the funding of all the locations the player funded this week
             for(int i = 0; i < allScheduleLocations.Length; i++)
             {
                 allScheduleLocations[i].SetFunding();
             }
 
+            // Begins the week in the Game Manager
             StartCoroutine(GameManager._gameManager.BeginWeek(theDays));
+        }
+
+        /// <summary>
+        /// Returns the number of actions in a day.
+        /// </summary>
+        /// <returns>An int of actions in a day. </returns>
+        public int GetActionsPerDay()
+        {
+            return numberOfActionsPerDay;
+        }
+
+        /// <summary>
+        /// Returns the number of days in a week.
+        /// </summary>
+        /// <returns>An int of days in a week. </returns>
+        public int GetDaysInWeek()
+        {
+            return theDays.Count;
         }
     }
 }
