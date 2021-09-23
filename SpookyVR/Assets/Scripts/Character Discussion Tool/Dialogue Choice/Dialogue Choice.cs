@@ -1,25 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public  class DialogueChoice : MonoBehaviour
+public class DialogueChoice : MonoBehaviour //IPointerEnterHandler
 {
 
-    private Character currentCharacter = null;
-
+    private string choiceText;
+    private TextMeshProUGUI choiceTextObj;
 
     private void Awake()
     {
-        if(currentCharacter == null)
-        {
-            
-        }
+        choiceTextObj = GetComponent<TextMeshProUGUI>();
     }
     #region Start and Update
     // Start is called before the first frame update
     void Start()
     {
-        
+        choiceTextObj.text = "Hello Peasent.";
     }
 
     // Update is called once per frame
@@ -28,8 +27,4 @@ public  class DialogueChoice : MonoBehaviour
         
     }
     #endregion
-
-
-
-
 }

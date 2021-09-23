@@ -21,6 +21,12 @@ public class OtloLevelManager : LevelManager
     [SerializeField, Tooltip("The initial crime Otlo will start at. ")] private int crimeRateInitial = 0;
     [SerializeField, Tooltip("The initial cult presence Otlo will start at. ")] private int cultPresenceInitial = 0;
 
+    /// <summary>
+    /// CJ's Addition...
+    /// </summary>
+    [SerializeField, Tooltip("This is a list that will be filled with the correct Characters when an action requires the player to talk to any.")]
+    private List<Character> charactersToTalkTo = new List<Character>();
+
     [SerializeField, Tooltip("A list of all Otlo characters. ")] private List<OtloCharacterData> characterData = new List<OtloCharacterData>();
     [SerializeField, Tooltip("A list of all Otlo locations. ")] private List<OtloLocationData> locationData = new List<OtloLocationData>();
 
