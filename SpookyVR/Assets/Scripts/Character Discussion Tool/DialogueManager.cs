@@ -10,10 +10,13 @@ public class DialogueManager : Singleton<DialogueManager>
     private GameManager gamenManager;
 
     [SerializeField]
-    private List<Character> character = new List<Character>();
+    private List<Character> charactersToSpeakTo = new List<Character>();
+
+    [SerializeField]
+    private List<GameObject> dialogueLocations = new List<GameObject>();
 
     [SerializeField] 
-    private TextMeshProUGUI dialogueBoxText;
+    private TextMeshProUGUI locationbDialogueBoxText;
 
 
     private void Awake()
@@ -38,12 +41,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
         Debug.Log("This method was called");
         gamenManager = FindObjectOfType<GameManager>();
+
         //dialogueBoxText = 
-    }
-
-    private void FillCharactersList(List<Character> characters)
-    {
-
     }
 
 }

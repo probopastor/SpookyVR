@@ -9,11 +9,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Dialogue", menuName = "Character Dialogue", order = 10)]
+[CreateAssetMenu(fileName = "Character Dialogue", menuName = "Character Dialogue", order = 10)]
 public class CharacterDialogue : ScriptableObject
 {
-    public List<Interactions> dialogueInteractions = new List<Interactions>(1);
+    public List<Image> characterDialogueImages = new List<Image>();
+    public List<Interactions> characterDialogueInteractions = new List<Interactions>(1);
+}
+
+[System.Serializable]
+public class TextState
+{
+    public string text;
+
+    public Image characterState;
+
+
 }
 
 [System.Serializable]
@@ -27,8 +39,9 @@ public class Interactions
         [SerializeField]
         private int index = 0;
 
-        [TextArea(minLines: 5, maxLines: 20)]
-        public List<string> introDialogue = new List<string>(1);
+        [SerializeField,TextArea(minLines: 5, maxLines: 20)]
+        public List<TextState> introDialogue = new List<TextState>(1);
+
 
 
         public int GetCurrentListIndex()
@@ -49,7 +62,7 @@ public class Interactions
         [SerializeField]
         private int index = 0;
 
-        [TextArea(minLines: 5, maxLines: 20)]
+        [SerializeField, TextArea(minLines: 5, maxLines: 20)]
         public List<string> mainDialogue = new List<string>(1);
 
         public int GetCurrentListIndex()
