@@ -12,16 +12,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844db4588b5ca0e42931c7aaa65a454a, type: 3}
   m_Name: The Slums
   m_EditorClassIdentifier: 
-  dialogueInteractions:
-  - intro_Interactions:
-    - index: 0
-      introDialogue:
-      - 
-    mainDialogue_Interactions:
-    - index: 0
-      mainDialogue:
-      - 
-    responses_interactions:
-    - index: 0
-      responses:
-      - 
+  introDialog:
+  - introDialogue:
+    - text: hello CJ my boi my pal my see jay
+      characterState: {fileID: 0}
+    - text: text
+      characterState: {fileID: 0}
+    - text: text21
+      characterState: {fileID: 0}
+    - text: text3
+      characterState: {fileID: 0}
+    - text: text4
+      characterState: {fileID: 0}
+  - introDialogue:
+    - text: hello CJ my boi my pal my see jay
+      characterState: {fileID: 0}
+    - text: text
+      characterState: {fileID: 0}
+    - text: text21
+      characterState: {fileID: 0}
+    - text: text3
+      characterState: {fileID: 0}
+    - text: text4
+      characterState: {fileID: 0}
+  - introDialogue:
+    - text: hello CJ my boi my pal my see jay
+      characterState: {fileID: 0}
+    - text: text
+      characterState: {fileID: 0}
+    - text: text21
+      characterState: {fileID: 0}
+    - text: text3
+      characterState: {fileID: 0}
+    - text: text4
+      characterState: {fileID: 0}
+  - introDialogue:
+    - text: hello CJ my boi my pal my see jay
+      characterState: {fileID: 0}
+    - text: text
+      characterState: {fileID: 0}
+    - text: text21
+      characterState: {fileID: 0}
+    - text: text3
+      characterState: {fileID: 0}
+    - text: text4
+      characterState: {fileID: 0}
+  - introDialogue:
+    - text: hello CJ my boi my pal my see jay
+      characterState: {fileID: 0}
+    - text: text
+      characterState: {fileID: 0}
+    - text: text21
+      characterState: {fileID: 0}
+    - text: text3
+      characterState: {fileID: 0}
+    - text: text4
+      characterState: {fileID: 0}
+  mainDialog:
+  - introDialogue: []
+  - introDialogue: []
