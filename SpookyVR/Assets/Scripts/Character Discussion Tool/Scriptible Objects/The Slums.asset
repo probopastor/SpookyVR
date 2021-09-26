@@ -13,61 +13,17 @@ MonoBehaviour:
   m_Name: The Slums
   m_EditorClassIdentifier: 
   introDialog:
-  - introDialogue:
-    - text: hello CJ my boi my pal my see jay
+  - dialogue:
+    - text: Hello, how are you on this <shake>chilly</shake> (insert Time of Day)
       characterState: {fileID: 0}
-    - text: text
+      continueAutomatically: 0
+  - dialogue:
+    - text: Wowzers, the city sure is busy this time of day. <waitinput> How may
+        I help you?
       characterState: {fileID: 0}
-    - text: text21
-      characterState: {fileID: 0}
-    - text: text3
-      characterState: {fileID: 0}
-    - text: text4
-      characterState: {fileID: 0}
-  - introDialogue:
-    - text: hello CJ my boi my pal my see jay
-      characterState: {fileID: 0}
-    - text: text
-      characterState: {fileID: 0}
-    - text: text21
-      characterState: {fileID: 0}
-    - text: text3
-      characterState: {fileID: 0}
-    - text: text4
-      characterState: {fileID: 0}
-  - introDialogue:
-    - text: hello CJ my boi my pal my see jay
-      characterState: {fileID: 0}
-    - text: text
-      characterState: {fileID: 0}
-    - text: text21
-      characterState: {fileID: 0}
-    - text: text3
-      characterState: {fileID: 0}
-    - text: text4
-      characterState: {fileID: 0}
-  - introDialogue:
-    - text: hello CJ my boi my pal my see jay
-      characterState: {fileID: 0}
-    - text: text
-      characterState: {fileID: 0}
-    - text: text21
-      characterState: {fileID: 0}
-    - text: text3
-      characterState: {fileID: 0}
-    - text: text4
-      characterState: {fileID: 0}
-  - introDialogue:
-    - text: hello CJ my boi my pal my see jay
-      characterState: {fileID: 0}
-    - text: text
-      characterState: {fileID: 0}
-    - text: text21
-      characterState: {fileID: 0}
-    - text: text3
-      characterState: {fileID: 0}
-    - text: text4
-      characterState: {fileID: 0}
+      continueAutomatically: 0
   mainDialog:
-  - introDialogue: []
-  - introDialogue: []
+  - dialogue:
+    - text: 
+      characterState: {fileID: 0}
+      continueAutomatically: 0

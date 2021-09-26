@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Febucci.UI
 {
@@ -21,6 +22,9 @@ namespace Febucci.UI
         [SerializeField, Tooltip("True if you want the typewriter to wait for new line characters")] bool waitForNewLines = true;
 
         [SerializeField, Tooltip("True if you want the typewriter to wait for all characters, false if you want to skip waiting for the last one")] bool waitForLastCharacter = true;
+
+        [SerializeField, Tooltip("")]private bool waitingForInput = false;
+
 
         protected override float WaitTimeOf(char character)
         {
@@ -77,8 +81,36 @@ namespace Febucci.UI
         /// <returns></returns>
         protected override IEnumerator WaitInput()
         {
-            while (!Input.anyKeyDown)
+
+            //waitingForInput = true;
+            Debug.Log("This Coroutine is being called...");
+
+            while (!Keyboard.current.anyKey.wasPressedThisFrame)
+            {
+                waitingForInput = true;
                 yield return null;
+
+                Debug.Log("This has ended...");
+
+            }
+        }
+
+        /// <summary>
+        /// Method that gets the isWaitingForInput variable.
+        /// </summary>
+        /// <returns></returns>
+        public bool GetWaitingForInput()
+        {
+            return waitingForInput;
+        }
+
+        /// <summary>
+        /// Method that sets the value for the isWaitingForInput variable.
+        /// </summary>
+        /// <returns></returns>
+        public void SetWaitingForInput(bool state)
+        {
+            waitingForInput = state;  
         }
 
     }

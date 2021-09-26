@@ -12,10 +12,12 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Component
 {
+    // Singleton reference to be kept track of and returned below.
     private static T _instance;
 
     public static T Instance
     {
+        // Static C#/Unity Getter that checks if the Singleton already exists and returns a reference.
         get
         {
             if(_instance == null)
@@ -32,19 +34,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
                 }
             }
 
-            // Returns a reference of the new created Singleton.
+            // Returns a reference to the newly created Singleton.
             return _instance;
         }
     }
-
-    private void Start()
-    {
-        if (_instance == null)
-        {
-
-            Debug.Log("This singleton isntance does not exist");
-
-        }
-    }
-
 }
