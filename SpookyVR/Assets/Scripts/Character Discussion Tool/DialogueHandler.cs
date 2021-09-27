@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-//using Febucci.UI;
+using Febucci.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
