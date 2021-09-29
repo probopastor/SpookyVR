@@ -5,20 +5,13 @@
 * 
 */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using System;
 using Febucci.UI;
+using System.Collections;
+using TMPro;
+using UnityEngine;
 
 public class DialogueHandler : MonoBehaviour
 {
-    /// <summary>
-    /// Is a Singleton...
-    /// </summary>
-    //private DialogueManager dialogueManager;
-
     [SerializeField]
     private LocationDialogue locationsDialogue;
 
@@ -35,20 +28,20 @@ public class DialogueHandler : MonoBehaviour
     private int currentMainDialogueIndex = 0;
     private int currentMainDialogueTextIndex = 0;
 
+    private bool coroutineStarted = false;
+
 
 
     [SerializeField, Tooltip("")]
     private TextAnimatorPlayer textAnimPlayer_Ref;
+    [SerializeField, Tooltip("")]
+    private TextAnimator textAnim_Ref;
 
 
     private void OnEnable()
     {
         SetActiveDialigueState();
         PlayDialogue();
-
-        //textAnimPlayer_Ref = gameObject.GetComponent<TextAnimatorPlayer>();
-
-        //StartDialogue()
     }
 
     private void OnDisable()
@@ -58,16 +51,41 @@ public class DialogueHandler : MonoBehaviour
 
     // Handles loading the correct Text based off of the Character(s) being spoken to.
 
-    public void ClickToContinue(bool isWaitingForInput)
+    public void ClickToContinue()
     {
-        if(isWaitingForInput == true)
+        if (textAnim_Ref.allLettersShown && !coroutineStarted)
         {
-            clickToContinueObj.gameObject.SetActive(true);
+            //clickToContinueObj.gameObject.SetActive(true);
+            StartCoroutine(ClickToContinueBlink());
+            
+            //if(true)
+            //{
+            //    StartMainDialogue(0, 1);
+            //}
+
+
         }
-        else
+        else if (!textAnim_Ref.allLettersShown)
         {
             clickToContinueObj.gameObject.SetActive(false);
+            coroutineStarted = false;
+            StopCoroutine(ClickToContinueBlink());
         }
+    }
+
+    public IEnumerator ClickToContinueBlink()
+    {
+        coroutineStarted = true;
+
+        clickToContinueObj.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        clickToContinueObj.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(ClickToContinueBlink());
     }
 
     private void PlayDialogue()
@@ -92,7 +110,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void StartMainDialogue(int dialogueListIndex, int dialogueTextIndex)
     {
-        locationDialogueBoxText.text = locationsDialogue.GetIntroDialogueList()[dialogueListIndex].GetTextAtIndex(dialogueTextIndex);
+        locationDialogueBoxText.text = locationsDialogue.GetMainDialogueList()[dialogueListIndex].GetTextAtIndex(dialogueTextIndex);
     }
 
     /// <summary>
@@ -131,6 +149,11 @@ public class DialogueHandler : MonoBehaviour
     public TextAnimatorPlayer GetTextAnimatorPlayer()
     {
         return textAnimPlayer_Ref;
+    }
+
+    public TextAnimator GetTextAnimator()
+    {
+        return textAnim_Ref;
     }
 
 

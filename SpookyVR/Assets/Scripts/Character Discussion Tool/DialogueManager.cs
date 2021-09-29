@@ -48,15 +48,7 @@ public class DialogueManager : Singleton<DialogueManager>
     // Update is called once per frame
     void Update()
     {
-        if (activeDialogue.GetTextAnimatorPlayer().GetWaitingForInput() == true)
-        {
-            // Play Blinking thing...
-            activeDialogue.ClickToContinue(activeDialogue.GetTextAnimatorPlayer().GetWaitingForInput());
-        }
-        else
-        {
-            activeDialogue.ClickToContinue(activeDialogue.GetTextAnimatorPlayer().GetWaitingForInput());
-        }
+        activeDialogue.ClickToContinue();
     }
 
     private void ContinueDialogue()

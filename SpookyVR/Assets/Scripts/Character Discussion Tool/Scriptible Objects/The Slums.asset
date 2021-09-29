@@ -18,12 +18,12 @@ MonoBehaviour:
       characterState: {fileID: 0}
       continueAutomatically: 0
   - dialogue:
-    - text: Wowzers, the city sure is busy this time of day. <waitinput> How may
-        I help you?
+    - text: Wowzers, the city sure is busy this time of day. How may I help you?
       characterState: {fileID: 0}
       continueAutomatically: 0
   mainDialog:
   - dialogue:
-    - text: 
+    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
+        now it appears that a new line of ruling must start...
       characterState: {fileID: 0}
       continueAutomatically: 0

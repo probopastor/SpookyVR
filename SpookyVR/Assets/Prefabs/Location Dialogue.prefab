@@ -453,6 +453,7 @@ MonoBehaviour:
   locationDialogueBoxText: {fileID: 8484667503787484258}
   clickToContinueObj: {fileID: 373119921103356899}
   textAnimPlayer_Ref: {fileID: 8484667503787484256}
+  textAnim_Ref: {fileID: 8484667503787484259}
 --- !u!1 &8484667503781432001
 GameObject:
   m_ObjectHideFlags: 0

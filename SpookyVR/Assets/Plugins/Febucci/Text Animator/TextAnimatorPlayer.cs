@@ -96,15 +96,6 @@ namespace Febucci.UI
         }
 
         /// <summary>
-        /// Method that gets the isWaitingForInput variable.
-        /// </summary>
-        /// <returns></returns>
-        public bool GetWaitingForInput()
-        {
-            return waitingForInput;
-        }
-
-        /// <summary>
         /// Method that sets the value for the isWaitingForInput variable.
         /// </summary>
         /// <returns></returns>
