@@ -108,6 +108,7 @@ public class OtloLevelManager : LevelManager
                 thisCharacter.SetCharacterImages(characterData[i].characterImages);
                 thisCharacter.SetCharacterTrust(characterData[i].trustInitial);
                 thisCharacter.UpdateDeathStatus(characterData[i].isDead);
+                thisCharacter.SetMetStatus(false);
                 // Set other condition here: characterList[i].SetSpecialCondition(characterData[i].otherCondition);
             }
         }

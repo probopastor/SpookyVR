@@ -17,61 +17,7 @@ MonoBehaviour:
     - text: Hello, how are you on this <shake>chilly</shake> (insert Time of Day)
       characterState: {fileID: 0}
       continueAutomatically: 0
-  - dialogue:
-    - text: Wowzers, the city sure is busy this time of day. How may I help you?
+    - text: You wanna see my pet snake? <shake>SSSsssssssssssss</shake>
       characterState: {fileID: 0}
       continueAutomatically: 0
-    - text: 'My name is ESFOR. :D D: '
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Wowzers, the city sure is busy this time of day. How may I help you?
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Wowzers, the city sure is busy this time of day. How may I help you?
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Wowzers, the city sure is busy this time of day. How may I help you?
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  mainDialog:
-  - dialogue:
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  - dialogue:
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  - dialogue:
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  - dialogue:
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  - dialogue:
-    - text: Hello my child. Since the dawn of time Men have ruled this Earth, but
-        now it appears that a new line of ruling must start...
-      characterState: {fileID: 0}
-      continueAutomatically: 0
+  mainDialog: []

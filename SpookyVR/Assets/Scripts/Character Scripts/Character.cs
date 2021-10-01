@@ -20,6 +20,7 @@ public class Character : ScriptableObject
 
     [Tooltip("This character's trust in the player. ")] private int trust = 0;
     [Tooltip("Maintains whether this character is living or dead. ")] private bool isDead = false;
+    [Tooltip("Maintains whether this character has met the arbiter. True if they have, false if they haven't.")] private bool metArbiter = false;
 
     #region Setters
 
@@ -68,6 +69,14 @@ public class Character : ScriptableObject
         isDead = dead;
     }
 
+    /// <summary>
+    /// Updates whether this character has met the Arbiter.
+    /// </summary>
+    /// <param name="isMet">True if they have met the arbiter, false otherwise. </param>
+    public void SetMetStatus(bool isMet)
+    {
+        metArbiter = isMet;
+    }
     #endregion 
 
     #region Getters
@@ -108,5 +117,13 @@ public class Character : ScriptableObject
         return isDead;
     }
 
+    /// <summary>
+    /// Returns whether this character has met the Arbiter.
+    /// </summary>
+    /// <returns>True if has met, false otherwise. </returns>
+    public bool GetMetStatus()
+    {
+        return metArbiter;
+    }
     #endregion 
 }

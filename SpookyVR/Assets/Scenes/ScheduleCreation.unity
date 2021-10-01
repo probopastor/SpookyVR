@@ -8187,6 +8187,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8484667503695475164, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
   m_PrefabInstance: {fileID: 956311592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &990561762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8484667503787484258, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+  m_PrefabInstance: {fileID: 1086977751}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &992844976
 GameObject:
   m_ObjectHideFlags: 0
@@ -8897,6 +8908,18 @@ PrefabInstance:
       propertyPath: locationsDialogue
       value: 
       objectReference: {fileID: 11400000, guid: 96ebb0b90b1b2bd468128289da47e7a8, type: 2}
+    - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: locationsDialog
+      value: 
+      objectReference: {fileID: 11400000, guid: 96ebb0b90b1b2bd468128289da47e7a8, type: 2}
+    - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: locationDialogBoxText
+      value: 
+      objectReference: {fileID: 990561762}
+    - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: 7744cef797879d24e8b8740fd48305ab, type: 2}
     - target: {fileID: 8484667503695475155, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.51807
