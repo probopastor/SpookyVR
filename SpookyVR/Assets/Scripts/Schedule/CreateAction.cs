@@ -43,7 +43,7 @@ namespace Schedule
 
             //scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
 
-            scheduleActionObjectClone.transform.parent = this.gameObject.transform;
+            scheduleActionObjectClone.transform.SetParent(this.gameObject.transform);
             scheduleActionObjectClone.GetComponent<CanvasGroup>().alpha = 0;
 
             // Fills in action object's action parameters

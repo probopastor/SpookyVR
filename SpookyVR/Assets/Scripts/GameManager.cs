@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
             if(obj.GetComponent<CanvasGroup>().alpha != 0)
             {
                 // Sets the parent of the schedule action to the empty Game Object
-                obj.transform.parent = empty.transform;
+                obj.transform.SetParent(empty.transform);
             }
         }
 

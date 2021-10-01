@@ -17766,7 +17766,6 @@ GameObject:
   - component: {fileID: 964140776480288569}
   - component: {fileID: 964140776480288568}
   - component: {fileID: 964140776480288571}
-  - component: {fileID: 7111372522209872548}
   m_Layer: 5
   m_Name: Locations
   m_TagString: Untagged
@@ -17983,24 +17982,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ef7b1e648474c409ec9baf39c6c4a8, type: 3}
---- !u!114 &7111372522209872548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964140776480288570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2422fe8216a901d48afab61b067843f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charactersToSpeakTo: []
-  dialogueLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  activeDialogue: {fileID: 0}

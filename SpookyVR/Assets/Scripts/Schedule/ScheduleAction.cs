@@ -139,7 +139,7 @@ namespace Schedule
             // Set the parent of the object to the canvas.
             if (gameObject.transform.parent != GameObject.FindGameObjectWithTag("ScheduleCanvas").transform)
             {
-                gameObject.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
+                gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("ScheduleCanvas").transform);
             }
 
             canvasGroup.alpha = alphaDragging;
@@ -181,6 +181,7 @@ namespace Schedule
 
                 // Get this action's slot data to remove from the schedule
                 Actions actionToBeRemoved = currentScheduleSlotActionHeld.GetComponent<Actions>();
+
                 int dayOfAction = slotDroppedOn.GetScheduleDay();
                 int slotPosOfAction = slotDroppedOn.GetSlotPos();
 

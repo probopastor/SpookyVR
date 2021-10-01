@@ -46,7 +46,14 @@ public class InterruptionEventManager : MonoBehaviour
             // Adds default action objects to each dailyActions list.
             for (int x = 0; x < numberOfActionsPerDay; x++)
             {
-                Actions defaultAction = new Actions(100, 100, 100, 100);
+                //Actions defaultAction = new Actions(100, 100, 100, 100);
+
+                Actions defaultAction = gameObject.AddComponent<Actions>();
+                defaultAction.actionType = 100;
+                defaultAction.buildingType = 100;
+                defaultAction.npcType = 100;
+                defaultAction.timeOfAction = 100;
+
                 dailyActions.Add(defaultAction);
             }
 
@@ -59,7 +66,18 @@ public class InterruptionEventManager : MonoBehaviour
     {
         
 
-        Actions interruptionAction = new Actions(actionID, buildingID, npcID, timeID, actionDuration, isOptional, isScheduleable);
+        //Actions interruptionAction = new Actions(actionID, buildingID, npcID, timeID, actionDuration, isOptional, isScheduleable);
+
+        Actions interruptionAction = gameObject.AddComponent<Actions>();
+
+        interruptionAction.actionType = actionID;
+        interruptionAction.buildingType = buildingID;
+        interruptionAction.npcType = npcID;
+        interruptionAction.timeOfAction = timeID;
+        interruptionAction.eventDuration = actionDuration;
+        interruptionAction.optional = isOptional;
+        interruptionAction.schedulable = isScheduleable;
+
         eventOccurences[dayNumber].actionsToday[slotInDay] = interruptionAction;
 
         // If isOptional is false, this action has to be scheduled. 

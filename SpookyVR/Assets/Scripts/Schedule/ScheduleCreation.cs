@@ -35,7 +35,15 @@ namespace Schedule
                 // Adds default action objects to each dailyActions list.
                 for (int x = 0; x < numberOfActionsPerDay; x++)
                 {
-                    Actions defaultAction = new Actions(100, 100, 100, 100);
+                    //Actions defaultAction = new Actions(100, 100, 100, 100);
+                    
+                    Actions defaultAction = gameObject.AddComponent<Actions>();
+                    defaultAction.actionType = 100;
+                    defaultAction.buildingType = 100;
+                    defaultAction.npcType = 100;
+                    defaultAction.timeOfAction = 100;
+
+
                     dailyActions.Add(defaultAction);
                 }
 
@@ -95,7 +103,14 @@ namespace Schedule
             //    }
             //}
 
-            Actions dummyAction = new Actions(100, 100, 100, 100);
+            //Actions dummyAction = new Actions(100, 100, 100, 100);
+
+            Actions dummyAction = gameObject.AddComponent<Actions>();
+            dummyAction.actionType = 100;
+            dummyAction.buildingType = 100;
+            dummyAction.npcType = 100;
+            dummyAction.timeOfAction = 100;
+
             theDays[scheduleDay].actionsToday[actionNumber] = dummyAction;
 
             for (int i = 0; i < theDays.Count; i++)
