@@ -75,7 +75,6 @@ public abstract class LevelManager : MonoBehaviour
     /// <summary>
     /// Resets the level data in the given level's resource manager.
     /// </summary>
-    /// <param name="thisResourceManager">The ResourceManager to have its data reset.</param>
     public abstract void ResetLevelData();
 
     /// <summary>

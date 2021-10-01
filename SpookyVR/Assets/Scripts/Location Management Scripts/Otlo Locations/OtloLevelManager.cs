@@ -17,6 +17,7 @@ public class OtloLevelManager : LevelManager
     [Space(10)]
     [Header("Otlo Initial Resources")]
     [Space(40)]
+
     [SerializeField, Tooltip("The initial week Otlo will start at. ")] private int weekInitial = 1;
     [SerializeField, Tooltip("The initial population Otlo will start at. ")] private int populationInitial = 0;
     [SerializeField, Tooltip("The initial money Otlo will start at. ")] private int moneyInitial = 0;
@@ -28,14 +29,14 @@ public class OtloLevelManager : LevelManager
     [Space(10)]
     [Header("Otlo Character and Location Data References")]
     [Space(40)]
-    [SerializeField, Tooltip("A list of all Otlo characters. ")] private List<OtloCharacterData> characterData = new List<OtloCharacterData>();
-    [SerializeField, Tooltip("A list of all Otlo locations. ")] private List<OtloLocationData> locationData = new List<OtloLocationData>();
+    [SerializeField, Tooltip("A list of all Otlo characters. ")] public List<OtloCharacterData> characterData = new List<OtloCharacterData>();
+    [SerializeField, Tooltip("A list of all Otlo locations. ")] public List<OtloLocationData> locationData = new List<OtloLocationData>();
 
     /// <summary>
     /// OtloLocationData overrides LocationDataInitial to include Location starting information for Otlo's unique resources.
     /// </summary>
     [System.Serializable]
-    private class OtloLocationData : LocationDataInitial
+    public class OtloLocationData : LocationDataInitial
     {
         [Tooltip("The prosperity of this location on level start. ")] public int prosperityInitial = 0;
         [Tooltip("The money allocated to this location on level start. ")] public int moneyAllocatedInitial = 0;
@@ -49,7 +50,7 @@ public class OtloLevelManager : LevelManager
     /// OtloCharacterData overrides CharacterDataInitial to include Character starting information for Otlo's unique characters.
     /// </summary>
     [System.Serializable]
-    private class OtloCharacterData: CharacterDataInitial
+    public class OtloCharacterData: CharacterDataInitial
     {
 
     }
@@ -110,6 +111,24 @@ public class OtloLevelManager : LevelManager
                 // Set other condition here: characterList[i].SetSpecialCondition(characterData[i].otherCondition);
             }
         }
+    }
+
+    /// <summary>
+    /// Returns a List of Otlo Character Data - which contains information on all Otlo Characters.
+    /// </summary>
+    /// <returns>List of Otlo Character Data. </returns>
+    public List<OtloCharacterData> GetOtloCharacterData()
+    {
+        return characterData;
+    }
+
+    /// <summary>
+    /// Returns a List of Otlo Location Data - which contains information on all Otlo Locations.
+    /// </summary>
+    /// <returns>List of OtloLocationData. </returns>
+    public List<OtloLocationData> GetOtloLocationData()
+    {
+        return locationData;
     }
 
 }

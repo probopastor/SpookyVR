@@ -26,10 +26,13 @@ public class GameManager : MonoBehaviour
 
 
     [Tooltip("The current level's Resource Manager. ")] private ResourceManager resourceManager;
-    [Tooltip(" ")] private List<Days> scheduleDays = new List<Days>();
+    // [Tooltip(" ")] private List<Days> scheduleDays = new List<Days>();
 
     [Tooltip(" ")] private GameObject[] levelLocations;
     [Tooltip(" ")] private GameObject[] meetingLocations;
+
+
+    [Tooltip(" ")] private GameObject[] scheduleCanvasObjsToHide;
 
     public static GameManager _gameManager;
     #endregion
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        scheduleCanvasObjsToHide = GameObject.FindGameObjectsWithTag("ScheduleToHide");
         SetLevelData();
         schedulePhase = true;
     }
@@ -84,7 +88,7 @@ public class GameManager : MonoBehaviour
             //theDays[i].actionsToday[x].SetActionInProgress(false);
         }
 
-        if(controls.CheatCodes.ResetGame.triggered)
+        if (controls.CheatCodes.ResetGame.triggered)
         {
             Debug.Log("Cheat entered");
 
@@ -96,32 +100,54 @@ public class GameManager : MonoBehaviour
 
     #endregion 
 
-    public void SetScheduleDays(List<Days> theDays)
-    {
-        scheduleDays = theDays;
-    }
 
+    //public void SetScheduleDays(List<Days> theDays)
+    //{
+    //    scheduleDays = theDays;
+    //}
+
+    /// <summary>
+    /// Begins the current week, cycling the player through all scheduled actions passed in via a list of Days.
+    /// </summary>
+    /// <param name="theDays">The entire scheduled week to cycle through.</param>
+    /// <returns></returns>
     public IEnumerator BeginWeek(List<Days> theDays)
     {
         Debug.Log("This occurs");
 
+        // Set the schedule phase of the game to false, as actions are now progressing
         schedulePhase = false;
 
+
+        // Cycle through theDays
         for (int i = 0; i < theDays.Count; i++)
         {
             cheatEntered = false;
 
+            // Cycle through the actiosn scheduled per day
             for (int x = 0; x < theDays[i].actionsToday.Count; x++)
             {
+                // If there is not currently an action in progress
                 if (!theDays[i].actionsToday[x].GetActionInProgress())
                 {
+                    // Set the action in progress
                     theDays[i].actionsToday[x].SetActionInProgress(true);
+
+                    // Cycle through objects to hide in the schedule and disable them
+                    foreach (GameObject obj in scheduleCanvasObjsToHide)
+                    {
+                        obj.SetActive(false);
+                    }
+
+                    // Begin the action
                     theDays[i].actionsToday[x].BeginAction();
 
                     Debug.Log("Current Action Type: " + theDays[i].actionsToday[x].actionType);
                     Debug.Log("Current Building Type: " + theDays[i].actionsToday[x].buildingType);
                     Debug.Log("Current NPC Type: " + theDays[i].actionsToday[x].npcType);
                 }
+
+                // Continue to stay on this action until the action is no longer in progress
                 while (theDays[i].actionsToday[x].GetActionInProgress())
                 {
                     if (cheatEntered)
@@ -143,12 +169,26 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         resourceManager.UpdateCurrentWeek(1);
-        FindObjectOfType<ScheduleCreation>().RefreshSchedule();
 
+        // Cycle through objects to hide in the schedule and reenable them
+        foreach (GameObject obj in scheduleCanvasObjsToHide)
+        {
+            obj.SetActive(true);
+        }
+
+        // Refresh the schedule and update the display resources
+        FindObjectOfType<ScheduleCreation>().RefreshSchedule();
         FindObjectOfType<DisplayResources>().UpdateDisplayedResources();
+
+        // Ensure that all action location and meeting objects are disabled.
+        SetAllActionsInactive();
+
+        // As the week has ended, set the schedule phase to true.
         schedulePhase = true;
 
         Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
+
+        // TODO: clear all remaining scheduled buttons here.
     }
 
     /// <summary>
@@ -156,24 +196,69 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetLevelData()
     {
+        // Obtain the levelID of the loaded level manager.
         levelID = levelManager.GetLevelID();
 
+        // Set the proper resource manager based on the levelID.
         resourceManager = resourceManagers[levelID];
 
+        // If the current week is 0, then reset run information. 
         if (resourceManager.GetCurrentWeek() == 0)
         {
+            // Set this level manager's resource manager to the one used.
             levelManager.SetResourceManager(resourceManager);
+
+            // Reset level data.
             levelManager.ResetLevelData();
 
+            // Update all display resources shown to the player.
             FindObjectOfType<DisplayResources>().UpdateDisplayedResources();
 
+            // Switch statement handles setting individual location and character data for all levels. Use nested Switch statements for individual divergence levels.
+            switch (levelID)
+            {
+                case 0:
+                    // Get Otlo Location List from OtloLevelManager
+                    // Get Otlo Character List from OtloLevelManager
+                    break;
+                case 1:
+                    // Get Atlantis Location List from AtlantisLevelManager
+                    // Get Atlantis Character List from AtlantisLevelManager
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+            }
+
+            // Cycle through objects to hide in the schedule and reenable them
+            foreach (GameObject obj in scheduleCanvasObjsToHide)
+            {
+                obj.SetActive(true);
+            }
+
+            #region Set Up Location Objects
             levelLocations = FindObjectOfType<LevelManager>().GetLevelLocationObjects();
 
             // Cycle through all the level locations to ensure all are inactive.
-            for(int i = 0; i < levelLocations.Length; i++)
+            for (int i = 0; i < levelLocations.Length; i++)
             {
                 levelLocations[i].SetActive(false);
             }
+
+            #endregion
+
+            #region Set Up Meeting Objects
 
             meetingLocations = FindObjectOfType<LevelManager>().GetCharacterLocationObjects();
 
@@ -182,6 +267,8 @@ public class GameManager : MonoBehaviour
             {
                 meetingLocations[i].SetActive(false);
             }
+
+            #endregion 
         }
     }
 
@@ -193,12 +280,12 @@ public class GameManager : MonoBehaviour
     public void SetActionActive(int index, bool characterMeeting)
     {
         // If this is a Location Action (such as inspect)
-        if(!characterMeeting)
+        if (!characterMeeting)
         {
             // Set the correct location based on the index to be active, and other locations to be inactive.
-            for(int i = 0; i < levelLocations.Length; i++)
+            for (int i = 0; i < levelLocations.Length; i++)
             {
-                if(i == index)
+                if (i == index)
                 {
                     levelLocations[i].SetActive(true);
                 }
@@ -224,6 +311,19 @@ public class GameManager : MonoBehaviour
                     meetingLocations[i].SetActive(false);
                 }
             }
+        }
+    }
+
+    private void SetAllActionsInactive()
+    {
+        for (int i = 0; i < levelLocations.Length; i++)
+        {
+            levelLocations[i].SetActive(false);
+        }
+
+        for (int i = 0; i < meetingLocations.Length; i++)
+        {
+            meetingLocations[i].SetActive(false);
         }
     }
 }

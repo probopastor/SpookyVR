@@ -7335,7 +7335,7 @@ GameObject:
   - component: {fileID: 855677193}
   m_Layer: 5
   m_Name: Panel
-  m_TagString: Untagged
+  m_TagString: ScheduleToHide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17928,6 +17928,14 @@ PrefabInstance:
     - target: {fileID: 2450582442766182880, guid: 15ef7b1e648474c409ec9baf39c6c4a8, type: 3}
       propertyPath: m_Name
       value: Schedule
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450582442766182880, guid: 15ef7b1e648474c409ec9baf39c6c4a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450582442766182880, guid: 15ef7b1e648474c409ec9baf39c6c4a8, type: 3}
+      propertyPath: m_TagString
+      value: ScheduleToHide
       objectReference: {fileID: 0}
     - target: {fileID: 2450582442766182881, guid: 15ef7b1e648474c409ec9baf39c6c4a8, type: 3}
       propertyPath: m_LocalPosition.x

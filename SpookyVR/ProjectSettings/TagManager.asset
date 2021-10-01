@@ -10,6 +10,7 @@ TagManager:
   - ScheduleCanvas
   - LocationCanvas
   - LevelManager
+  - ScheduleToHide
   layers:
   - Default
   - TransparentFX
