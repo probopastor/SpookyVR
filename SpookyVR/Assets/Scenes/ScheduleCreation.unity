@@ -8992,6 +8992,10 @@ PrefabInstance:
       propertyPath: m_text
       value: <shake> Hello there Traveler</shake>
       objectReference: {fileID: 0}
+    - target: {fileID: 8484667503787484259, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: triggerAnimPlayerOnChange
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8484667504563883019, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: m_AnchorMin.y
       value: 1

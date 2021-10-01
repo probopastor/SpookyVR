@@ -27,6 +27,7 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField, Tooltip("The LocationDialogue Scriptable Object this location will reference its dialog from.")] private LocationDialogue locationsDialog;
     [SerializeField, Tooltip("The TMP this location will display its text to. ")] private TextMeshProUGUI locationDialogBoxText;
     [Tooltip("The Text Animator this TMP will use. ")] private TextAnimator textAnimator;
+    [Tooltip("The Text Animator Player this TMP will use. ")] private TextAnimatorPlayer textAnimatorPlayer;
 
     #endregion
 
@@ -108,10 +109,12 @@ public class DialogueHandler : MonoBehaviour
     /// </summary>
     public void DialogSetup()
     {
-        if (locationDialogBoxText.TryGetComponent(out TextAnimator animator))
-        {
-            textAnimator = animator;
-        }
+        textAnimator = locationDialogBoxText.GetComponent<TextAnimator>();
+        textAnimatorPlayer = locationDialogBoxText.GetComponent<TextAnimatorPlayer>();
+        //if (locationDialogBoxText.TryGetComponent(out TextAnimator animator))
+        //{
+        //    textAnimator = animator;
+        //}
 
         // Obtains the intro dialog data
         introDialogInteractions = locationsDialog.GetIntroDialogueList();
@@ -162,7 +165,9 @@ public class DialogueHandler : MonoBehaviour
     {
         for (int i = 0; i < textStates.Count; i++)
         {
-            locationDialogBoxText.text = textStates[i].GetDialogueText();
+            //locationDialogBoxText.text = textStates[i].GetDialogueText();
+
+            textAnimatorPlayer.ShowText(textStates[i].GetDialogueText());
 
             // Set character images
             // Set character dialog audio
@@ -171,6 +176,7 @@ public class DialogueHandler : MonoBehaviour
             // Pause here until all letters are shown
             while (!textAnimator.allLettersShown)
             {
+                Debug.Log("waiting");
                 yield return null;
             }
 
