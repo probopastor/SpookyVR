@@ -11,6 +11,7 @@ TagManager:
   - LocationCanvas
   - LevelManager
   - ScheduleToHide
+  - ActionsPanel
   layers:
   - Default
   - TransparentFX

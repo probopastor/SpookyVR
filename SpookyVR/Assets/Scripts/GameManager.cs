@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
 
     [Tooltip(" ")] private GameObject[] scheduleCanvasObjsToHide;
+    [Tooltip(" ")] private List<GameObject> scheduleActionsCreated = new List<GameObject>();
 
     public static GameManager _gameManager;
     #endregion
@@ -172,6 +173,7 @@ public class GameManager : MonoBehaviour
 
         resourceManager.UpdateCurrentWeek(1);
 
+
         // Cycle through objects to hide in the schedule and reenable them
         foreach (GameObject obj in scheduleCanvasObjsToHide)
         {
@@ -190,17 +192,52 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
 
-        //ClearScheduleButtons();
-        // TODO: clear all remaining scheduled buttons here.
+        // Clear old schedule action objects
+        ClearScheduleButtons();
     }
 
+    /// <summary>
+    /// Clears all old schedule action objects from the previous week
+    /// </summary>
     private void ClearScheduleButtons()
     {
-        GameObject[] scheduleActions = GameObject.FindGameObjectsWithTag("ScheduleAction");
+        GameObject empty = new GameObject("Empty");
 
-        foreach(GameObject obj in scheduleActions)
+        GameObject[] scheduleActionObjsCreated = GameObject.FindGameObjectsWithTag("ScheduleAction");
+
+        foreach (GameObject obj in scheduleActionObjsCreated)
         {
-            Destroy(gameObject);
+            // Unschedule any of the Schedule Actions that are currently scheduled
+            if(obj.GetComponent<ScheduleAction>() != null)
+            {
+                obj.GetComponent<ScheduleAction>().ForceClearFromSchedule();
+            }
+
+            // If this object is active
+            if(obj.GetComponent<CanvasGroup>().alpha != 0)
+            {
+                // Sets the parent of the schedule action to the empty Game Object
+                obj.transform.parent = empty.transform;
+            }
+        }
+
+        // Destroys the empty object with all of the old actions childed to it (destroying them regularly breaks the canvas buttons)
+        Destroy(empty.gameObject);
+
+        CreateAction[] allCreateActionsSources = FindObjectsOfType<CreateAction>();
+
+        // Recreates action objects on any buttons that had their invisible ones removed
+        foreach (CreateAction theActionSource in allCreateActionsSources)
+        {
+            theActionSource.CreateActionObject();
+        }
+
+        GameObject[] actionsPanels = GameObject.FindGameObjectsWithTag("ActionsPanel");
+
+        // Cycle through actions panels to disable them on reload start
+        foreach (GameObject obj in actionsPanels)
+        {
+            obj.SetActive(false);
         }
     }
 
@@ -320,6 +357,14 @@ public class GameManager : MonoBehaviour
             foreach (GameObject obj in scheduleCanvasObjsToHide)
             {
                 obj.SetActive(true);
+            }
+
+            GameObject[] actionsPanels = GameObject.FindGameObjectsWithTag("ActionsPanel");
+
+            // Cycle through actions panels to disable them on game start
+            foreach (GameObject obj in actionsPanels)
+            {
+                obj.SetActive(false);
             }
 
             #region Set Up Location Objects

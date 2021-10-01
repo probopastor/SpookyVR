@@ -2687,7 +2687,7 @@ GameObject:
   - component: {fileID: 343560619}
   m_Layer: 5
   m_Name: Village Center Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2768,7 +2768,7 @@ GameObject:
   - component: {fileID: 353548479}
   m_Layer: 5
   m_Name: The Barracks Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6281,7 +6281,7 @@ GameObject:
   - component: {fileID: 749170863}
   m_Layer: 5
   m_Name: Luckys Tavern Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6686,7 +6686,7 @@ GameObject:
   - component: {fileID: 801765102}
   m_Layer: 5
   m_Name: The Fields Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6767,7 +6767,7 @@ GameObject:
   - component: {fileID: 803941829}
   m_Layer: 5
   m_Name: The Church Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6848,7 +6848,7 @@ GameObject:
   - component: {fileID: 807246538}
   m_Layer: 5
   m_Name: The Slums Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11847,7 +11847,7 @@ GameObject:
   - component: {fileID: 1397382912}
   m_Layer: 5
   m_Name: Central Treasury Actions Panel
-  m_TagString: Untagged
+  m_TagString: ActionsPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

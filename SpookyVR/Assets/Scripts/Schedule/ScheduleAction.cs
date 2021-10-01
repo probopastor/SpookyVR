@@ -167,6 +167,14 @@ namespace Schedule
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            ForceClearFromSchedule();
+        }
+
+        /// <summary>
+        /// Force clears this action from the schedule.
+        /// </summary>
+        public void ForceClearFromSchedule()
+        {
             if (slotDroppedOn != null)
             {
                 GameObject currentScheduleSlotActionHeld = slotDroppedOn.GetActionHeld();

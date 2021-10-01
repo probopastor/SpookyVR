@@ -38,8 +38,8 @@ namespace Schedule
             Vector3 actionObjSpawnLocation = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 10f);
 
             GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, actionObjSpawnLocation, Quaternion.identity);
-            scheduleActionObjectClone.GetComponent<ScheduleAction>().SetCreationSource(this);
 
+            scheduleActionObjectClone.GetComponent<ScheduleAction>().SetCreationSource(this);
 
             //scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
 
