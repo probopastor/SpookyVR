@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Schedule;
 
+[DisallowMultipleComponent]
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("The current level's Resource Manager. ")] private ResourceManager resourceManager;
     [Tooltip(" ")] private List<Days> scheduleDays = new List<Days>();
+
+    [Tooltip(" ")] private GameObject[] levelLocations;
+    [Tooltip(" ")] private GameObject[] meetingLocations;
 
     public static GameManager _gameManager;
     #endregion
@@ -141,12 +145,15 @@ public class GameManager : MonoBehaviour
         resourceManager.UpdateCurrentWeek(1);
         FindObjectOfType<ScheduleCreation>().RefreshSchedule();
 
-        FindObjectOfType<OtloDisplayResources>().UpdateDisplayedResources();
+        FindObjectOfType<DisplayResources>().UpdateDisplayedResources();
         schedulePhase = true;
 
         Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
     }
 
+    /// <summary>
+    /// Sets the level manager data, resource, data, etc., for a given level.
+    /// </summary>
     public void SetLevelData()
     {
         levelID = levelManager.GetLevelID();
@@ -157,8 +164,66 @@ public class GameManager : MonoBehaviour
         {
             levelManager.SetResourceManager(resourceManager);
             levelManager.ResetLevelData();
-            FindObjectOfType<OtloDisplayResources>().UpdateDisplayedResources();
-        }
 
+            FindObjectOfType<DisplayResources>().UpdateDisplayedResources();
+
+            levelLocations = FindObjectOfType<LevelManager>().GetLevelLocationObjects();
+
+            // Cycle through all the level locations to ensure all are inactive.
+            for(int i = 0; i < levelLocations.Length; i++)
+            {
+                levelLocations[i].SetActive(false);
+            }
+
+            meetingLocations = FindObjectOfType<LevelManager>().GetCharacterLocationObjects();
+
+            // Cycle through all the character meeting locations to ensure all are inactive.
+            for (int i = 0; i < meetingLocations.Length; i++)
+            {
+                meetingLocations[i].SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Sets the proper Action Location to be active when the action is ready. To be called from Actions.
+    /// </summary>
+    /// <param name="index">The location index. </param>
+    /// <param name="characterMeeting">Set to true if this action should take place in a meeting, false if its a location overview. </param>
+    public void SetActionActive(int index, bool characterMeeting)
+    {
+        // If this is a Location Action (such as inspect)
+        if(!characterMeeting)
+        {
+            // Set the correct location based on the index to be active, and other locations to be inactive.
+            for(int i = 0; i < levelLocations.Length; i++)
+            {
+                if(i == index)
+                {
+                    levelLocations[i].SetActive(true);
+                }
+                else
+                {
+                    levelLocations[i].SetActive(false);
+
+                }
+            }
+        }
+        // If this is a Character Action (such as talk to)
+        else
+        {
+            // Set the correct character meeting based on the index to be active, and other locations to be inactive.
+            for (int i = 0; i < meetingLocations.Length; i++)
+            {
+                if (i == index)
+                {
+                    meetingLocations[i].SetActive(true);
+                }
+                else
+                {
+                    meetingLocations[i].SetActive(false);
+                }
+            }
+        }
     }
 }

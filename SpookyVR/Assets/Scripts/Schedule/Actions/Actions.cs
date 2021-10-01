@@ -58,10 +58,13 @@ namespace Schedule
             else if(actionType == 0)
             {
                 // Inspect(buildingType, timeOfAction);
+
+                GameManager._gameManager.SetActionActive(buildingType, false);
             }
             else if(actionType == 1)
             {
-                // TalkTo(npcType, timeOfAction);
+                // TalkTo(npcType, timeOfAction
+                GameManager._gameManager.SetActionActive(npcType, true);
             }
         }
 

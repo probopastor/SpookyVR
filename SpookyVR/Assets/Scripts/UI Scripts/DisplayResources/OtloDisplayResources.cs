@@ -2,7 +2,7 @@
 * Glory to the High Council
 * William Nomikos
 * OtloDisplayResources.cs
-* Handles displaying the resources in Otlo. Implements IDisplayResources interface.
+* Handles displaying the resources in Otlo. Inherits from DisplayResources.cs.
 */
 
 using System.Collections;
@@ -11,7 +11,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class OtloDisplayResources : MonoBehaviour, IDisplayResources
+[DisallowMultipleComponent]
+public class OtloDisplayResources : DisplayResources
 {
     [SerializeField, Tooltip("The TMP the population resource will update. ")] private TextMeshProUGUI populationText;
     [SerializeField, Tooltip("The TMP the money resource will update. ")] private TextMeshProUGUI moneyText;
@@ -19,7 +20,7 @@ public class OtloDisplayResources : MonoBehaviour, IDisplayResources
     [SerializeField, Tooltip("The TMP the food resource will update. ")] private TextMeshProUGUI foodText;
     [SerializeField, Tooltip("The TMP the cult presence resource will update. ")] private TextMeshProUGUI cultPresenceText;
 
-    [Tooltip(" ")] private OtloResourceManager usedResources;
+    [Tooltip("The Otlo Resource manager of this location. Handles the resources to be used and manipulated. ")] private OtloResourceManager usedResources;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,12 @@ public class OtloDisplayResources : MonoBehaviour, IDisplayResources
     }
 
     #region Display Resources Interface Implementation 
-    public void SetResourceManager()
+    public override void SetResourceManager()
     {
         usedResources = (OtloResourceManager)FindObjectOfType<LevelManager>().GetLevelResourceManager();
     }
 
-    public void UpdateDisplayedResources()
+    public override void UpdateDisplayedResources()
     {
         if (usedResources == null)
             SetResourceManager();

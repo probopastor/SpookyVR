@@ -11,8 +11,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class OtloLevelManager : LevelManager
 {
+    [Space(10)]
+    [Header("Otlo Initial Resources")]
+    [Space(40)]
     [SerializeField, Tooltip("The initial week Otlo will start at. ")] private int weekInitial = 1;
     [SerializeField, Tooltip("The initial population Otlo will start at. ")] private int populationInitial = 0;
     [SerializeField, Tooltip("The initial money Otlo will start at. ")] private int moneyInitial = 0;
@@ -21,12 +25,9 @@ public class OtloLevelManager : LevelManager
     [SerializeField, Tooltip("The initial crime Otlo will start at. ")] private int crimeRateInitial = 0;
     [SerializeField, Tooltip("The initial cult presence Otlo will start at. ")] private int cultPresenceInitial = 0;
 
-    /// <summary>
-    /// CJ's Addition...
-    /// </summary>
-    [SerializeField, Tooltip("This is a list that will be filled with the correct Characters when an action requires the player to talk to any.")]
-    private List<Character> charactersToTalkTo = new List<Character>();
-
+    [Space(10)]
+    [Header("Otlo Character and Location Data References")]
+    [Space(40)]
     [SerializeField, Tooltip("A list of all Otlo characters. ")] private List<OtloCharacterData> characterData = new List<OtloCharacterData>();
     [SerializeField, Tooltip("A list of all Otlo locations. ")] private List<OtloLocationData> locationData = new List<OtloLocationData>();
 

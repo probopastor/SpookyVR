@@ -16,8 +16,17 @@ using UnityEngine.UI;
 
 public abstract class LevelManager : MonoBehaviour
 {
+    [Space(10)]
+    [Header("Level ID and Resource Management Setup")]
+    [Space(40)]
     [SerializeField, Tooltip("This level's levelID. Will be used to choose the proper ResourceManager by the GameManager. ")] private int levelID = -1;
     [Tooltip("The resource manager used this level. ")] protected ResourceManager thisResourceManager;
+
+    [Space(10)]
+    [Header("Location Game Objects")]
+    [Space(40)]
+    [SerializeField, Tooltip("The location game objects in this scene. ")] protected GameObject[] levelLocationObjs;
+    [SerializeField, Tooltip("The character location game objects in this scene. ")] protected GameObject[] characterLocationObjs;
 
     /// <summary>
     /// Maintains individual character information for a character associated with this level. This information will be used to update the Character scriptable object on level start.
@@ -94,5 +103,23 @@ public abstract class LevelManager : MonoBehaviour
     public ResourceManager GetLevelResourceManager()
     {
         return thisResourceManager;
+    }
+
+    /// <summary>
+    /// Returns the location setting gameobjects in this level. Call this to get an array of all location settings.
+    /// </summary>
+    /// <returns>A GameObject[] array of level locations. </returns>
+    public GameObject[] GetLevelLocationObjects()
+    {
+        return levelLocationObjs;
+    }
+
+    /// <summary>
+    /// Returns the character setting locations in this level. Call this to get an array of all meeting settings.
+    /// </summary>
+    /// <returns>A GameObject[] array of character meeting locations. </returns>
+    public GameObject[] GetCharacterLocationObjects()
+    {
+        return characterLocationObjs;
     }
 }

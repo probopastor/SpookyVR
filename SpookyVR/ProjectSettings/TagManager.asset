@@ -8,6 +8,8 @@ TagManager:
   - DeleteAction
   - ScheduleAction
   - ScheduleCanvas
+  - LocationCanvas
+  - LevelManager
   layers:
   - Default
   - TransparentFX

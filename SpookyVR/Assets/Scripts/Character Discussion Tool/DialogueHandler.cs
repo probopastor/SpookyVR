@@ -10,6 +10,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class DialogueHandler : MonoBehaviour
 {
     [SerializeField]
@@ -38,6 +39,8 @@ public class DialogueHandler : MonoBehaviour
     private TextAnimator textAnim_Ref;
 
 
+    #region Text Startup Methods
+
     private void OnEnable()
     {
         SetActiveDialigueState();
@@ -49,6 +52,23 @@ public class DialogueHandler : MonoBehaviour
         SetActiveDialigueState();
     }
 
+    /// <summary>
+    /// Sets the currently active DialogueHandler to be the Active one.
+    /// </summary>
+    public void SetActiveDialigueState()
+    {
+        if (gameObject.activeInHierarchy == true)
+        {
+            //DialogueManager.Instance.SetActiveDialogue(gameObject.GetComponent<DialogueHandler>());
+        }
+        else if (gameObject.activeInHierarchy == false)
+        {
+            //DialogueManager.Instance.SetActiveDialogue(null);
+        }
+    }
+
+    #endregion 
+
     // Handles loading the correct Text based off of the Character(s) being spoken to.
 
     public void ClickToContinue()
@@ -57,13 +77,11 @@ public class DialogueHandler : MonoBehaviour
         {
             //clickToContinueObj.gameObject.SetActive(true);
             StartCoroutine(ClickToContinueBlink());
-            
+
             //if(true)
             //{
             //    StartMainDialogue(0, 1);
             //}
-
-
         }
         else if (!textAnim_Ref.allLettersShown)
         {
@@ -111,21 +129,6 @@ public class DialogueHandler : MonoBehaviour
     public void StartMainDialogue(int dialogueListIndex, int dialogueTextIndex)
     {
         locationDialogueBoxText.text = locationsDialogue.GetMainDialogueList()[dialogueListIndex].GetTextAtIndex(dialogueTextIndex);
-    }
-
-    /// <summary>
-    /// Sets the currently active DialogueHandler to be the Active one.
-    /// </summary>
-    public void SetActiveDialigueState()
-    {
-        if (gameObject.activeInHierarchy == true)
-        {
-            DialogueManager.Instance.SetActiveDialogue(gameObject.GetComponent<DialogueHandler>());
-        }
-        else if (gameObject.activeInHierarchy == false)
-        {
-            DialogueManager.Instance.SetActiveDialogue(null);
-        }
     }
 
 
