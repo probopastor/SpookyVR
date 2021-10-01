@@ -98,13 +98,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #endregion 
+    #endregion
 
 
     //public void SetScheduleDays(List<Days> theDays)
     //{
     //    scheduleDays = theDays;
     //}
+
+    #region Run Week Methods
 
     /// <summary>
     /// Begins the current week, cycling the player through all scheduled actions passed in via a list of Days.
@@ -188,9 +190,82 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Current Week: " + resourceManager.GetCurrentWeek());
 
+        //ClearScheduleButtons();
         // TODO: clear all remaining scheduled buttons here.
     }
 
+    private void ClearScheduleButtons()
+    {
+        GameObject[] scheduleActions = GameObject.FindGameObjectsWithTag("ScheduleAction");
+
+        foreach(GameObject obj in scheduleActions)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion
+
+    #region Start Week Methods
+
+    /// <summary>
+    /// Sets the proper Action Location to be active when the action is ready. To be called from Actions.
+    /// </summary>
+    /// <param name="index">The location index. </param>
+    /// <param name="characterMeeting">Set to true if this action should take place in a meeting, false if its a location overview. </param>
+    public void SetActionActive(int index, bool characterMeeting)
+    {
+        // If this is a Location Action (such as inspect)
+        if (!characterMeeting)
+        {
+            // Set the correct location based on the index to be active, and other locations to be inactive.
+            for (int i = 0; i < levelLocations.Length; i++)
+            {
+                if (i == index)
+                {
+                    levelLocations[i].SetActive(true);
+                }
+                else
+                {
+                    levelLocations[i].SetActive(false);
+
+                }
+            }
+        }
+        // If this is a Character Action (such as talk to)
+        else
+        {
+            // Set the correct character meeting based on the index to be active, and other locations to be inactive.
+            for (int i = 0; i < meetingLocations.Length; i++)
+            {
+                if (i == index)
+                {
+                    meetingLocations[i].SetActive(true);
+                }
+                else
+                {
+                    meetingLocations[i].SetActive(false);
+                }
+            }
+        }
+    }
+
+    private void SetAllActionsInactive()
+    {
+        for (int i = 0; i < levelLocations.Length; i++)
+        {
+            levelLocations[i].SetActive(false);
+        }
+
+        for (int i = 0; i < meetingLocations.Length; i++)
+        {
+            meetingLocations[i].SetActive(false);
+        }
+    }
+
+    #endregion 
+
+    #region Set Level Methods
     /// <summary>
     /// Sets the level manager data, resource, data, etc., for a given level.
     /// </summary>
@@ -272,58 +347,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sets the proper Action Location to be active when the action is ready. To be called from Actions.
-    /// </summary>
-    /// <param name="index">The location index. </param>
-    /// <param name="characterMeeting">Set to true if this action should take place in a meeting, false if its a location overview. </param>
-    public void SetActionActive(int index, bool characterMeeting)
-    {
-        // If this is a Location Action (such as inspect)
-        if (!characterMeeting)
-        {
-            // Set the correct location based on the index to be active, and other locations to be inactive.
-            for (int i = 0; i < levelLocations.Length; i++)
-            {
-                if (i == index)
-                {
-                    levelLocations[i].SetActive(true);
-                }
-                else
-                {
-                    levelLocations[i].SetActive(false);
-
-                }
-            }
-        }
-        // If this is a Character Action (such as talk to)
-        else
-        {
-            // Set the correct character meeting based on the index to be active, and other locations to be inactive.
-            for (int i = 0; i < meetingLocations.Length; i++)
-            {
-                if (i == index)
-                {
-                    meetingLocations[i].SetActive(true);
-                }
-                else
-                {
-                    meetingLocations[i].SetActive(false);
-                }
-            }
-        }
-    }
-
-    private void SetAllActionsInactive()
-    {
-        for (int i = 0; i < levelLocations.Length; i++)
-        {
-            levelLocations[i].SetActive(false);
-        }
-
-        for (int i = 0; i < meetingLocations.Length; i++)
-        {
-            meetingLocations[i].SetActive(false);
-        }
-    }
+    #endregion 
 }

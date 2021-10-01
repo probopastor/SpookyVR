@@ -39,14 +39,18 @@ namespace Schedule
 
             GameObject scheduleActionObjectClone = Instantiate<GameObject>(scheduleActionObject, actionObjSpawnLocation, Quaternion.identity);
             scheduleActionObjectClone.GetComponent<ScheduleAction>().SetCreationSource(this);
-            scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
+
+
+            //scheduleActionObjectClone.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
+
+            scheduleActionObjectClone.transform.parent = this.gameObject.transform;
             scheduleActionObjectClone.GetComponent<CanvasGroup>().alpha = 0;
 
             // Fills in action object's action parameters
             scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType, (int)actionDuration);
         }
 
-        
+
         private void OnTriggerExit(Collider other)
         {
             // Spawns a new schedule action object if the previous one is dragged off of the object CreateAction is on.

@@ -136,10 +136,16 @@ namespace Schedule
         #region Drag & Drop Methods
         public void OnPointerDown(PointerEventData eventData)
         {
+            // Set the parent of the object to the canvas.
+            if (gameObject.transform.parent != GameObject.FindGameObjectWithTag("ScheduleCanvas").transform)
+            {
+                gameObject.transform.parent = GameObject.FindGameObjectWithTag("ScheduleCanvas").transform;
+            }
+
             canvasGroup.alpha = alphaDragging;
 
             // When this ScheduleAction is grabbed, have it's source create a new action object in its stead.
-            if(creationSource != null)
+            if (creationSource != null)
             {
                 creationSource.CreateActionObject();
                 creationSource = null;
