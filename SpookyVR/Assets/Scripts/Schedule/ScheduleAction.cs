@@ -5,7 +5,7 @@
 * Handles the stickers of the schedule buttons. These each hold the action to be scheduled, and will be scheduled once they
 * are placed onto a schedule slot (which will then schedule them into ScheduleCreation).
 * 
-* Also handles the changes the stickers receive while being placed. (Transparency, enlargment, animations, etc).
+* Also handles the changes and effects the stickers receive while being placed. (Transparency, enlargment, animations, etc).
 */
 
 using System.Collections;
@@ -17,7 +17,7 @@ using UnityEngine.UI;
 
 namespace Schedule
 {
-    public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+    public class ScheduleAction : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler
     {
         #region Color variables
         [Header("Color Settings")]
@@ -27,7 +27,7 @@ namespace Schedule
 
         [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
-        [Tooltip(" ")] private CreateAction creationSource;
+        [Tooltip("The spawn source of this Schedule Action. Will be null if it was not spawned by a CreateAction source. ")] private CreateAction creationSource;
 
         #region Canvas variables
         [Tooltip("The Rect Transform of this object. ")] private RectTransform rectTransform;
@@ -42,6 +42,7 @@ namespace Schedule
         [Tooltip("The ID of this Schedule Action's npc. ")] private int npc = 0;
         [Tooltip("The duration of this action. 0 is small action, 1 is medium action, 2 is long action.")] private int duration = 0;
 
+        [Tooltip("If true, this object will continuously fall until it is off the screen. False otherwise. ")] private bool enableSwayFall = false;
         #endregion
 
         #region Setup Methods
@@ -60,6 +61,16 @@ namespace Schedule
         {
             controls.Disable();
         }
+
+        private void FixedUpdate()
+        {
+            if (enableSwayFall)
+            {
+                Debug.Log(gameObject.name + " is sway falling.");
+                SwayFall();
+            }
+        }
+
         #endregion
 
         #region Schedule Methods
@@ -133,9 +144,30 @@ namespace Schedule
 
         #endregion
 
+        #region UI Effects Methods
+
+        private void SwayFall()
+        {
+            // TODO: Move object along bezier curve
+            // TODO: Have object move towards bottom of screen
+
+
+            // TODO: When object is off the bottom of the screen (probably via screenspace check), create an empty game object called "Empty"
+            // GameObject empty = new GameObject("Empty");
+
+            // TODO: Child this object to the Empty gameobject using 
+            // obj.transform.SetParent(empty.transform);
+
+            // TODO: Destroy empty
+        }
+
+        #endregion 
+
         #region Drag & Drop Methods
         public void OnPointerDown(PointerEventData eventData)
         {
+            canvasGroup.blocksRaycasts = false;
+
             // Set the parent of the object to the canvas.
             if (gameObject.transform.parent != GameObject.FindGameObjectWithTag("ScheduleCanvas").transform)
             {
@@ -150,19 +182,48 @@ namespace Schedule
                 creationSource.CreateActionObject();
                 creationSource = null;
             }
+
+            enableSwayFall = false;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            canvasGroup.blocksRaycasts = true;
+            canvasGroup.alpha = alphaPlaced;
+
+            StartCoroutine(CheckSlotDroppedOnNextFrame());
+        }
+
+        /// <summary>
+        /// Waits a frame before checking if this ScheduleAction is dropped onto a slot before enabling sway falling. 
+        /// This is to allow the ScheduleSlotData script to run before this is checked (Since EventSystem methods (i.e. OnPointerUp)
+        /// will naturally run before slotDroppedOn can be updated.
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator CheckSlotDroppedOnNextFrame()
+        {
+            yield return new WaitForEndOfFrame();
+
+            // If this ScheduleAction is not dropped onto a ScheduleSlot, enable sway fall.
+            if (slotDroppedOn == null)
+            {
+                enableSwayFall = true;
+            }
+            else
+            {
+                enableSwayFall = false;
+            }
         }
 
         public void OnDrag(PointerEventData eventData)
         {
             gameObject.transform.position = Mouse.current.position.ReadValue();
-            canvasGroup.blocksRaycasts = false;
-            //canvasGroup.alpha = alphaDragging;
         }
 
-        public void OnEndDrag(PointerEventData eventData)
+        public void OnDrop(PointerEventData eventData)
         {
-            canvasGroup.blocksRaycasts = true;
-            canvasGroup.alpha = alphaPlaced;
+            Debug.Log("THIS FUCKING OCCURS HAHAA");
+
         }
 
         public void OnBeginDrag(PointerEventData eventData)
