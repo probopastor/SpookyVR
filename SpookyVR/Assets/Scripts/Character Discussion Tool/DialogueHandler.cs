@@ -72,10 +72,6 @@ public class DialogueHandler : MonoBehaviour
 
     private bool coroutineStarted = false;
 
-
-
-
-
     #region Text Startup Methods
 
     private void Awake()
@@ -133,7 +129,7 @@ public class DialogueHandler : MonoBehaviour
     /// </summary>
     private void BeginDialog()
     {
-        if(!introductionComplete)
+        if (!introductionComplete)
         {
             introductionComplete = true;
 
@@ -153,7 +149,7 @@ public class DialogueHandler : MonoBehaviour
         {
             // Run Main Dialog here
         }
-        
+
     }
 
     /// <summary>
@@ -165,8 +161,6 @@ public class DialogueHandler : MonoBehaviour
     {
         for (int i = 0; i < textStates.Count; i++)
         {
-            //locationDialogBoxText.text = textStates[i].GetDialogueText();
-
             textAnimatorPlayer.ShowText(textStates[i].GetDialogueText());
 
             // Set character images
@@ -234,6 +228,4 @@ public class DialogueHandler : MonoBehaviour
 
         StartCoroutine(ClickToContinueBlink());
     }
-
-
 }
