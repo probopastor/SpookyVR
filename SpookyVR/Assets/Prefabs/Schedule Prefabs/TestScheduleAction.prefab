@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alphaDragging: 0.5
   alphaPlaced: 1
+  bezierFollow: {fileID: 0}
 --- !u!65 &1684845135856853778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   routes:
   - {fileID: 6142687479950767712}
+  objectSpeed: 0.15
 --- !u!1 &2157502763246176005
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,8 +75,6 @@ namespace Schedule
             }
             else if (!enableSwayFall)
             {
-                // if Bezier corutine is running
-                // StopCoroutine(name)
                 SwayFall(false);
             }
         }
@@ -164,35 +162,19 @@ namespace Schedule
                 // If bezier movement is not in progress
                 if (!bezierFollow.GetBezierMovementInProgress())
                 {
-                    // Set the bezier follow to be in progress
-                    bezierFollow.SetObjectSpeed(.15f);
-                    StartCoroutine(bezierFollow.GoByRoute(bezierFollow.GetRouteToGo()));
+                    StartCoroutine(bezierFollow.GoByRoute());
                 }
             }
+            // If this object should stop sway falling...
             else if (!swayFallStatus)
             {
+                // Check to see if movement is in progress.
                 if (bezierFollow.GetBezierMovementInProgress())
                 {
-                    bezierFollow.StopCoroutine("GoByRoute");
+                    // If movement is in progress, stop it.
                     bezierFollow.SetBezierMovementInProgress(false);
                 }
             }
-
-            // TODO: Move object along bezier curve
-            // TODO: Have object move towards bottom of screen
-
-
-            // TODO: When object is off the bottom of the screen (probably via screenspace check), create an empty game object called "Empty"
-            // GameObject empty = new GameObject("Empty");
-
-            // TODO: Child this object to the Empty gameobject using 
-            // obj.transform.SetParent(empty.transform);
-
-            // TODO: Destroy empty
-
-
-            // Message Billy once working.
-
         }
 
         #endregion 

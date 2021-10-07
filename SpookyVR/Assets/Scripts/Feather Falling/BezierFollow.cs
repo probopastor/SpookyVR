@@ -1,23 +1,26 @@
-﻿using System;
+﻿/* 
+* Glory to the High Council
+* CJ Green, William Nomikos
+* BezierFollow.cs
+* [what this does]
+*/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BezierFollow : MonoBehaviour
 {
-    [SerializeField, Tooltip("This is a container of routes the intended object will follow")]
-    private Transform[] routes = new Transform[0];
+    [SerializeField, Tooltip("This is a container of routes the intended object will follow")] private Transform[] routes = new Transform[0];
 
-    // The starting control point to start at.
-    private int routeToGo = 0;
+    [Tooltip("The starting control point to start at. ")] private int routeToGo = 0;
 
-    // This varaible is the same t value as the For loop in the Route.cs script.
-    private float tParam = 0f;
+    [Tooltip("This varaible is the same t value as the For loop in the Route.cs script. ")] private float tParam = 0f;
 
     private Vector2 objectPosition = new Vector2(0f, 0f);
 
-    [SerializeField, Tooltip("Falling speed of the object")]
-    private float objectSpeed = 0.5f;
+    [SerializeField, Tooltip("Falling speed of the object. ")] private float objectSpeed = 0.15f;
 
     [Tooltip("Maintains whether bezier curve movement is in progress. True if it is, false otherwise. ")] private bool bezierMovementInProgress = false;
 
@@ -26,7 +29,6 @@ public class BezierFollow : MonoBehaviour
     {
         routeToGo = 0;
         tParam = 0f;
-        //objectSpeed = 0.5f;
         bezierMovementInProgress = false;
     }
 
@@ -34,19 +36,10 @@ public class BezierFollow : MonoBehaviour
     void Update()
     {
         //Notes/Ideas:
-
-        // start corotuine in Scheduleaction.cs
-
-        // Make route prefab (good idea).
-
-        // Make object take in Route (Not now). 
+        // Make route prefab.
+        // Make object take in Route. 
 
         // Automatic Curve Positioning.
-
-        //if(coroutineAllowed)
-        //{
-        //    StartCoroutine(GoByRoute(GetRouteToGo()));
-        //}
 
         if (gameObject.activeInHierarchy == true && CheckIfObjectIsOffScreen(gameObject))
         {
@@ -57,37 +50,34 @@ public class BezierFollow : MonoBehaviour
         {
             Debug.Log("Is not off screen.");
         }
-
-
     }
 
-    public IEnumerator GoByRoute(int routeNumber)
+    public IEnumerator GoByRoute()
     {
         bezierMovementInProgress = true;
 
-        Vector2 p0 = routes[routeNumber].GetChild(0).position;
-        Vector2 p1 = routes[routeNumber].GetChild(1).position;
-        Vector2 p2 = routes[routeNumber].GetChild(2).position;
-        Vector2 p3 = routes[routeNumber].GetChild(3).position;
+        Vector2 p0 = routes[routeToGo].GetChild(0).position;
+        Vector2 p1 = routes[routeToGo].GetChild(1).position;
+        Vector2 p2 = routes[routeToGo].GetChild(2).position;
+        Vector2 p3 = routes[routeToGo].GetChild(3).position;
 
         while ((tParam < 1) && bezierMovementInProgress)
         {
-            tParam += Time.deltaTime * GetObjectSpeed();
+            tParam += Time.deltaTime * objectSpeed;
 
             objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
 
             transform.position = objectPosition;
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         tParam = 0f;
 
         routeToGo += 1;
-        SetRouteToGo(routeToGo);
 
         if (routeToGo > routes.Length - 1)
         {
-            SetRouteToGo(0);
+            routeToGo = 0;
         }
 
         bezierMovementInProgress = false;
@@ -127,26 +117,6 @@ public class BezierFollow : MonoBehaviour
 
     #region Getters and Setters
 
-    public int GetRouteToGo()
-    {
-        return routeToGo;
-    }
-
-    public void SetRouteToGo(int value)
-    {
-        routeToGo = value;
-    }
-
-    public float GetObjectSpeed()
-    {
-        return objectSpeed;
-    }
-
-    public void SetObjectSpeed(float value)
-    {
-        objectSpeed = value;
-    }
-
     /// <summary>
     /// Gets whether Bezier Curve movement is in progress.
     /// </summary>
@@ -166,5 +136,4 @@ public class BezierFollow : MonoBehaviour
     }
 
     #endregion
-
 }
