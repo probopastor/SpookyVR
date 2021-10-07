@@ -29,6 +29,9 @@ namespace Schedule
 
         [Tooltip("The spawn source of this Schedule Action. Will be null if it was not spawned by a CreateAction source. ")] private CreateAction creationSource;
 
+        [SerializeField, Tooltip("Reference to the scripts that makes the object follow the Route/Bezier curve")]
+        private BezierFollow bezierFollow;
+
         #region Canvas variables
         [Tooltip("The Rect Transform of this object. ")] private RectTransform rectTransform;
         [Tooltip("The Canvas Group of this object. ")] private CanvasGroup canvasGroup;
@@ -49,6 +52,7 @@ namespace Schedule
         private void Awake()
         {
             controls = new InputMaster();
+            bezierFollow = GetComponent<BezierFollow>();
             rectTransform = GetComponent<RectTransform>();
             canvasGroup = GetComponent<CanvasGroup>();
         }
@@ -68,6 +72,11 @@ namespace Schedule
             {
                 Debug.Log(gameObject.name + " is sway falling.");
                 SwayFall();
+            }
+            else if(!enableSwayFall)
+            {
+                // if Bezier corutine is running
+                // StopCoroutine(name)
             }
         }
 
@@ -148,6 +157,19 @@ namespace Schedule
 
         private void SwayFall()
         {
+
+            if(bezierFollow.GetCoroutineAllowed())
+            {
+                Debug.Log("Am supposed to do thing.");
+
+                if(bezierFollow.ActiveStatus())
+                {
+                    bezierFollow.SetObjectSpeed(.15f);
+                    StartCoroutine(bezierFollow.GoByRoute(bezierFollow.GetRouteToGo()));
+                }
+
+            }
+
             // TODO: Move object along bezier curve
             // TODO: Have object move towards bottom of screen
 
@@ -159,6 +181,10 @@ namespace Schedule
             // obj.transform.SetParent(empty.transform);
 
             // TODO: Destroy empty
+
+
+            // Message Billy once working.
+
         }
 
         #endregion 
