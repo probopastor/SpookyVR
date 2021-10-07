@@ -164,19 +164,14 @@ namespace Schedule
                 // If bezier movement is not in progress
                 if (!bezierFollow.GetBezierMovementInProgress())
                 {
-                    Debug.Log("Am supposed to do thing.");
-
                     // Set the bezier follow to be in progress
-                    if (bezierFollow.ActiveStatus())
-                    {
-                        bezierFollow.SetObjectSpeed(.15f);
-                        StartCoroutine(bezierFollow.GoByRoute(bezierFollow.GetRouteToGo()));
-                    }
+                    bezierFollow.SetObjectSpeed(.15f);
+                    StartCoroutine(bezierFollow.GoByRoute(bezierFollow.GetRouteToGo()));
                 }
             }
             else if (!swayFallStatus)
             {
-                if(bezierFollow.GetBezierMovementInProgress())
+                if (bezierFollow.GetBezierMovementInProgress())
                 {
                     bezierFollow.StopCoroutine("GoByRoute");
                     bezierFollow.SetBezierMovementInProgress(false);

@@ -125,9 +125,6 @@ public class BezierFollow : MonoBehaviour
         }
     }
 
-    public bool ActiveStatus () => gameObject.activeInHierarchy;
-
-
     #region Getters and Setters
 
     public int GetRouteToGo()
