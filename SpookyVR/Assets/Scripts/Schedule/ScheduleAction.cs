@@ -29,6 +29,9 @@ namespace Schedule
 
         [Tooltip("The spawn source of this Schedule Action. Will be null if it was not spawned by a CreateAction source. ")] private CreateAction creationSource;
 
+        [SerializeField, Tooltip("Reference to the scripts that makes the object follow the Route/Bezier curve")]
+        private BezierFollow bezierFollow;
+
         #region Canvas variables
         [Tooltip("The Rect Transform of this object. ")] private RectTransform rectTransform;
         [Tooltip("The Canvas Group of this object. ")] private CanvasGroup canvasGroup;
@@ -49,6 +52,7 @@ namespace Schedule
         private void Awake()
         {
             controls = new InputMaster();
+            bezierFollow = GetComponent<BezierFollow>();
             rectTransform = GetComponent<RectTransform>();
             canvasGroup = GetComponent<CanvasGroup>();
         }
@@ -67,7 +71,11 @@ namespace Schedule
             if (enableSwayFall)
             {
                 Debug.Log(gameObject.name + " is sway falling.");
-                SwayFall();
+                SwayFall(true);
+            }
+            else if (!enableSwayFall)
+            {
+                SwayFall(false);
             }
         }
 
@@ -146,19 +154,27 @@ namespace Schedule
 
         #region UI Effects Methods
 
-        private void SwayFall()
+        private void SwayFall(bool swayFallStatus)
         {
-            // TODO: Move object along bezier curve
-            // TODO: Have object move towards bottom of screen
-
-
-            // TODO: When object is off the bottom of the screen (probably via screenspace check), create an empty game object called "Empty"
-            // GameObject empty = new GameObject("Empty");
-
-            // TODO: Child this object to the Empty gameobject using 
-            // obj.transform.SetParent(empty.transform);
-
-            // TODO: Destroy empty
+            // If this object should sway fall
+            if (swayFallStatus)
+            {
+                // If bezier movement is not in progress
+                if (!bezierFollow.GetBezierMovementInProgress())
+                {
+                    StartCoroutine(bezierFollow.GoByRoute());
+                }
+            }
+            // If this object should stop sway falling...
+            else if (!swayFallStatus)
+            {
+                // Check to see if movement is in progress.
+                if (bezierFollow.GetBezierMovementInProgress())
+                {
+                    // If movement is in progress, stop it.
+                    bezierFollow.SetBezierMovementInProgress(false);
+                }
+            }
         }
 
         #endregion 
