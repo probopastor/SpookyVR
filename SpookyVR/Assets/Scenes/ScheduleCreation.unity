@@ -2999,16 +2999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f88a85d9bfabc545b6a1b7efa2395f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationsDialog: {fileID: 0}
-  locationDialogBoxText: {fileID: 0}
-  characterLeft: {fileID: 0}
-  characterCenter: {fileID: 0}
-  characterRight: {fileID: 0}
-  characterImageLeft: {fileID: 0}
-  characterImageCenter: {fileID: 0}
-  characterImageRight: {fileID: 0}
-  locationImage: {fileID: 0}
-  clickToContinueObj: {fileID: 0}
 --- !u!4 &373102175
 Transform:
   m_ObjectHideFlags: 0
@@ -4624,6 +4614,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b6df3cc46a11e44da5ceab203946ca6, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -6409,6 +6403,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: 769e2b571dbf3904a90031f094606b43, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -8124,6 +8122,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: df80238190568f34eabda74d94da2b08, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -8957,6 +8959,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: 7744cef797879d24e8b8740fd48305ab, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -9357,6 +9363,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: 72997c42d5c8761439f66b311a7b5f7e, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -11799,6 +11809,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: b6936fe250d307a4a934e1dbe4cc9b65, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -16713,6 +16727,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: characterCenter
+      value: 
+      objectReference: {fileID: 11400000, guid: d69df7b04f77d444c9de0ac661480cb1, type: 2}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 
@@ -18016,6 +18034,13 @@ MonoBehaviour:
       characterState: {fileID: 0}
       continueAutomatically: 0
   - dialogue: []
+  checkTrust: 0
+  checkProsperity: 0
+  checkIfAlive: 0
+  checkMoney: 0
+  checkFood: 0
+  checkMilitia: 0
+  checkCrime: 0
 --- !u!114 &1212336029826149334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18029,6 +18054,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionsToQueue: []
+  checkTrust: 0
+  checkProsperity: 0
+  checkIfAlive: 0
+  checkMoney: 0
+  checkFood: 0
+  checkMilitia: 0
+  checkCrime: 0
 --- !u!1001 &2450582441150115316
 PrefabInstance:
   m_ObjectHideFlags: 0

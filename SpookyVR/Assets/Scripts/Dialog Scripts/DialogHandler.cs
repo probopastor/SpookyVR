@@ -16,7 +16,7 @@ using UnityEngine.InputSystem;
 [DisallowMultipleComponent]
 public class DialogHandler : MonoBehaviour
 {
-    public static DialogHandler _dialogHandler;
+    //public static DialogHandler _dialogHandler;
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     #region Febucci References & TMPro use
@@ -33,15 +33,15 @@ public class DialogHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (_dialogHandler != null && _dialogHandler != this)
-        {
-            Destroy(_dialogHandler.gameObject);
-        }
-        else
-        {
-            _dialogHandler = this;
-            DontDestroyOnLoad(_dialogHandler.gameObject);
-        }
+        //if (_dialogHandler != null && _dialogHandler != this)
+        //{
+        //    Destroy(_dialogHandler.gameObject);
+        //}
+        //else
+        //{
+        //    _dialogHandler = this;
+        //    DontDestroyOnLoad(_dialogHandler.gameObject);
+        //}
 
         controls = new InputMaster();
     }

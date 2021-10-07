@@ -52,13 +52,11 @@ public class LocationIntroDialogue : MonoBehaviour
     [Tooltip("True if the introduction is complete, false otherwise. ")] private bool introductionComplete = false;
     #endregion 
 
-    /// <summary>
-    /// Returns an Interactions List of intro dialog for a location.
-    /// </summary>
-    /// <returns>A List of Interactions. </returns>
-    public List<Interactions> GetIntroDialogueList()
+    [Tooltip(" ")] private DialogHandler dialogHandler;
+
+    private void Start()
     {
-        return introDialog;
+        dialogHandler = FindObjectOfType<DialogHandler>();
     }
 
     private void OnEnable()
@@ -77,11 +75,16 @@ public class LocationIntroDialogue : MonoBehaviour
     /// </summary>
     private void DialogSetup()
     {
+        if(dialogHandler == null)
+        {
+            dialogHandler = FindObjectOfType<DialogHandler>();
+        }
+
         textAnimator = locationDialogBoxText.GetComponent<TextAnimator>();
         textAnimatorPlayer = locationDialogBoxText.GetComponent<TextAnimatorPlayer>();
 
-        DialogHandler._dialogHandler.SetTextAnimator(textAnimator);
-        DialogHandler._dialogHandler.SetTextAnimatorPlayer(textAnimatorPlayer);
+        dialogHandler.SetTextAnimator(textAnimator);
+        dialogHandler.SetTextAnimatorPlayer(textAnimatorPlayer);
 
         introductionComplete = false;
     }
@@ -96,7 +99,7 @@ public class LocationIntroDialogue : MonoBehaviour
             {
                 // Set this character to Met
                 characterCenter.SetMetStatus(true);
-                StartCoroutine(DialogHandler._dialogHandler.RunDialog(introDialog[0].GetTextStates()));
+                StartCoroutine(dialogHandler.RunDialog(introDialog[0].GetTextStates()));
             }
             else
             {
@@ -108,7 +111,7 @@ public class LocationIntroDialogue : MonoBehaviour
         {
             // Run Main Dialog here
 
-            if(!DialogHandler._dialogHandler.GetRunDialogInProgress())
+            if(!dialogHandler.GetRunDialogInProgress())
             {
                 DisplayConversationOptions(true);
             }
@@ -142,6 +145,15 @@ public class LocationIntroDialogue : MonoBehaviour
         // Check everything from textSetter
 
         // Set textStateToUse and run that
-        StartCoroutine(DialogHandler._dialogHandler.RunDialog(introDialog[0].GetTextStates()));
+        StartCoroutine(dialogHandler.RunDialog(introDialog[0].GetTextStates()));
+    }
+
+    /// <summary>
+    /// Returns an Interactions List of intro dialog for a location.
+    /// </summary>
+    /// <returns>A List of Interactions. </returns>
+    public List<Interactions> GetIntroDialogueList()
+    {
+        return introDialog;
     }
 }

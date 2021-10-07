@@ -457,6 +457,14 @@ MonoBehaviour:
     - text: Have you seen my snake? It likes to say "SsssSssSSSssssSSssSSssSSSSsSSSS"
       characterState: {fileID: 0}
       continueAutomatically: 0
+  characterImageLeft: {fileID: 0}
+  characterImageCenter: {fileID: 0}
+  characterImageRight: {fileID: 0}
+  locationImage: {fileID: 0}
+  characterLeft: {fileID: 0}
+  characterCenter: {fileID: 0}
+  characterRight: {fileID: 0}
+  locationDialogBoxText: {fileID: 8484667503787484258}
 --- !u!1 &8484667503781432001
 GameObject:
   m_ObjectHideFlags: 0
