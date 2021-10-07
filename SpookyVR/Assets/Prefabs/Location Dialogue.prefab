@@ -411,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484667503695475155}
-  - component: {fileID: 8484667503695475154}
+  - component: {fileID: 2210294533392907075}
   m_Layer: 0
   m_Name: Location Dialogue
   m_TagString: LocationCanvas
@@ -437,7 +437,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8484667503695475154
+--- !u!114 &2210294533392907075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -446,14 +446,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8484667503695475164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f88a85d9bfabc545b6a1b7efa2395f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 844db4588b5ca0e42931c7aaa65a454a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationsDialogue: {fileID: 0}
-  locationDialogueBoxText: {fileID: 8484667503787484258}
-  clickToContinueObj: {fileID: 373119921103356899}
-  textAnimPlayer_Ref: {fileID: 8484667503787484256}
-  textAnim_Ref: {fileID: 8484667503787484259}
+  introDialog:
+  - dialogue:
+    - text: Hello humble pirate.
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+    - text: Have you seen my snake? It likes to say "SsssSssSSSssssSSssSSssSSSSsSSSS"
+      characterState: {fileID: 0}
+      continueAutomatically: 0
 --- !u!1 &8484667503781432001
 GameObject:
   m_ObjectHideFlags: 0

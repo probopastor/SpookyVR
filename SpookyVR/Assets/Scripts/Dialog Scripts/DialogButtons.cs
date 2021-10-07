@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TEst : QuestionDialougeUI
+public class DialogButtons : MonoBehaviour
 {
-    public override void InitializeVariables()
-    {
-        throw new System.NotImplementedException();
-    }
+    [Tooltip(" ")] private int textStateID = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,4 +17,6 @@ public class TEst : QuestionDialougeUI
     {
         
     }
+
+    
 }

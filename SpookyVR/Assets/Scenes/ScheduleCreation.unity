@@ -2970,6 +2970,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355599216}
   m_CullTransparentMesh: 0
+--- !u!1 &373102173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373102175}
+  - component: {fileID: 373102174}
+  m_Layer: 0
+  m_Name: Dialog Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &373102174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373102173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f88a85d9bfabc545b6a1b7efa2395f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locationsDialog: {fileID: 0}
+  locationDialogBoxText: {fileID: 0}
+  characterLeft: {fileID: 0}
+  characterCenter: {fileID: 0}
+  characterRight: {fileID: 0}
+  characterImageLeft: {fileID: 0}
+  characterImageCenter: {fileID: 0}
+  characterImageRight: {fileID: 0}
+  locationImage: {fileID: 0}
+  clickToContinueObj: {fileID: 0}
+--- !u!4 &373102175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373102173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 904.5483, y: 1062.269, z: -136.71988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377003612
 GameObject:
   m_ObjectHideFlags: 0
@@ -8911,7 +8964,7 @@ PrefabInstance:
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialog
       value: 
-      objectReference: {fileID: 11400000, guid: 96ebb0b90b1b2bd468128289da47e7a8, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationDialogBoxText
       value: 
@@ -9412,7 +9465,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -36.35297
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
 --- !u!4 &1097759858 stripped
 Transform:
