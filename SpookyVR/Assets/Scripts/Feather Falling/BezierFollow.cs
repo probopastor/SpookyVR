@@ -19,7 +19,7 @@ public class BezierFollow : MonoBehaviour
     [SerializeField, Tooltip("Falling speed of the object")]
     private float objectSpeed = 0.5f;
 
-    private bool coroutineAllowed = true;
+    [Tooltip("Maintains whether bezier curve movement is in progress. True if it is, false otherwise. ")] private bool bezierMovementInProgress = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class BezierFollow : MonoBehaviour
         routeToGo = 0;
         tParam = 0f;
         //objectSpeed = 0.5f;
-        coroutineAllowed = true;
+        bezierMovementInProgress = false;
     }
 
     // Update is called once per frame
@@ -63,15 +63,14 @@ public class BezierFollow : MonoBehaviour
 
     public IEnumerator GoByRoute(int routeNumber)
     {
-        SetCoroutineAllowed(false);
-        //coroutineAllowed = false;
+        bezierMovementInProgress = true;
 
         Vector2 p0 = routes[routeNumber].GetChild(0).position;
         Vector2 p1 = routes[routeNumber].GetChild(1).position;
         Vector2 p2 = routes[routeNumber].GetChild(2).position;
         Vector2 p3 = routes[routeNumber].GetChild(3).position;
 
-        while (tParam < 1)
+        while ((tParam < 1) && bezierMovementInProgress)
         {
             tParam += Time.deltaTime * GetObjectSpeed();
 
@@ -90,8 +89,8 @@ public class BezierFollow : MonoBehaviour
         {
             SetRouteToGo(0);
         }
-        //coroutineAllowed = true;
-        SetCoroutineAllowed(true);
+
+        bezierMovementInProgress = false;
     }
 
     /// <summary>
@@ -151,14 +150,22 @@ public class BezierFollow : MonoBehaviour
         objectSpeed = value;
     }
 
-    public bool GetCoroutineAllowed()
+    /// <summary>
+    /// Gets whether Bezier Curve movement is in progress.
+    /// </summary>
+    /// <returns>Returns true if Bezier Curve movement is in progress, false otherwise.</returns>
+    public bool GetBezierMovementInProgress()
     {
-        return coroutineAllowed;
+        return bezierMovementInProgress;
     }
 
-    public void SetCoroutineAllowed(bool value)
+    /// <summary>
+    /// Sets whether Bezier Curve movement is currently in progress.
+    /// </summary>
+    /// <param name="value">Set True if Bezier Curve movement is in progress, false otherwise.</param>
+    public void SetBezierMovementInProgress(bool value)
     {
-        coroutineAllowed = value;
+        bezierMovementInProgress = value;
     }
 
     #endregion

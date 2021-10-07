@@ -71,12 +71,13 @@ namespace Schedule
             if (enableSwayFall)
             {
                 Debug.Log(gameObject.name + " is sway falling.");
-                SwayFall();
+                SwayFall(true);
             }
-            else if(!enableSwayFall)
+            else if (!enableSwayFall)
             {
                 // if Bezier corutine is running
                 // StopCoroutine(name)
+                SwayFall(false);
             }
         }
 
@@ -155,19 +156,31 @@ namespace Schedule
 
         #region UI Effects Methods
 
-        private void SwayFall()
+        private void SwayFall(bool swayFallStatus)
         {
-
-            if(bezierFollow.GetCoroutineAllowed())
+            // If this object should sway fall
+            if (swayFallStatus)
             {
-                Debug.Log("Am supposed to do thing.");
-
-                if(bezierFollow.ActiveStatus())
+                // If bezier movement is not in progress
+                if (!bezierFollow.GetBezierMovementInProgress())
                 {
-                    bezierFollow.SetObjectSpeed(.15f);
-                    StartCoroutine(bezierFollow.GoByRoute(bezierFollow.GetRouteToGo()));
-                }
+                    Debug.Log("Am supposed to do thing.");
 
+                    // Set the bezier follow to be in progress
+                    if (bezierFollow.ActiveStatus())
+                    {
+                        bezierFollow.SetObjectSpeed(.15f);
+                        StartCoroutine(bezierFollow.GoByRoute(bezierFollow.GetRouteToGo()));
+                    }
+                }
+            }
+            else if (!swayFallStatus)
+            {
+                if(bezierFollow.GetBezierMovementInProgress())
+                {
+                    bezierFollow.StopCoroutine("GoByRoute");
+                    bezierFollow.SetBezierMovementInProgress(false);
+                }
             }
 
             // TODO: Move object along bezier curve
