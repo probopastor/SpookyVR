@@ -2980,6 +2980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373102175}
   - component: {fileID: 373102174}
+  - component: {fileID: 373102176}
   m_Layer: 0
   m_Name: Dialog Handler
   m_TagString: Untagged
@@ -3013,6 +3014,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373102176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373102173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2355bd8d5bd5f4faad93ac4f1b04e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactions:
+  - dialogue:
+    - text: it sucked
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+    - text: wait, no it didnt
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+    - text: 
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+    - text: 
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+    - text: 
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+  - dialogue: []
+  - dialogue: []
+  - dialogue: []
+  - dialogue: []
+  checkMoney: 0
+  moneyBrackets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  checkMilitia: 0
+  militiaBrackets: []
+  checkProsperity: 0
+  prosperityBrackets: []
+  checkFood: 0
+  foodBrackets: []
+  checkCrime: 0
+  crimeBrackets: []
+  checkCult: 0
+  cultBrackets: []
 --- !u!1 &377003612
 GameObject:
   m_ObjectHideFlags: 0
@@ -18008,59 +18059,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
---- !u!1 &1212336029826149332 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1212336031195893679, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
-  m_PrefabInstance: {fileID: 1212336029826149331}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1212336029826149333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212336029826149332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08879dcce940c548ab7ddedf0b159df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionsToQueue:
-  - dialogue:
-    - text: 
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: 
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  - dialogue: []
-  checkTrust: 0
-  checkProsperity: 0
-  checkIfAlive: 0
-  checkMoney: 0
-  checkFood: 0
-  checkMilitia: 0
-  checkCrime: 0
---- !u!114 &1212336029826149334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212336029826149332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08879dcce940c548ab7ddedf0b159df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionsToQueue: []
-  checkTrust: 0
-  checkProsperity: 0
-  checkIfAlive: 0
-  checkMoney: 0
-  checkFood: 0
-  checkMilitia: 0
-  checkCrime: 0
 --- !u!1001 &2450582441150115316
 PrefabInstance:
   m_ObjectHideFlags: 0
