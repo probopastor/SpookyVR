@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Route : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Tooltip("Each control point to be used to shapre the Bezier Curve")]
     private Transform[] controlPoints;
 
     private Vector2 gizmosPosition;
 
+
+
+    /// <summary>
+    /// A method that returns the list of control points in a route.
+    /// </summary>
+    /// <returns></returns>
+    public Transform[] GetControlPoints()
+    {
+        return controlPoints;
+    }
+
+
+    // Helps show a visual representation of the path the object will take.
     private void OnDrawGizmos()
     {
         for (float t = 0; t <= 1; t += 0.05f)

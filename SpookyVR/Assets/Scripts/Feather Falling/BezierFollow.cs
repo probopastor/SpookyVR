@@ -41,6 +41,7 @@ public class BezierFollow : MonoBehaviour
 
         // Automatic Curve Positioning.
 
+
         if (gameObject.activeInHierarchy == true && CheckIfObjectIsOffScreen(gameObject))
         {
             GameObject.Destroy(gameObject);
@@ -52,8 +53,23 @@ public class BezierFollow : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Feather Falling")
+        {
+            //StartCoroutine(GoByRoute());
+            Debug.Log("This bezier thing is now visible.");
+
+            //PositionObjectAndRoute(gameObject.transform, routes);
+
+        }
+    }
+
     public IEnumerator GoByRoute()
     {
+
+        PositionObjectAndRoute(gameObject.transform, routes);
+
         bezierMovementInProgress = true;
 
         Vector2 p0 = routes[routeToGo].GetChild(0).position;
@@ -84,7 +100,36 @@ public class BezierFollow : MonoBehaviour
     }
 
     /// <summary>
-    /// This method returns a bool based on if 
+    /// This ensures that the object always is positioned on the Route correctly.
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <param name="routes"></param>
+    public void PositionObjectAndRoute(Transform gameObject, Transform[] routes)
+    {
+        Transform gameObjectPosition = gameObject;
+        Transform route = routes[routeToGo];
+
+        if (gameObjectPosition.transform.position != route.transform.position)
+        {
+
+            //gameObject.transform.position = firstControlPoint.transform.position;
+            Debug.Log("Big dummy");
+            //gameObject.position = firstControlPoint;
+
+            route.transform.position = gameObject.transform.position;
+
+            //Debug.Log("The #1 control point position is: " + route);
+            //Debug.Log("The gameObject position is: " + gameObjectPosition);
+
+        }
+        else
+        {
+            Debug.Log("They are the same!");
+        }
+    }
+
+    /// <summary>
+    /// This method returns a bool based on if the object is on screen anymore or not.
     /// </summary>
     /// <param name="objectToCheck"></param>
     /// <returns></returns>
@@ -103,13 +148,11 @@ public class BezierFollow : MonoBehaviour
 
         if (maxY < 0 || minY > Screen.height)
         {
-            // Do Something that disable UI elements
             result = true;
             return result;
         }
         else
         {
-            // Do something that re-enable UI elements
             result = false;
             return result;
         }
