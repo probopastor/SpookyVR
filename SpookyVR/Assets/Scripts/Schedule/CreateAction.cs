@@ -49,15 +49,5 @@ namespace Schedule
             // Fills in action object's action parameters
             scheduleActionObjectClone.GetComponent<ScheduleAction>().FillActionParameters(actionType, buildingType, npcType, (int)actionDuration);
         }
-
-
-        private void OnTriggerExit(Collider other)
-        {
-            // Spawns a new schedule action object if the previous one is dragged off of the object CreateAction is on.
-            if (other.CompareTag("ScheduleAction"))
-            {
-                //CreateActionObject();
-            }
-        }
     }
 }

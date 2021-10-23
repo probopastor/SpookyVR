@@ -50,7 +50,7 @@ public class OtloLevelManager : LevelManager
     /// OtloCharacterData overrides CharacterDataInitial to include Character starting information for Otlo's unique characters.
     /// </summary>
     [System.Serializable]
-    public class OtloCharacterData: CharacterDataInitial
+    public class OtloCharacterData : CharacterDataInitial
     {
 
     }
@@ -69,9 +69,9 @@ public class OtloLevelManager : LevelManager
         otloResources.SetCultPresence(cultPresenceInitial);
 
         // Cycles through the locations associated with thisResourceManager to reset their variables.
-        for(int i = 0; i < locationData.Count; i++)
+        for (int i = 0; i < locationData.Count; i++)
         {
-            if(locationData[i] != null)
+            if (locationData[i] != null)
             {
                 Location thisLocation = locationData[i].GetLocation();
 
@@ -98,9 +98,9 @@ public class OtloLevelManager : LevelManager
         }
 
         // Cycles through the characters associated with thisResourceManager to reset their variables.
-        for(int i = 0; i < characterData.Count; i++)
+        for (int i = 0; i < characterData.Count; i++)
         {
-            if(characterData[i] != null)
+            if (characterData[i] != null)
             {
                 Character thisCharacter = characterData[i].GetCharacter();
 

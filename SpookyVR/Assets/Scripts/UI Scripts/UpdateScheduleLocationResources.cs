@@ -4,6 +4,8 @@
 * UpdateScheduleLocationResources.cs
 * Handles setting and updating the schedule's location resources (money funded, militia stationed, etc.) when the player manages them.
 * Adds / Removes from the necessary resource pools as resources are used on locations. (For example, funding a location will take from the overall money resource).
+* 
+*[TODO: make a superclass and make this inherit from it for Otlo. Should be set from Otlo Level Manager. ]
 */
 
 using System.Collections;

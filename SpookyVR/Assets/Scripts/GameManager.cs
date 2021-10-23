@@ -18,14 +18,13 @@ public class GameManager : MonoBehaviour
     #region Variables
     [Tooltip("The ID of the current level. ")] private int levelID;
     [SerializeField, Tooltip("The resource manager for every world location.")] private ResourceManager[] resourceManagers;
+    [Tooltip("The current level's Resource Manager. ")] private ResourceManager resourceManager;
 
     [Tooltip("A list of Days, with each day having a list of Actions that have been scheduled. Used to progress through the level. ")] private List<Days> theDays;
 
     [Tooltip("The current Level's level manager. ")] private LevelManager levelManager;
     [Tooltip("Maintains whether the scheduling phase is in progress or not. ")] private bool schedulePhase = false;
 
-
-    [Tooltip("The current level's Resource Manager. ")] private ResourceManager resourceManager;
     // [Tooltip(" ")] private List<Days> scheduleDays = new List<Days>();
 
     [Tooltip(" ")] private GameObject[] levelLocations;
@@ -326,32 +325,32 @@ public class GameManager : MonoBehaviour
             // Update all display resources shown to the player.
             FindObjectOfType<DisplayResources>().UpdateDisplayedResources();
 
-            // Switch statement handles setting individual location and character data for all levels. Use nested Switch statements for individual divergence levels.
-            switch (levelID)
-            {
-                case 0:
-                    // Get Otlo Location List from OtloLevelManager
-                    // Get Otlo Character List from OtloLevelManager
-                    break;
-                case 1:
-                    // Get Atlantis Location List from AtlantisLevelManager
-                    // Get Atlantis Character List from AtlantisLevelManager
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
-                    break;
-            }
+            // Switch statement handles setting individual location and character data for all levels from the Level Manager. Use nested Switch statements for individual divergence levels.
+            //switch (levelID)
+            //{
+            //    case 0:
+            //        // Get Otlo Location List from OtloLevelManager
+            //        // Get Otlo Character List from OtloLevelManager
+            //        break;
+            //    case 1:
+            //        // Get Atlantis Location List from AtlantisLevelManager
+            //        // Get Atlantis Character List from AtlantisLevelManager
+            //        break;
+            //    case 2:
+            //        break;
+            //    case 3:
+            //        break;
+            //    case 4:
+            //        break;
+            //    case 5:
+            //        break;
+            //    case 6:
+            //        break;
+            //    case 7:
+            //        break;
+            //    case 8:
+            //        break;
+            //}
 
             // Cycle through objects to hide in the schedule and reenable them
             foreach (GameObject obj in scheduleCanvasObjsToHide)

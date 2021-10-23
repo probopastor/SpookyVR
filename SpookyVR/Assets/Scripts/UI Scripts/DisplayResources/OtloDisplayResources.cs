@@ -28,7 +28,7 @@ public class OtloDisplayResources : DisplayResources
         SetResourceManager();
     }
 
-    #region Display Resources Interface Implementation 
+    #region Display Resources Implementation 
     public override void SetResourceManager()
     {
         usedResources = (OtloResourceManager)FindObjectOfType<LevelManager>().GetLevelResourceManager();
