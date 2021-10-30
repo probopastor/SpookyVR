@@ -135,18 +135,18 @@ public class LocationIntroDialogue : MonoBehaviour
         }
     }
 
-    public void ConversationSelection(DialogTextSetter textSetter)
-    {
-        DisplayConversationOptions(false);
-        List<Interactions> interactionList = textSetter.GetInteractions();
+    //public void ConversationSelection(DialogTextSetter textSetter)
+    //{
+    //    DisplayConversationOptions(false);
+    //    List<Interactions> interactionList = textSetter.GetInteractions();
 
-        List<TextState> textStateToUse = new List<TextState>();
+    //    List<TextState> textStateToUse = new List<TextState>();
 
-        // Check everything from textSetter
+    //    // Check everything from textSetter
 
-        // Set textStateToUse and run that
-        StartCoroutine(dialogHandler.RunDialog(introDialog[0].GetTextStates()));
-    }
+    //    // Set textStateToUse and run that
+    //    StartCoroutine(dialogHandler.RunDialog(introDialog[0].GetTextStates()));
+    //}
 
     /// <summary>
     /// Returns an Interactions List of intro dialog for a location.

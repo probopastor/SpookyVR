@@ -2845,7 +2845,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 354893079}
-  - component: {fileID: 354893078}
   m_Layer: 0
   m_Name: Narrative Branch Handler
   m_TagString: Untagged
@@ -2853,19 +2852,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &354893078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354893077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45570a25e88096b48844e8ba61b4a734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  narrativeBranchThresholds: 02000000020000000100000001000000
 --- !u!4 &354893079
 Transform:
   m_ObjectHideFlags: 0
@@ -3024,7 +3010,6 @@ GameObject:
   m_Component:
   - component: {fileID: 373102175}
   - component: {fileID: 373102174}
-  - component: {fileID: 373102176}
   m_Layer: 0
   m_Name: Dialog Handler
   m_TagString: Untagged
@@ -3058,56 +3043,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &373102176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373102173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe2355bd8d5bd5f4faad93ac4f1b04e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactions:
-  - dialogue:
-    - text: it sucked
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: wait, no it didnt
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: 
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: 
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-    - text: 
-      characterState: {fileID: 0}
-      continueAutomatically: 0
-  - dialogue: []
-  - dialogue: []
-  - dialogue: []
-  - dialogue: []
-  checkMoney: 0
-  moneyBrackets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  checkMilitia: 0
-  militiaBrackets: []
-  checkProsperity: 0
-  prosperityBrackets: []
-  checkFood: 0
-  foodBrackets: []
-  checkCrime: 0
-  crimeBrackets: []
-  checkCult: 0
-  cultBrackets: []
 --- !u!1 &377003612
 GameObject:
   m_ObjectHideFlags: 0
