@@ -9197,8 +9197,8 @@ MonoBehaviour:
   weekRange: 0000000000000000
   checkPopulation: 0
   populationRange: 0000000000000000
-  checkMoney: 0
-  moneyRange: 0000000000000000
+  checkMoney: 1
+  moneyRange: 00000000f5010000
   checkProsperity: 0
   prosperityRange: 0000000000000000
   checkTrust: 0
@@ -15655,13 +15655,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656cd51a24878814b8dfe778bfca1890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  narrativeBranchesIncludedIn: 
+  narrativeBranchesIncludedIn: 01000000
   checkWeek: 0
   weekRange: 0000000000000000
   checkPopulation: 0
   populationRange: 0000000000000000
-  checkMoney: 0
-  moneyRange: 0000000000000000
+  checkMoney: 1
+  moneyRange: 58020000bc020000
   checkProsperity: 0
   prosperityRange: 0000000000000000
   checkTrust: 0

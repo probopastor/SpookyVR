@@ -73,6 +73,11 @@ public class ConversationTopicButton : MonoBehaviour
 
     public void DetermineAvailability()
     {
+        if (thisResourceManager == null)
+        {
+            thisResourceManager = FindObjectOfType<LevelManager>().GetLevelResourceManager();
+        }
+
         // The value selectionAmount will need to be in order to ensure that all checks have passed. Is incremented for each check required.
         int valueNeeded = 0;
 
@@ -104,7 +109,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((thisResourceManager.GetCurrentWeek() > weekRange[0]) && (thisResourceManager.GetCurrentWeek() < weekRange[1]))
+                if ((thisResourceManager.GetCurrentWeek() > weekRange[0]) && (thisResourceManager.GetCurrentWeek() <= weekRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -115,7 +120,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((thisResourceManager.GetPopulation() > populationRange[0]) && (thisResourceManager.GetPopulation() < populationRange[1]))
+                if ((thisResourceManager.GetPopulation() > populationRange[0]) && (thisResourceManager.GetPopulation() <= populationRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -126,7 +131,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((thisResourceManager.GetMoney() > moneyRange[0]) && (thisResourceManager.GetMoney() < moneyRange[1]))
+                if ((thisResourceManager.GetMoney() > moneyRange[0]) && (thisResourceManager.GetMoney() <= moneyRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -137,7 +142,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((location.GetProsperity() > prosperityRange[0]) && (location.GetProsperity() < prosperityRange[1]))
+                if ((location.GetProsperity() > prosperityRange[0]) && (location.GetProsperity() <= prosperityRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -148,7 +153,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((character.GetTrust() > trustRange[0]) && (character.GetTrust() < trustRange[1]))
+                if ((character.GetTrust() > trustRange[0]) && (character.GetTrust() <= trustRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -159,7 +164,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((thisResourceManager.GetMilitiaUnits() > militiaRange[0]) && (thisResourceManager.GetMilitiaUnits() < militiaRange[1]))
+                if ((thisResourceManager.GetMilitiaUnits() > militiaRange[0]) && (thisResourceManager.GetMilitiaUnits() <= militiaRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -170,7 +175,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((thisResourceManager.GetCrimeRate() > crimeRange[0]) && (thisResourceManager.GetCrimeRate() < crimeRange[1]))
+                if ((thisResourceManager.GetCrimeRate() > crimeRange[0]) && (thisResourceManager.GetCrimeRate() <= crimeRange[1]))
                 {
                     selectionAmount++;
                 }
@@ -181,7 +186,7 @@ public class ConversationTopicButton : MonoBehaviour
             {
                 valueNeeded++;
 
-                if ((thisResourceManager.GetCultPresence() > cultRange[0]) && (thisResourceManager.GetCultPresence() < cultRange[1]))
+                if ((thisResourceManager.GetCultPresence() > cultRange[0]) && (thisResourceManager.GetCultPresence() <= cultRange[1]))
                 {
                     selectionAmount++;
                 }
