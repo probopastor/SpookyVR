@@ -214,4 +214,9 @@ public class ConversationTopicButton : MonoBehaviour
     {
 
     }
+
+    public void SelectConversation()
+    {
+        // Sends dialogConversations to a thing that determines which conversation should occur based on variables. Then sends it to be queued into the ConversationManager
+    }
 }
