@@ -956,7 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: bf891cf9617095d41833629dcca9d2d7, type: 2}
+  location: {fileID: 11400000, guid: 54f2930de00e7714d92dba695983ca04, type: 2}
   moneyAllocatedText: {fileID: 1936852722}
   checkboxImage: {fileID: 0}
 --- !u!1 &99186539
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: 282528ff0d2166a4d90bba132a7df35a, type: 2}
+  location: {fileID: 11400000, guid: 9c093f57e89ef8248b75c75c695058c8, type: 2}
   moneyAllocatedText: {fileID: 625027066}
   checkboxImage: {fileID: 0}
 --- !u!1 &169415231
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: 783f5d2aea5d40c498a89666ebda8da4, type: 2}
+  location: {fileID: 11400000, guid: f284a6545e0b7174ba56a13ff5222877, type: 2}
   moneyAllocatedText: {fileID: 1941087052}
   checkboxImage: {fileID: 0}
 --- !u!1 &177499980
@@ -4204,19 +4204,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeBranchesIncludedIn: 
   checkPopulation: 0
-  populationAmount: 0
+  populationRange: 0000000000000000
   checkMoney: 0
-  moneyAmount: 0
+  moneyRange: 0000000000000000
   checkProsperity: 0
-  prosperityAmount: 0
+  prosperityRange: 0000000000000000
   checkTrust: 0
-  trustAmount: 0
+  trustRange: 0000000000000000
   checkMilitia: 0
-  militiaAmount: 0
+  militiaRange: 0000000000000000
   checkCrime: 0
-  crimeAmount: 0
+  crimeRange: 0000000000000000
   checkCult: 0
-  cultAmount: 0
+  cultRange: 0000000000000000
+  character: {fileID: 0}
+  location: {fileID: 0}
   dialogConversations:
   - dialogue: []
   - dialogue: []
@@ -6226,7 +6228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: 3b3bf2ce99c692b43a3ae2a4e7738b5f, type: 2}
+  location: {fileID: 11400000, guid: 5f980fff78419ad43b6a5dfa254ad2a6, type: 2}
   moneyAllocatedText: {fileID: 1917425864}
   checkboxImage: {fileID: 0}
 --- !u!1 &729617354
@@ -8319,6 +8321,7 @@ GameObject:
   - component: {fileID: 934709624}
   - component: {fileID: 934709626}
   - component: {fileID: 934709625}
+  - component: {fileID: 934709627}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -8442,6 +8445,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934709623}
   m_CullTransparentMesh: 0
+--- !u!114 &934709627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934709623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656cd51a24878814b8dfe778bfca1890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrativeBranchesIncludedIn: 
+  checkPopulation: 0
+  populationRange: 0000000000000000
+  checkMoney: 0
+  moneyRange: 0000000000000000
+  checkProsperity: 0
+  prosperityRange: 0000000000000000
+  checkTrust: 0
+  trustRange: 0000000000000000
+  checkMilitia: 0
+  militiaRange: 0000000000000000
+  checkCrime: 0
+  crimeRange: 0000000000000000
+  checkCult: 0
+  cultRange: 0000000000000000
+  character: {fileID: 0}
+  location: {fileID: 0}
+  dialogConversations: []
 --- !u!1 &946689692
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,19 +9223,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeBranchesIncludedIn: 
   checkPopulation: 0
-  populationAmount: 0
+  populationRange: 0000000000000000
   checkMoney: 0
-  moneyAmount: 0
+  moneyRange: 0000000000000000
   checkProsperity: 0
-  prosperityAmount: 0
+  prosperityRange: 0000000000000000
   checkTrust: 0
-  trustAmount: 0
+  trustRange: 0000000000000000
   checkMilitia: 0
-  militiaAmount: 0
+  militiaRange: 0000000000000000
   checkCrime: 0
-  crimeAmount: 0
+  crimeRange: 0000000000000000
   checkCult: 0
-  cultAmount: 0
+  cultRange: 0000000000000000
+  character: {fileID: 0}
+  location: {fileID: 0}
   dialogConversations:
   - dialogue: []
   - dialogue: []
@@ -11154,7 +11189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: 70af96fd630edc341a819c3a1fe7c5ec, type: 2}
+  location: {fileID: 11400000, guid: 8444a3d24ca9e9044a53fcea096f66c4, type: 2}
   moneyAllocatedText: {fileID: 2057765427}
   checkboxImage: {fileID: 0}
 --- !u!1 &1191302849
@@ -15649,19 +15684,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrativeBranchesIncludedIn: 
   checkPopulation: 0
-  populationAmount: 0
+  populationRange: 0000000000000000
   checkMoney: 0
-  moneyAmount: 0
+  moneyRange: 0000000000000000
   checkProsperity: 0
-  prosperityAmount: 0
+  prosperityRange: 0000000000000000
   checkTrust: 0
-  trustAmount: 0
+  trustRange: 0000000000000000
   checkMilitia: 0
-  militiaAmount: 0
+  militiaRange: 0000000000000000
   checkCrime: 0
-  crimeAmount: 0
+  crimeRange: 0000000000000000
   checkCult: 0
-  cultAmount: 0
+  cultRange: 0000000000000000
+  character: {fileID: 0}
+  location: {fileID: 0}
   dialogConversations:
   - dialogue: []
   - dialogue: []
@@ -17259,7 +17296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: e77a73f06cc128a44a7d121597531efc, type: 2}
+  location: {fileID: 11400000, guid: 298719bedc589434b9d4cc35d93b4af5, type: 2}
   moneyAllocatedText: {fileID: 538312641}
   checkboxImage: {fileID: 0}
 --- !u!1 &1961556305
@@ -17480,7 +17517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6300babc1c362843bf13b2cd9d3a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 11400000, guid: c36273a0398306c4eb4fda00571a969e, type: 2}
+  location: {fileID: 11400000, guid: 8e6ae3bbea4afb940b3c800f7716bbb1, type: 2}
   moneyAllocatedText: {fileID: 1119500279}
   checkboxImage: {fileID: 0}
 --- !u!1 &1968649510
@@ -18842,6 +18879,34 @@ PrefabInstance:
       propertyPath: levelLocationObjs.Array.data[6]
       value: 
       objectReference: {fileID: 956311594}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[0].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: f284a6545e0b7174ba56a13ff5222877, type: 2}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[1].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c093f57e89ef8248b75c75c695058c8, type: 2}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[2].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: 8444a3d24ca9e9044a53fcea096f66c4, type: 2}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[3].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e6ae3bbea4afb940b3c800f7716bbb1, type: 2}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[4].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: 298719bedc589434b9d4cc35d93b4af5, type: 2}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[5].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: 54f2930de00e7714d92dba695983ca04, type: 2}
+    - target: {fileID: 1212336031195893677, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
+      propertyPath: locationData.Array.data[6].thisLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f980fff78419ad43b6a5dfa254ad2a6, type: 2}
     - target: {fileID: 1212336031195893678, guid: 3783169821fdce04bbc42b137ef1c830, type: 3}
       propertyPath: m_LocalPosition.x
       value: 743.6892

@@ -81,16 +81,11 @@ public class OtloLevelManager : LevelManager
                 thisLocation.SetMilitiaStationed(locationData[i].militiaStationedInitial);
                 thisLocation.SetMoneyAllocated(locationData[i].moneyAllocatedInitial);
 
-                // If the location is an OtloLocation, reset its individual data
-                if (thisLocation is OtloLocation)
-                {
-                    OtloLocation otloLocation = (OtloLocation)locationData[i].GetLocation();
+                thisLocation.SetProsperity(locationData[i].prosperityInitial);
+                thisLocation.SetMoneyProduced(locationData[i].moneyProducedInitial);
+                thisLocation.SetFoodProduced(locationData[i].foodProducedInitial);
+                thisLocation.SetCrimeProduced(locationData[i].crimeProducedInitial);
 
-                    otloLocation.SetProsperity(locationData[i].prosperityInitial);
-                    otloLocation.SetMoneyProduced(locationData[i].moneyProducedInitial);
-                    otloLocation.SetFoodProduced(locationData[i].foodProducedInitial);
-                    otloLocation.SetCrimeProduced(locationData[i].crimeProducedInitial);
-                }
 
                 Debug.Log(thisLocation.GetName() + " Money Allocated: " + thisLocation.GetMoneyAllocated());
                 Debug.Log(thisLocation.GetName() + " Militia Stationed: " + thisLocation.GetMilitiaStationed());

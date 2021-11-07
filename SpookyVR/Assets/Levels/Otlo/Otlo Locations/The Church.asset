@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a598a8ccf312214f86ea1254d31ade1, type: 3}
-  m_Name: CentralTreasury
+  m_Script: {fileID: 11500000, guid: d8671713252f4ca42963d64c621b807d, type: 3}
+  m_Name: The Church
   m_EditorClassIdentifier: 
-  moneyAllocated: 0
-  prosperity: 0
-  militiaStationed: 0
-  moneyProduced: 0
-  foodProcuded: 0
-  crimeProduced: 0
