@@ -20,7 +20,7 @@ public class OtloDisplayResources : DisplayResources
     [SerializeField, Tooltip("The TMP the food resource will update. ")] private TextMeshProUGUI foodText;
     [SerializeField, Tooltip("The TMP the cult presence resource will update. ")] private TextMeshProUGUI cultPresenceText;
 
-    [Tooltip("The Otlo Resource manager of this location. Handles the resources to be used and manipulated. ")] private OtloResourceManager usedResources;
+    [Tooltip("The Resource manager of this location. Handles the resources to be used and manipulated. ")] private ResourceManager usedResources;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class OtloDisplayResources : DisplayResources
     #region Display Resources Implementation 
     public override void SetResourceManager()
     {
-        usedResources = (OtloResourceManager)FindObjectOfType<LevelManager>().GetLevelResourceManager();
+        usedResources = FindObjectOfType<LevelManager>().GetLevelResourceManager();
     }
 
     public override void UpdateDisplayedResources()

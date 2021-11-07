@@ -60,13 +60,13 @@ public class OtloLevelManager : LevelManager
         thisResourceManager.SetMoney(moneyInitial);
         thisResourceManager.SetMilitiaUnits(militiaInitial);
 
-        OtloResourceManager otloResources = (OtloResourceManager)thisResourceManager;
+        //OtloResourceManager otloResources = (OtloResourceManager)thisResourceManager;
 
-        otloResources.SetCurrentWeek(weekInitial);
-        otloResources.SetPopulation(populationInitial);
-        otloResources.SetFood(foodInitial);
-        otloResources.SetCrimeRate(crimeRateInitial);
-        otloResources.SetCultPresence(cultPresenceInitial);
+        thisResourceManager.SetCurrentWeek(weekInitial);
+        thisResourceManager.SetPopulation(populationInitial);
+        thisResourceManager.SetFood(foodInitial);
+        thisResourceManager.SetCrimeRate(crimeRateInitial);
+        thisResourceManager.SetCultPresence(cultPresenceInitial);
 
         // Cycles through the locations associated with thisResourceManager to reset their variables.
         for (int i = 0; i < locationData.Count; i++)
