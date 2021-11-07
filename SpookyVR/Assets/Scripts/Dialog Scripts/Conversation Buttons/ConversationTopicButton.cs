@@ -20,6 +20,9 @@ public class ConversationTopicButton : MonoBehaviour
 
     [SerializeField, Tooltip("An array of narrative branches this conversation option should appear in. ")] private int[] narrativeBranchesIncludedIn;
 
+    [SerializeField, Tooltip(" ")] private bool checkWeek;
+    [SerializeField, Tooltip("If checkWeek is true - Enables this conversation option if amount is between value 0 and value 1 of array. ")] private int[] weekRange = new int[2];
+
     [SerializeField, Tooltip(" ")] private bool checkPopulation;
     [SerializeField, Tooltip("If checkPopulation is true - Enables this conversation option if amount is between value 0 and value 1 of array. ")] private int[] populationRange = new int[2];
 
@@ -60,6 +63,7 @@ public class ConversationTopicButton : MonoBehaviour
     void Start()
     {
         thisResourceManager = FindObjectOfType<LevelManager>().GetLevelResourceManager();
+        DetermineAvailability();
     }
 
     private void OnEnable()
@@ -69,85 +73,140 @@ public class ConversationTopicButton : MonoBehaviour
 
     public void DetermineAvailability()
     {
+        // The value selectionAmount will need to be in order to ensure that all checks have passed. Is incremented for each check required.
         int valueNeeded = 0;
+
+        // The amount of checks passed. In order for this conversation option to appear, needs to equal the valueNeeded int.
         int selectionAmount = 0;
 
-        if(checkPopulation)
-        {
-            valueNeeded++;
+        // Will be set to true if the current narrative branch matches any of the branches this ConversationTopicButton can appear in. 
+        bool correctNarrativeBranch = false;
 
-            if ((thisResourceManager.GetPopulation() > populationRange[0]) && (thisResourceManager.GetPopulation() < populationRange[1]))
+        int tempTimeline = 1;
+
+        foreach (int branchNumber in narrativeBranchesIncludedIn)
+        {
+            if (tempTimeline == branchNumber)
             {
-                selectionAmount++;
+                if (!correctNarrativeBranch)
+                {
+                    correctNarrativeBranch = true;
+                }
             }
         }
 
-        if(checkMoney)
+        // If this conversation can appear in this narrative branch, then check more specific requirements for this conversation
+        if (correctNarrativeBranch)
         {
-            valueNeeded++;
-
-            if ((thisResourceManager.GetMoney() > moneyRange[0]) && (thisResourceManager.GetMoney() < moneyRange[1]))
+            #region Resource Specific Checks
+            // Checks the week
+            if (checkWeek)
             {
-                selectionAmount++;
+                valueNeeded++;
+
+                if ((thisResourceManager.GetCurrentWeek() > weekRange[0]) && (thisResourceManager.GetCurrentWeek() < weekRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks the population
+            if (checkPopulation)
+            {
+                valueNeeded++;
+
+                if ((thisResourceManager.GetPopulation() > populationRange[0]) && (thisResourceManager.GetPopulation() < populationRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks money
+            if (checkMoney)
+            {
+                valueNeeded++;
+
+                if ((thisResourceManager.GetMoney() > moneyRange[0]) && (thisResourceManager.GetMoney() < moneyRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks prosperity in the given location
+            if (checkProsperity)
+            {
+                valueNeeded++;
+
+                if ((location.GetProsperity() > prosperityRange[0]) && (location.GetProsperity() < prosperityRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks character trust with the given character
+            if (checkTrust)
+            {
+                valueNeeded++;
+
+                if ((character.GetTrust() > trustRange[0]) && (character.GetTrust() < trustRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks militia
+            if (checkMilitia)
+            {
+                valueNeeded++;
+
+                if ((thisResourceManager.GetMilitiaUnits() > militiaRange[0]) && (thisResourceManager.GetMilitiaUnits() < militiaRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks crime
+            if (checkCrime)
+            {
+                valueNeeded++;
+
+                if ((thisResourceManager.GetCrimeRate() > crimeRange[0]) && (thisResourceManager.GetCrimeRate() < crimeRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            // Checks the cult presence
+            if (checkCult)
+            {
+                valueNeeded++;
+
+                if ((thisResourceManager.GetCultPresence() > cultRange[0]) && (thisResourceManager.GetCultPresence() < cultRange[1]))
+                {
+                    selectionAmount++;
+                }
+            }
+
+            #endregion 
+
+            if (selectionAmount == valueNeeded)
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
             }
         }
-
-        if(checkProsperity)
+        else
         {
-            valueNeeded++;
-
-            //if ((thisResourceManager.GetMoney() > moneyRange[0]) && (thisResourceManager.GetMoney() < moneyRange[1]))
-            //{
-            //    selectionAmount++;
-            //}
+            gameObject.SetActive(false);
         }
-
-        if (checkTrust)
-        {
-            valueNeeded++;
-
-            //if ((thisResourceManager.GetMoney() > moneyRange[0]) && (thisResourceManager.GetMoney() < moneyRange[1]))
-            //{
-            //    selectionAmount++;
-            //}
-        }
-
-        if (checkMilitia)
-        {
-            valueNeeded++;
-
-            if ((thisResourceManager.GetMilitiaUnits() > militiaRange[0]) && (thisResourceManager.GetMilitiaUnits() < militiaRange[1]))
-            {
-                selectionAmount++;
-            }
-        }
-
-        if (checkCrime)
-        {
-            valueNeeded++;
-
-            if ((thisResourceManager.GetCrimeRate() > crimeRange[0]) && (thisResourceManager.GetCrimeRate() < crimeRange[1]))
-            {
-                selectionAmount++;
-            }
-        }
-
-        if (checkCult)
-        {
-            valueNeeded++;
-
-            if ((thisResourceManager.GetCultPresence() > cultRange[0]) && (thisResourceManager.GetCultPresence() < cultRange[1]))
-            {
-                selectionAmount++;
-            }
-        }
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

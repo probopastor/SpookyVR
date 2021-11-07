@@ -4203,6 +4203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   narrativeBranchesIncludedIn: 
+  checkWeek: 0
+  weekRange: 0000000000000000
   checkPopulation: 0
   populationRange: 0000000000000000
   checkMoney: 0
@@ -8321,7 +8323,6 @@ GameObject:
   - component: {fileID: 934709624}
   - component: {fileID: 934709626}
   - component: {fileID: 934709625}
-  - component: {fileID: 934709627}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -8445,36 +8446,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934709623}
   m_CullTransparentMesh: 0
---- !u!114 &934709627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934709623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656cd51a24878814b8dfe778bfca1890, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  narrativeBranchesIncludedIn: 
-  checkPopulation: 0
-  populationRange: 0000000000000000
-  checkMoney: 0
-  moneyRange: 0000000000000000
-  checkProsperity: 0
-  prosperityRange: 0000000000000000
-  checkTrust: 0
-  trustRange: 0000000000000000
-  checkMilitia: 0
-  militiaRange: 0000000000000000
-  checkCrime: 0
-  crimeRange: 0000000000000000
-  checkCult: 0
-  cultRange: 0000000000000000
-  character: {fileID: 0}
-  location: {fileID: 0}
-  dialogConversations: []
 --- !u!1 &946689692
 GameObject:
   m_ObjectHideFlags: 0
@@ -9221,7 +9192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656cd51a24878814b8dfe778bfca1890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  narrativeBranchesIncludedIn: 
+  narrativeBranchesIncludedIn: 01000000
+  checkWeek: 0
+  weekRange: 0000000000000000
   checkPopulation: 0
   populationRange: 0000000000000000
   checkMoney: 0
@@ -15683,6 +15656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   narrativeBranchesIncludedIn: 
+  checkWeek: 0
+  weekRange: 0000000000000000
   checkPopulation: 0
   populationRange: 0000000000000000
   checkMoney: 0

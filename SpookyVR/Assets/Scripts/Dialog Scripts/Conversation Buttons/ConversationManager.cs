@@ -17,7 +17,7 @@ public class ConversationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RefreshButtons(true);
+        //RefreshButtons(true);
     }
 
     public void RefreshButtons(bool disableAll)
