@@ -16,7 +16,6 @@ using UnityEngine.InputSystem;
 [DisallowMultipleComponent]
 public class DialogHandler : MonoBehaviour
 {
-    //public static DialogHandler _dialogHandler;
     [Tooltip("The Master Input Map. ")] private InputMaster controls;
 
     #region Febucci References & TMPro use

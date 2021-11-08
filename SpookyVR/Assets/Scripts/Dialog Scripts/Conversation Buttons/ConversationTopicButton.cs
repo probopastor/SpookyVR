@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/* 
+* Glory to the High Council
+* William Nomikos
+* ConversationManager.cs
+* Handles behavior for Conversation Topic Buttons. 
+* Includes method to parse topics from a given button when selected to begin playing the correct topic.
+* Handles determining when Conversation Topics should / shouldn't appear. 
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,13 +65,18 @@ public class ConversationTopicButton : MonoBehaviour
     [SerializeField, Tooltip("A list of the possible interactions this conversation option will contain. ")] private List<Interactions> dialogConversations;
 
     [Tooltip("Determines whether this topic is selectable or not. ")] private bool isSelectable = false;
-
+    
     private ResourceManager thisResourceManager;
+    private DialogHandler dialogHandler;
+    private TopicParser topicParser;
 
     // Start is called before the first frame update
     void Start()
     {
         thisResourceManager = FindObjectOfType<LevelManager>().GetLevelResourceManager();
+        dialogHandler = FindObjectOfType<DialogHandler>();
+        topicParser = FindObjectOfType<TopicParser>();
+
         DetermineAvailability();
     }
 
@@ -87,12 +101,16 @@ public class ConversationTopicButton : MonoBehaviour
         // Will be set to true if the current narrative branch matches any of the branches this ConversationTopicButton can appear in. 
         bool correctNarrativeBranch = false;
 
+        // TODO: GET THIS VALUE FROM THE RESOURCEMANAGER
         int tempTimeline = 1;
 
+        // Cycle through all branchNumbers this Conversation Topic can appear in
         foreach (int branchNumber in narrativeBranchesIncludedIn)
         {
+            // If the current narrative branch is equal to a branch number of the Conversation Topic
             if (tempTimeline == branchNumber)
             {
+                // Set the Correct Narrative Branch to true
                 if (!correctNarrativeBranch)
                 {
                     correctNarrativeBranch = true;
@@ -194,6 +212,7 @@ public class ConversationTopicButton : MonoBehaviour
 
             #endregion 
 
+            // If the selectionAmount equals the value needed, then requirements have been met for this conversation topic to be possible.
             if (selectionAmount == valueNeeded)
             {
                 gameObject.SetActive(true);
@@ -217,6 +236,7 @@ public class ConversationTopicButton : MonoBehaviour
 
     public void SelectConversation()
     {
-        // Sends dialogConversations to a thing that determines which conversation should occur based on variables. Then sends it to be queued into the ConversationManager
+        List<TextState> parsedTopic = topicParser.ParseInteractions(dialogConversations, character);
+        StartCoroutine(dialogHandler.RunDialog(parsedTopic));
     }
 }
