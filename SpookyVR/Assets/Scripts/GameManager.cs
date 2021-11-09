@@ -149,9 +149,8 @@ public class GameManager : MonoBehaviour
                     if (cheatEntered || actionComplete)
                     {
                         cheatEntered = false;
-                        Debug.Log("Cheat entered");
-
                         actionComplete = false;
+                        Debug.Log("Cheat entered");
                         theDays[i].actionsToday[x].SetActionInProgress(false);
                     }
                     else
@@ -264,6 +263,13 @@ public class GameManager : MonoBehaviour
             {
                 if (i == index)
                 {
+                    if(levelLocations[i].activeInHierarchy)
+                    {
+                        levelLocations[i].SetActive(false);
+                    }
+
+                    // TODO: Schedule animation plays here?... maybe turn this into coroutine later
+
                     levelLocations[i].SetActive(true);
                 }
                 else

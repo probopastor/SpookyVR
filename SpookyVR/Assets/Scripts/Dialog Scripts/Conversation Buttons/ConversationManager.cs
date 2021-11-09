@@ -29,13 +29,7 @@ public class ConversationManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (dialogHandler == null)
-        {
-            dialogHandler = FindObjectOfType<DialogHandler>();
-        }
-
-        conversationTopicsRemaining = conversationTopicsPerMeeting;
-        DisplayTopics(false);
+        NewMeetingSetup();
     }
 
     // Update is called once per frame
@@ -52,7 +46,19 @@ public class ConversationManager : MonoBehaviour
             // Play end dialog here
 
             GameManager._gameManager.SetCurrentActionComplete(true);
+            NewMeetingSetup();
         }
+    }
+
+    private void NewMeetingSetup()
+    {
+        if (dialogHandler == null)
+        {
+            dialogHandler = FindObjectOfType<DialogHandler>();
+        }
+
+        conversationTopicsRemaining = conversationTopicsPerMeeting;
+        DisplayTopics(false);
     }
 
     /// <summary>
