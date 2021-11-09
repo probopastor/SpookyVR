@@ -9466,7 +9466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656cd51a24878814b8dfe778bfca1890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  narrativeBranchesIncludedIn: 00000000
+  narrativeBranchesIncludedIn: 0000000002000000030000000400000009000000
   checkWeek: 0
   weekRange: 0000000000000000
   checkPopulation: 0
@@ -9485,7 +9485,14 @@ MonoBehaviour:
   cultRange: 0000000000000000
   character: {fileID: 11400000, guid: 7744cef797879d24e8b8740fd48305ab, type: 2}
   location: {fileID: 11400000, guid: 54f2930de00e7714d92dba695983ca04, type: 2}
-  dialogConversations: []
+  dialogConversations:
+  - dialogue:
+    - text: hello...
+      characterState: {fileID: 0}
+      continueAutomatically: 0
+    - text: hi, im a 2019 guy
+      characterState: {fileID: 0}
+      continueAutomatically: 0
 --- !u!1 &1094251185
 GameObject:
   m_ObjectHideFlags: 0

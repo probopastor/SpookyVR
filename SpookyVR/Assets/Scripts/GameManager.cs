@@ -261,21 +261,12 @@ public class GameManager : MonoBehaviour
             // Set the correct location based on the index to be active, and other locations to be inactive.
             for (int i = 0; i < levelLocations.Length; i++)
             {
+                levelLocations[i].SetActive(false);
+
                 if (i == index)
                 {
-                    if(levelLocations[i].activeInHierarchy)
-                    {
-                        levelLocations[i].SetActive(false);
-                    }
-
                     // TODO: Schedule animation plays here?... maybe turn this into coroutine later
-
                     levelLocations[i].SetActive(true);
-                }
-                else
-                {
-                    levelLocations[i].SetActive(false);
-
                 }
             }
         }
