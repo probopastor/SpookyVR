@@ -16,6 +16,7 @@ using Febucci.UI;
 public class LocationIntroDialogue : MonoBehaviour
 {
     [SerializeField, Tooltip("A list containing all of a locations spoken Intro Dialogue. ")] private List<Interactions> introDialog = new List<Interactions>(1);
+    [Tooltip(" ")] private TopicParser topicParser;
 
     #region Character Image & Location Images
     [Space(10)]
@@ -57,6 +58,7 @@ public class LocationIntroDialogue : MonoBehaviour
     private void Start()
     {
         dialogHandler = FindObjectOfType<DialogHandler>();
+        topicParser = FindObjectOfType<TopicParser>();
     }
 
     private void OnEnable()
@@ -67,7 +69,7 @@ public class LocationIntroDialogue : MonoBehaviour
 
     private void OnDisable()
     {
-        
+        introductionComplete = false;
     }
 
     /// <summary>
@@ -95,27 +97,41 @@ public class LocationIntroDialogue : MonoBehaviour
         {
             introductionComplete = true;
 
+            // If the right character has not been met, set to met
+            //if (!characterRight.GetMetStatus())
+            //{
+            //    characterRight.SetMetStatus(true);
+            //}
+
+            //// If the left character has not been met, set to met.
+            //if (!characterLeft.GetMetStatus())
+            //{
+            //    characterLeft.SetMetStatus(true);
+            //}
+
+            // If this character has not been met, run their first interaction dialog
             if (!characterCenter.GetMetStatus())
             {
                 // Set this character to Met
                 characterCenter.SetMetStatus(true);
                 StartCoroutine(dialogHandler.RunDialog(introDialog[0].GetTextStates()));
             }
+            // If this character is met, run dialog based on character trust
             else
             {
-                // Run intro text based on character trust here.
-                // if(characterCenter.trust or whatever >= amount of low trust)... etc. 
+                //List<TextState> parsedTopic = topicParser.ParseInteractions(introDialog, characterCenter);
+                //topicParser.SubmitDialog(parsedTopic, dialogHandler);
 
-                // Parse dialog based on trust here
+                StartCoroutine(dialogHandler.RunDialog(introDialog[1].GetTextStates()));
             }
         }
         else
         {
             // Run Main Dialog here
 
-            if(!dialogHandler.GetRunDialogInProgress())
+            if (!dialogHandler.GetRunDialogInProgress())
             {
-                DisplayConversationOptions(true);
+                
             }
             else
             {
@@ -124,31 +140,6 @@ public class LocationIntroDialogue : MonoBehaviour
         }
     }
 
-    private void DisplayConversationOptions(bool enableOptions)
-    {
-        // Handles displaying text conversation button options
-        if (enableOptions)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
-
-    //public void ConversationSelection(DialogTextSetter textSetter)
-    //{
-    //    DisplayConversationOptions(false);
-    //    List<Interactions> interactionList = textSetter.GetInteractions();
-
-    //    List<TextState> textStateToUse = new List<TextState>();
-
-    //    // Check everything from textSetter
-
-    //    // Set textStateToUse and run that
-    //    StartCoroutine(dialogHandler.RunDialog(introDialog[0].GetTextStates()));
-    //}
 
     /// <summary>
     /// Returns an Interactions List of intro dialog for a location.

@@ -9026,9 +9026,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 964140776480288574}
     m_Modifications:
     - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: introDialog.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: introDialog.Array.data[1].dialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: characterCenter
       value: 
       objectReference: {fileID: 11400000, guid: 7744cef797879d24e8b8740fd48305ab, type: 2}
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: introDialog.Array.data[1].dialogue.Array.data[0].text
+      value: I have met thee prior.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210294533392907075, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
+      propertyPath: introDialog.Array.data[1].dialogue.Array.data[1].text
+      value: So seriously, have you seen my damn snake? It slithers and makes hissing
+        noises at things it dislikes. I hope it's found soon...
+      objectReference: {fileID: 0}
     - target: {fileID: 8484667503695475154, guid: 4a8744ef8353fed45a3b300bb9cd8880, type: 3}
       propertyPath: locationsDialogue
       value: 

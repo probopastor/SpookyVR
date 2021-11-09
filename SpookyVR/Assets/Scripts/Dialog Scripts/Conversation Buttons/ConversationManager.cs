@@ -46,6 +46,7 @@ public class ConversationManager : MonoBehaviour
         {
             DisplayTopics(true);
         }
+        // End current action if topics remaining is 0
         else if(!dialogHandler.GetRunDialogInProgress() && conversationTopicsRemaining <= 0)
         {
             // Play end dialog here
