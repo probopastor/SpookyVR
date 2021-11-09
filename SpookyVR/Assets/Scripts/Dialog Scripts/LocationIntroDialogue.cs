@@ -105,6 +105,8 @@ public class LocationIntroDialogue : MonoBehaviour
             {
                 // Run intro text based on character trust here.
                 // if(characterCenter.trust or whatever >= amount of low trust)... etc. 
+
+                // Parse dialog based on trust here
             }
         }
         else

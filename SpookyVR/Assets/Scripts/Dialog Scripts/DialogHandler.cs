@@ -102,8 +102,8 @@ public class DialogHandler : MonoBehaviour
             }
         }
 
-        runDialogInProgress = false;
         yield return new WaitForEndOfFrame();
+        runDialogInProgress = false;
     }
 
     public void SetTextAnimator(TextAnimator tAnim)
@@ -116,6 +116,10 @@ public class DialogHandler : MonoBehaviour
         textAnimatorPlayer = tAnimPlayer;
     }
 
+    /// <summary>
+    /// Returns true if dialog is running, false otherwise.
+    /// </summary>
+    /// <returns></returns>
     public bool GetRunDialogInProgress()
     {
         return runDialogInProgress;

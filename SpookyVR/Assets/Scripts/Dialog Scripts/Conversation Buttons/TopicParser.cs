@@ -29,7 +29,7 @@ public class TopicParser : MonoBehaviour
             if (i > 0)
             {
                 // If the character trust is not between the lower bracket bound and the higher bracket bound
-                if(!(characterTrust > trustBrackets[i-1]) && !(characterTrust < trustBrackets[i]))
+                if (!(characterTrust > trustBrackets[i - 1]) && !(characterTrust < trustBrackets[i]))
                 {
                     // Then the trust does not fall into this bracket, so increase the trustBracket count.
                     trustBracket++;
@@ -43,5 +43,10 @@ public class TopicParser : MonoBehaviour
         // Returns this text state
         return parsedText;
     }
-    
+
+    public void SubmitDialog(List<TextState> parsedTopic, DialogHandler handler)
+    {
+        StartCoroutine(handler.RunDialog(parsedTopic));
+    }
+
 }

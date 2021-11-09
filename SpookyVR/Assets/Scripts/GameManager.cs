@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     [Tooltip(" ")] private GameObject[] scheduleCanvasObjsToHide;
     [Tooltip(" ")] private List<GameObject> scheduleActionsCreated = new List<GameObject>();
-
+    [Tooltip(" ")] private bool actionComplete = false;
     public static GameManager _gameManager;
     #endregion
 
@@ -100,12 +100,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-
-    //public void SetScheduleDays(List<Days> theDays)
-    //{
-    //    scheduleDays = theDays;
-    //}
-
     #region Run Week Methods
 
     /// <summary>
@@ -152,10 +146,12 @@ public class GameManager : MonoBehaviour
                 // Continue to stay on this action until the action is no longer in progress
                 while (theDays[i].actionsToday[x].GetActionInProgress())
                 {
-                    if (cheatEntered)
+                    if (cheatEntered || actionComplete)
                     {
                         cheatEntered = false;
                         Debug.Log("Cheat entered");
+
+                        actionComplete = false;
                         theDays[i].actionsToday[x].SetActionInProgress(false);
                     }
                     else
@@ -238,6 +234,15 @@ public class GameManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// Sets the current action to be complete or incomplete. 
+    /// </summary>
+    /// <param name="progressState">True if action is complete, false otherwise. </param>
+    public void SetCurrentActionComplete(bool progressState)
+    {
+        actionComplete = progressState;
     }
 
     #endregion

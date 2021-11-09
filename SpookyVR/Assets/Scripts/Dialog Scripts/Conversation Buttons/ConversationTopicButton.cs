@@ -237,6 +237,8 @@ public class ConversationTopicButton : MonoBehaviour
     public void SelectConversation()
     {
         List<TextState> parsedTopic = topicParser.ParseInteractions(dialogConversations, character);
-        StartCoroutine(dialogHandler.RunDialog(parsedTopic));
+        topicParser.SubmitDialog(parsedTopic, dialogHandler);
+
+        //StartCoroutine(dialogHandler.RunDialog(parsedTopic));
     }
 }
