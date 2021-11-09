@@ -276,13 +276,11 @@ public class GameManager : MonoBehaviour
             // Set the correct character meeting based on the index to be active, and other locations to be inactive.
             for (int i = 0; i < meetingLocations.Length; i++)
             {
+                meetingLocations[i].SetActive(false);
+
                 if (i == index)
                 {
                     meetingLocations[i].SetActive(true);
-                }
-                else
-                {
-                    meetingLocations[i].SetActive(false);
                 }
             }
         }
